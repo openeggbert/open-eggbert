@@ -1,0 +1,130 @@
+{
+  "resources":{
+  "includes":[{
+    "pattern":"\\QMETA-INF/fonts.mf\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.lang.System$LoggerFinder\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.net.spi.InetAddressResolverProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.net.spi.URLStreamHandlerProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.time.zone.ZoneRulesProvider\\E"
+  }, {
+    "pattern":"\\Qcom/sun/javafx/scene/control/skin/resources/controls_en.properties\\E"
+  }, {
+    "pattern":"\\Qcom/sun/javafx/scene/control/skin/resources/controls_en_US.properties\\E"
+  }, {
+    "pattern":"\\Qcom/sun/javafx/tk/quantum/QuantumMessagesBundle_en.properties\\E"
+  }, {
+    "pattern":"\\Qcom/sun/javafx/tk/quantum/QuantumMessagesBundle_en_US.properties\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/languages/english.lang\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/textures/brick.png\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/textures/fxgl_default_cursor.png\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/textures/fxgl_icon.png\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/textures/particles/smoke.png\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/textures/particles/trace_horizontal.png\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/ui/css/fxgl_dark.css\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/ui/fonts/Abel-Regular.ttf\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/ui/fonts/Courier-Prime.ttf\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/ui/fonts/TerminalLandMono-Regular.otf\\E"
+  }, {
+    "pattern":"com.almasb.fxgl.all:\\Qfxglassets/ui/fonts/VarelaRound-Regular.ttf\\E"
+  }, {
+    "pattern":"java.base:\\Qjdk/internal/icu/impl/data/icudt74b/nfkc.nrm\\E"
+  }, {
+    "pattern":"java.base:\\Qjdk/internal/icu/impl/data/icudt74b/ubidi.icu\\E"
+  }, {
+    "pattern":"java.base:\\Qjdk/internal/icu/impl/data/icudt74b/uprops.icu\\E"
+  }, {
+    "pattern":"java.base:\\Qsun/net/idn/uidna.spp\\E"
+  }, {
+    "pattern":"javafx.controls:\\Qcom/sun/javafx/scene/control/skin/modena/modena.bss\\E"
+  }, {
+    "pattern":"javafx.controls:\\Qcom/sun/javafx/scene/control/skin/resources/controls.properties\\E"
+  }, {
+    "pattern":"javafx.controls:\\Qcom/sun/javafx/scene/control/skin/resources/controls_en.properties\\E"
+  }, {
+    "pattern":"javafx.controls:\\Qcom/sun/javafx/scene/control/skin/resources/controls_en_US.properties\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/glass/utils/NativeLibLoader.class\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/javafx/tk/quantum/QuantumMessagesBundle.properties\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/javafx/tk/quantum/QuantumMessagesBundle_en.properties\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/javafx/tk/quantum/QuantumMessagesBundle_en_US.properties\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/prism/es2/glsl/DrawEllipse_Color.frag\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/prism/es2/glsl/DrawPgram_Color.frag\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/prism/es2/glsl/FillEllipse_Color.frag\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/prism/es2/glsl/FillRoundRect_Color.frag\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/prism/es2/glsl/Solid_Color.frag\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/prism/es2/glsl/Solid_TextureRGB.frag\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/prism/es2/glsl/Texture_Color.frag\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/prism/es2/glsl/Texture_LinearGradient_PAD.frag\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qcom/sun/scenario/effect/impl/es2/glsl/Blend_SRC_IN.frag\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qlibglass.so\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qlibglassgtk3.so\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qlibjavafx_font.so\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qlibjavafx_font_freetype.so\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qlibjavafx_font_pango.so\\E"
+  }, {
+    "pattern":"javafx.graphics:\\Qlibprism_es2.so\\E"
+  }, {
+    "pattern":"openeggbert.main:\\Qassets/languages/english.lang\\E"
+  }, {
+    "pattern":"openeggbert.main:\\Qassets/textures/particles/smoke.png\\E"
+  }, {
+    "pattern":"openeggbert.main:\\Qassets/textures/particles/trace_horizontal.png\\E"
+  }, {
+    "pattern":"openeggbert.main:\\Qassets/ui/css/fxgl_dark.css\\E"
+  }, {
+    "pattern":"openeggbert.main:\\Qassets/ui/fonts/Abel-Regular.ttf\\E"
+  }, {
+    "pattern":"openeggbert.main:\\Qassets/ui/fonts/Courier-Prime.ttf\\E"
+  }, {
+    "pattern":"openeggbert.main:\\Qassets/ui/fonts/TerminalLandMono-Regular.otf\\E"
+  }, {
+    "pattern":"openeggbert.main:\\Qassets/ui/fonts/VarelaRound-Regular.ttf\\E"
+  }]},
+  "bundles":[{
+    "name":"com.sun.javafx.tk.quantum.QuantumMessagesBundle",
+    "locales":["en-US"]
+  }, {
+    "name":"com/sun/javafx/scene/control/skin/resources/controls",
+    "locales":["en-US"]
+  }, {
+    "name":"sun.text.resources.FormatData",
+    "locales":["en", "en-US", "und"]
+  }, {
+    "name":"sun.text.resources.JavaTimeSupplementary",
+    "locales":["en", "en-US", "und"]
+  }, {
+    "name":"sun.text.resources.cldr.FormatData",
+    "locales":["en", "en-US", "und"]
+  }]
+}
