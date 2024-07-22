@@ -30,11 +30,11 @@
     </parent>
     
     <groupId>com.openeggbert</groupId>
-    <artifactId>open-eggbert</artifactId>
+    <artifactId>open-eggbert-fxgl</artifactId>
     <version>0.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Open Eggbert</name>
+    <name>Open Eggbert FXGL</name>
     <description>Free recreation of the computer game Speedy Eggbert</description>
 
     <properties>
