@@ -1,4 +1,8 @@
-# open-eggbert
+# Open Eggbert
+
+Free recreation of the computer game Speedy Eggbert.
+
+## Development
 
 A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
 
