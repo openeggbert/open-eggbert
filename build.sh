@@ -1,0 +1,1 @@
+./gradlew build $1

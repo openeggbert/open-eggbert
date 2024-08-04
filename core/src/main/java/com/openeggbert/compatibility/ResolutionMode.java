@@ -28,5 +28,6 @@ package com.openeggbert.compatibility;
 public enum ResolutionMode {
     RESOLUTION_640_480,
     RESOLUTION_1280_960,
-    RESOLUTION_SCALED;
+    RESOLUTION_SCALED,
+    RESOLUTION_KEEP;
 }

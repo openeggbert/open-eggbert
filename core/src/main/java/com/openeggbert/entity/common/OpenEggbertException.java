@@ -18,18 +18,16 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-
 package com.openeggbert.entity.common;
-
-import com.openeggbert.compatibility.FeatureLevel;
 
 /**
  *
  * @author robertvokac
  */
-public class Utils {
-    private Utils() {
-        //Instantiate not needed.
+public class OpenEggbertException extends RuntimeException{
+
+    public OpenEggbertException(String string) {
+        super(string);
     }
-    public static final FeatureLevel[] ALL__COMPATIBILITY_MODES = FeatureLevel.values();
+    
 }

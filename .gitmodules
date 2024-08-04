@@ -1,0 +1,4 @@
+[submodule "assets/open-eggbert-legacy-assets"]
+	path = assets/open-eggbert-legacy-assets
+	url = https://code.nanoboot.org/openeggbert/open-eggbert-legacy-assets
+	branch = develop

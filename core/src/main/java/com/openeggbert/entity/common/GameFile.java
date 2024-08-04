@@ -20,7 +20,7 @@
 
 package com.openeggbert.entity.common;
 
-import com.openeggbert.compatibility.CompatibilityMode;
+import com.openeggbert.compatibility.FeatureLevel;
 
 /**
  *
@@ -28,7 +28,7 @@ import com.openeggbert.compatibility.CompatibilityMode;
  */
 public class GameFile {
 
-    private CompatibilityMode compatibilityMode;
+    private FeatureLevel compatibilityMode;
     private GameFileType gameFileType;
     private String path;
     private String name;

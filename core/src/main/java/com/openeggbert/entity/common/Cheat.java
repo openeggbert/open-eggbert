@@ -21,7 +21,7 @@
 
 package com.openeggbert.entity.common;
 
-import com.openeggbert.compatibility.CompatibilityMode;
+import com.openeggbert.compatibility.FeatureLevel;
 import lombok.Getter;
 
 /**
@@ -31,16 +31,16 @@ import lombok.Getter;
 public enum Cheat {
     
     MEGABLUPI(Utils.ALL__COMPATIBILITY_MODES);
-    //todo
+    //todo//todo
     
     @Getter
-    private final CompatibilityMode[] compatibilityModes;
+    private final FeatureLevel[] compatibilityModes;
     @Getter
     private String note;
-    Cheat (CompatibilityMode[] compatibilityModes) {
+    Cheat (FeatureLevel[] compatibilityModes) {
         this(compatibilityModes, "");
     }
-    Cheat (CompatibilityMode[] compatibilityModes, String note) {
+    Cheat (FeatureLevel[] compatibilityModes, String note) {
         this.compatibilityModes = compatibilityModes;
         this.note = note;
     }

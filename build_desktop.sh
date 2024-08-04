@@ -1,0 +1,1 @@
+./gradlew lwjgl3:dist

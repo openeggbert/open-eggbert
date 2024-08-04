@@ -1,0 +1,83 @@
+File;Group;Number in Group;Row;Column;X;Y;Width;Height;Notes;Tags;Number per file
+blupi000.blp;Yellow_Eggbert_Born;1;1;1;0;0;28;20;;ok;1
+blupi000.blp;Yellow_Eggbert_Born;2;1;2;28;0;28;20;;ok;2
+blupi000.blp;Yellow_Eggbert_Born;3;1;3;56;0;28;23;;ok;3
+blupi000.blp;Yellow_Eggbert_Born;4;1;4;84;0;28;23;;ok;4
+blupi000.blp;Yellow Bomb;1;1;5;112;0;34;24;;ok;5
+blupi000.blp;Yellow Bomb;2;1;6;146;0;38;24;;ok;6
+blupi000.blp;Yellow Bomb;3;1;7;184;0;40;24;;ok;7
+blupi000.blp;Yellow Bomb;4;1;8;224;0;42;24;;ok;8
+blupi000.blp;Yellow Bomb;5;1;9;266;0;44;24;;ok;9
+blupi000.blp;Yellow Bomb;6;1;10;310;0;45;24;;ok;10
+blupi000.blp;Yellow_Eggbert_Life;1;1;11;355;0;17;25;;ok;11
+blupi000.blp;Yellow_Eggbert_Born;5;1;12;372;0;28;27;;ok;12
+blupi000.blp;Yellow_Eggbert_Born;6;1;13;400;0;28;29;;ok;13
+blupi000.blp;Yellow_Eggbert_Born;7;1;14;428;0;28;30;;ok;14
+blupi000.blp;Yellow_Eggbert_Born;8;1;15;456;0;28;31;;ok;15
+blupi000.blp;Yellow_Eggbert_Swimming_Right;1;1;16;484;0;53;31;;ok;16
+blupi000.blp;Yellow_Eggbert_Swimming_Left;1;1;17;537;0;60;31;;ok;17
+blupi000.blp;Yellow_Eggbert_Born;9;1;18;597;0;28;32;;ok;18
+blupi000.blp;Yellow_Eggbert_Swimming_Left;2;1;19;625;0;46;32;;ok;19
+blupi000.blp;Yellow_Eggbert_Swimming_Left;3;1;20;671;0;46;32;;ok;20
+blupi000.blp;Yellow_Eggbert_Swimming_Right;2;1;21;717;0;47;32;;ok;21
+blupi000.blp;Yellow_Eggbert_Swimming_Right;3;2;1;0;32;47;32;;ok;22
+blupi000.blp;Yellow_Eggbert_Swimming_Left;4;2;2;47;32;47;32;;ok;23
+blupi000.blp;Yellow_Eggbert_Swimming_Right;4;2;3;94;32;48;32;;ok;24
+blupi000.blp;Yellow_Eggbert_Swimming_Right;5;2;4;142;32;48;32;;ok;25
+blupi000.blp;Yellow_Eggbert_Swimming_Left;5;2;5;190;32;48;32;;ok;26
+blupi000.blp;Yellow_Eggbert_Swimming_Left;6;2;6;238;32;48;32;;ok;27
+blupi000.blp;Yellow_Eggbert_Swimming_Right;6;2;7;286;32;49;32;;ok;28
+blupi000.blp;Yellow_Eggbert_Swimming_Right;7;2;8;335;32;49;32;;ok;29
+blupi000.blp;Yellow_Eggbert_Swimming_Left;7;2;9;384;32;49;32;;ok;30
+blupi000.blp;Yellow_Eggbert_Swimming_Right;8;2;10;433;32;49;32;;ok;31
+blupi000.blp;Yellow_Eggbert_Swimming_Butt;1;2;11;482;32;52;32;;ok;32
+blupi000.blp;Yellow_Eggbert_Swimming_Left;8;2;12;534;32;54;32;;ok;33
+blupi000.blp;Yellow_Eggbert_Swimming_Right;9;2;13;588;32;57;32;;ok;34
+blupi000.blp;Yellow_Eggbert_Swimming_Left;9;2;14;645;32;58;32;;ok;35
+blupi000.blp;Yellow_Eggbert_Crouching_Left;1;2;15;703;32;37;39;;ok;36
+blupi000.blp;Yellow_Eggbert_Crouching_Right;1;2;16;740;32;37;39;;ok;37
+blupi000.blp;?;1;3;1;0;71;37;43;;ok;38
+blupi000.blp;?;1;3;2;37;71;37;43;;ok;39
+blupi000.blp;?;1;3;3;74;71;35;44;;ok;40
+blupi000.blp;?;1;3;4;109;71;35;44;;ok;41
+blupi000.blp;?;1;3;5;144;71;36;44;;ok;42
+blupi000.blp;?;1;3;6;180;71;36;44;;ok;43
+blupi000.blp;?;1;3;7;216;71;33;45;;ok;44
+blupi000.blp;?;1;3;8;249;71;34;45;;ok;45
+blupi000.blp;?;1;3;9;283;71;34;45;;ok;46
+blupi000.blp;?;1;3;10;317;71;35;45;;ok;47
+blupi000.blp;?;1;3;11;352;71;36;45;;ok;48
+blupi000.blp;?;1;3;12;388;71;37;45;;ok;49
+blupi000.blp;?;1;3;13;425;71;37;45;;ok;50
+blupi000.blp;?;1;3;14;462;71;39;45;;ok;51
+blupi000.blp;?;1;3;15;501;71;32;46;;ok;52
+blupi000.blp;?;1;3;16;533;71;32;46;;ok;53
+blupi000.blp;?;1;3;17;565;71;32;46;;ok;54
+blupi000.blp;?;1;3;18;597;71;32;46;;ok;55
+blupi000.blp;?;1;3;19;629;71;34;46;;ok;56
+blupi000.blp;?;1;3;20;663;71;36;46;whoops;ok;57
+blupi000.blp;?;1;3;21;699;71;37;46;;ok;58
+blupi000.blp;?;1;3;22;736;71;36;47;;ok;59
+blupi000.blp;?;1;4;1;0;118;41;47;bouchnul se do hlavy;ok;60
+blupi000.blp;?;1;4;2;41;118;30;48;;ok;61
+blupi000.blp;?;1;4;3;71;118;31;48;;ok;62
+blupi000.blp;?;1;4;4;102;118;31;48;;ok;63
+blupi000.blp;?;1;4;5;133;118;32;48;;ok;64
+blupi000.blp;?;1;4;6;165;118;32;48;;ok;65
+blupi000.blp;?;1;4;7;197;118;32;48;;ok;66
+blupi000.blp;?;1;4;8;229;118;32;48;;ok;67
+blupi000.blp;?;1;4;9;261;118;32;48;;ok;68
+blupi000.blp;?;1;4;10;293;118;33;48;;ok;69
+blupi000.blp;?;1;4;11;326;118;33;48;;ok;70
+blupi000.blp;?;1;4;12;359;118;33;48;;ok;71
+blupi000.blp;?;1;4;13;392;118;33;48;;ok;72
+blupi000.blp;?;1;4;14;425;118;33;48;;ok;73
+blupi000.blp;?;1;4;15;458;118;36;48;;ok;74
+blupi000.blp;?;1;4;16;494;118;36;48;;ok;75
+blupi000.blp;?;1;4;17;530;118;36;48;;ok;76
+blupi000.blp;?;1;4;18;566;118;37;48;;;77
+blupi000.blp;?;1;4;19;603;118;37;48;;;78
+blupi000.blp;?;1;4;20;640;118;36;48;;;79
+blupi000.blp;?;1;4;21;676;118;36;48;;;80
+blupi000.blp;?;1;4;22;712;118;36;48;;;81
+blupi000.blp;?;1;4;23;748;118;36;49;;;82

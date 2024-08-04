@@ -21,7 +21,7 @@
 
 package com.openeggbert.entity.common;
 
-import com.openeggbert.compatibility.CompatibilityMode;
+import com.openeggbert.compatibility.FeatureLevel;
 import com.openeggbert.compatibility.GraphicsMode;
 import com.openeggbert.compatibility.ResolutionMode;
 import lombok.Data;
@@ -32,7 +32,7 @@ import lombok.Data;
  */
 @Data
 public class GameExecution {
-    private CompatibilityMode compatibilityMode;
+    private FeatureLevel compatibilityMode;
     private ResolutionMode resolutionMode = ResolutionMode.RESOLUTION_640_480;
     private GraphicsMode graphicsMode = GraphicsMode.ORIGINAL;
     private Boolean cheatsEnabled = true;

@@ -19,32 +19,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-package com.openeggbert.compatibility;
-
-import lombok.Getter;
+package com.openeggbert.entity.common;
 
 /**
  *
  * @author robertvokac
  */
-public enum CompatibilityMode {
-    SPEEDY_BLUPI_DEMO(ReleaseType.BLUPI, ReleaseVersion.DEMO),
-    SPEEDY_BLUPI_I(ReleaseType.BLUPI, ReleaseVersion.ONE),
-    SPEEDY_BLUPI_II(ReleaseType.BLUPI, ReleaseVersion.TWO),
-    SPEEDY_EGGBERT_DEMO(ReleaseType.EGGBERT, ReleaseVersion.DEMO),
-    SPEEDY_EGGBERT_1(ReleaseType.EGGBERT, ReleaseVersion.ONE),
-    SPEEDY_EGGBERT_2(ReleaseType.EGGBERT, ReleaseVersion.TWO),
-    OPEN_EGGBERT(ReleaseType.OPEN, ReleaseVersion.THREE);
-    @Getter
-    private final ReleaseType releaseType;
-    @Getter
-    private final ReleaseVersion releaseVersion;
-
-    private CompatibilityMode(ReleaseType releaseType, ReleaseVersion releaseVersion) {
-        this.releaseType = releaseType;
-        this.releaseVersion = releaseVersion;
-    }
-    
-    
+public enum OpenEggbertScreen {
+    MAIN
     
 }

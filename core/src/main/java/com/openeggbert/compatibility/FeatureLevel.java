@@ -17,14 +17,30 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.compatibility;
 
-
-package com.openeggbert.entity.common;
+import lombok.Getter;
 
 /**
  *
  * @author robertvokac
  */
-public class ScreenType {
-    
+public enum FeatureLevel {
+    SPEEDY_BLUPI_DEMO(ReleaseType.BLUPI, ReleaseVersion.DEMO),
+    SPEEDY_BLUPI_I(ReleaseType.BLUPI, ReleaseVersion.ONE),
+    SPEEDY_BLUPI_II(ReleaseType.BLUPI, ReleaseVersion.TWO),
+    SPEEDY_EGGBERT_DEMO(ReleaseType.EGGBERT, ReleaseVersion.DEMO),
+    SPEEDY_EGGBERT_1(ReleaseType.EGGBERT, ReleaseVersion.ONE),
+    SPEEDY_EGGBERT_2(ReleaseType.EGGBERT, ReleaseVersion.TWO),
+    OPEN_EGGBERT_3(ReleaseType.OPEN, ReleaseVersion.THREE);
+    @Getter
+    private final ReleaseType releaseType;
+    @Getter
+    private final ReleaseVersion releaseVersion;
+
+    private FeatureLevel(ReleaseType releaseType, ReleaseVersion releaseVersion) {
+        this.releaseType = releaseType;
+        this.releaseVersion = releaseVersion;
+    }
+
 }
