@@ -38,8 +38,13 @@ public class DesktopUtils {
 
     public static Optional<GameSpace> tryToLoadGameSpace() {
         String gameSpaceDirectoryFromEnvironmentVariable = System.getenv().getOrDefault("GAME_SPACE_DIRECTORY", "");
+        String gameSpaceDirectoryFromSystemProperty = System.getProperty("GAME_SPACE_DIRECTORY", "");
+        
         if (!gameSpaceDirectoryFromEnvironmentVariable.isBlank()) {
             return tryToLoadGameSpaceFromEnvironmentVariable(gameSpaceDirectoryFromEnvironmentVariable);
+        }        
+        if (!gameSpaceDirectoryFromSystemProperty.isBlank()) {
+            return tryToLoadGameSpaceFromEnvironmentVariable(gameSpaceDirectoryFromSystemProperty);
         }
         Optional<GameSpace> gameOptional = tryToLoadGameSpaceFromCurrentDirectory();
         return gameOptional;

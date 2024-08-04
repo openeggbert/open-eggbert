@@ -17,17 +17,34 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.mods;
 
-
-package com.openeggbert.compatibility;
+import com.badlogic.gdx.utils.XmlReader.Element;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  *
  * @author robertvokac
  */
-public enum ResolutionMode {
-    RESOLUTION_640_480,
-    RESOLUTION_1280_960,
-    RESOLUTION_SCALED,
-    RESOLUTION_CURRENT;
+@Data
+@AllArgsConstructor
+public class ModIdentification {
+
+    private final String groupId;
+    private final String modId;
+    private final String version;
+
+    public ModIdentification(Element element) {
+        groupId = element.get("groupId");
+        modId = element.get("modId");
+        version = element.get("version");
+    }
+
+    public String asString() {
+
+        return groupId + DOT + modId + DOT + version;
+    }
+    private static final String DOT = ".";
+
 }

@@ -1,0 +1,159 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Copyright (C) 2024 the original author or authors.
+//
+// This program is free software: you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation, either version 3
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see 
+// <https://www.gnu.org/licenses/> or write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.main;
+
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.ObjectMap;
+import com.openeggbert.entity.common.GameSpace;
+import com.openeggbert.mods.Mod;
+import com.openeggbert.screens.GameSpaceListScreen;
+import com.openeggbert.screens.InitScreen;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import lombok.Data;
+
+/**
+ * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all
+ * platforms.
+ */
+@Data
+public class OpenEggbertGame extends Game {
+
+    private Texture image;
+    private GameSpace gameSpace = null;
+    private String currentDirectory;
+
+    private SpriteBatch batch;
+    private ShapeRenderer shapeRenderer;
+    private BitmapFont font;
+    private ObjectMap<String, Texture> imageTextures = new ObjectMap<>();
+    private List<Mod> embeddedMods = new ArrayList<>();
+    private int heightInPixels = 480;
+    private int widthInPixels = 640;
+
+    public OpenEggbertGame() {
+        this(null, null);
+    }
+
+    public OpenEggbertGame(String currentDirectory) {
+        this(null, currentDirectory);
+    }
+
+    public OpenEggbertGame(GameSpace gameSpace, String currentDirectory) {
+        this.gameSpace = gameSpace;
+        this.currentDirectory = currentDirectory;
+
+    }
+
+    @Override
+    public void create() {
+        System.out.println("Searching mods");
+
+        FileHandle embeddedModsDirectory = Gdx.files.internal("embedded_mods");
+        System.out.println("embeddedModsDirectory.list().length=" + embeddedModsDirectory.list().length);
+        for (FileHandle embeddedModGroup : embeddedModsDirectory.list()) {
+            if (!embeddedModGroup.isDirectory()) {
+                System.out.println("embedded_mods directory is missing");
+                continue;
+            }
+            System.out.println("Found group " + embeddedModGroup.name());
+            for (FileHandle embeddedMod : embeddedModGroup.list()) {
+                System.out.println("Found mod " + embeddedMod.name());
+                
+                FileHandle modXml = null;
+                for(FileHandle file: embeddedMod.list()) {
+                    if(file.name().equals("mod.xml")) {
+                        modXml = file;
+                    }
+                }
+                
+                if (modXml == null) {
+                    continue;
+                }
+                System.out.println("Found mod: " + embeddedMod.name());
+                Mod mod = new Mod(modXml.readString());
+                embeddedMods.add(mod);
+                System.out.println("embeddedMods.size(): " + embeddedMods.size());
+                for (int i = 0; i < 42; i++) {
+                    embeddedMods.add(mod);//for testing purposes
+                }
+            }
+
+        }
+        ////
+        batch = new SpriteBatch();
+        image = new Texture("libgdx.png");
+        shapeRenderer = new ShapeRenderer();
+        font = new BitmapFont();
+        setScreen(gameSpace == null ? new GameSpaceListScreen(this) : new InitScreen(this));
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
+        image.dispose();
+
+        shapeRenderer.dispose();
+        font.dispose();
+        for (String key : imageTextures.keys()) {
+            imageTextures.get(key).dispose();
+        }
+    }
+
+    public void loadImageTexture(FileHandle fileHandle) {
+        Texture texture = new Texture(fileHandle);
+        imageTextures.put(fileHandle.name().toUpperCase(), texture);
+    }
+
+    public boolean existsImageTexture(String key) {
+        return imageTextures.containsKey(key);
+    }
+
+    public void disposeImageTexture(String key) {
+        if (imageTextures.containsKey(key)) {
+            imageTextures.get(key).dispose();
+            imageTextures.remove(key);
+        }
+    }
+
+    public void disposeImageTextures() {
+        for (String key : imageTextures.keys()) {
+            imageTextures.get(key).dispose();
+            imageTextures.remove(key);
+        }
+    }
+
+    public Optional<Texture> getImageTexture(String key) {
+        if (imageTextures.containsKey(key)) {
+            return Optional.of(imageTextures.get(key));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+}

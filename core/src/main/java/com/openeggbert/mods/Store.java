@@ -17,17 +17,24 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.mods;
 
-
-package com.openeggbert.compatibility;
+import com.badlogic.gdx.utils.XmlReader;
 
 /**
  *
  * @author robertvokac
  */
-public enum ResolutionMode {
-    RESOLUTION_640_480,
-    RESOLUTION_1280_960,
-    RESOLUTION_SCALED,
-    RESOLUTION_CURRENT;
+public class Store {
+
+    String id;
+    String name;
+    String url;
+
+    Store(XmlReader.Element store) {
+        id = store.get("id");
+        name = store.get("name");
+        url = store.get("url");
+    }
+
 }

@@ -18,14 +18,12 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-
-package com.openeggbert.entity.common;
+package com.openeggbert.mods;
 
 /**
  *
  * @author robertvokac
  */
-public enum OpenEggbertScreen {
-    MAIN
-    
+public enum ModType {
+    FULL, LEVEL, SOUND, MUSIC, IMAGE08, IMAGE16, IMAGE24,IMAGE24X2, PARTIAL;
 }

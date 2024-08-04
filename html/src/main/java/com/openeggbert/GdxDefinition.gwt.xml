@@ -22,7 +22,7 @@
   <inherits name="com.github.czyzby.websocket.GdxWebSocket" />
   <inherits name="com.github.czyzby.websocket.GdxWebSocketGwt" />
   <inherits name="com.github.czyzby.websocket.GdxWebSocketSerialization" />
-  <inherits name="com.openeggbert.OpenEggbertMainClass" />
+  <inherits name="com.openeggbert.main.OpenEggbertGame" />
   <inherits name="formic" />
   <inherits name="guacamole_gdx_gwt" />
   <inherits name="libgdx-utils" />

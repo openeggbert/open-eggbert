@@ -19,15 +19,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-package com.openeggbert.compatibility;
+package com.openeggbert.entity.common;
+
+import lombok.Getter;
 
 /**
  *
  * @author robertvokac
  */
-public enum ResolutionMode {
-    RESOLUTION_640_480,
-    RESOLUTION_1280_960,
-    RESOLUTION_SCALED,
-    RESOLUTION_CURRENT;
+public enum OpenEggbertScreenType {
+    INIT("INIT.BLP");
+    @Getter
+    private String fileName;
+    OpenEggbertScreenType(String fileName) {
+        this.fileName = fileName;
+    }
+    
 }

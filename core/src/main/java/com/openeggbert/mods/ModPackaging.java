@@ -18,16 +18,12 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-
-package com.openeggbert.compatibility;
+package com.openeggbert.mods;
 
 /**
  *
  * @author robertvokac
  */
-public enum ResolutionMode {
-    RESOLUTION_640_480,
-    RESOLUTION_1280_960,
-    RESOLUTION_SCALED,
-    RESOLUTION_CURRENT;
+public enum ModPackaging {
+    EGM, XML;
 }
