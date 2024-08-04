@@ -1,4 +1,4 @@
-[submodule "assets/open-eggbert-legacy-assets"]
-	path = assets/open-eggbert-legacy-assets
-	url = https://code.nanoboot.org/openeggbert/open-eggbert-legacy-assets
-	branch = develop
+[submodule "assets/embedded_mods"]
+	path = assets/embedded_mods
+	url = https://code.nanoboot.org/openeggbert/open-eggbert-embedded-mods
+	branch = rvc
