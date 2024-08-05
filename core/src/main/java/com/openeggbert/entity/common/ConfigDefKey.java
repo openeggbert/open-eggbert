@@ -13,28 +13,36 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see 
+// along with this program. If not, see
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
-
 package com.openeggbert.entity.common;
 
+import com.openeggbert.compatibility.FeatureLevel;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.Getter;
 
 /**
  *
  * @author robertvokac
  */
-public enum OpenEggbertScreenType {
-    INIT("INIT.BLP"),
-    GAMER("GAMER.BLP"),
-    DEMO("DECOR016.BLP");
+public enum ConfigDefKey {
+    FULLSCREEN("FullScreen", new FeatureLevel[]{FeatureLevel.SPEEDY_BLUPI_DEMO}),
+    STRICT_COMPATIBILITY("StrictCompatibility", new FeatureLevel[]{FeatureLevel.OPEN_EGGBERT_3});
+    
     @Getter
-    private String fileName;
-    OpenEggbertScreenType(String fileName) {
-        this.fileName = fileName;
+    private String key;
+    @Getter
+    private final List<FeatureLevel> featureLevels;
+    ConfigDefKey(String keyIn, FeatureLevel[] featureLevelsIn) {
+        this.key = keyIn;
+        List<FeatureLevel> list = Arrays.asList(featureLevelsIn);
+        Stream<FeatureLevel> stream = list.stream();
+        this.featureLevels = stream.collect(Collectors.toList());
     }
     
 }

@@ -52,7 +52,7 @@ public class TestScreen extends AbstractOpenEggbertScreen {
     }
 
     @Override
-    public void render(float delta) {
+    public void renderOpenEggbertScreen(float delta) {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
         game.getBatch().begin();
         Function<String, String> removeCurrentDir = i -> i == null ? null : i.replace(game.getCurrentDirectory() + "/", "");

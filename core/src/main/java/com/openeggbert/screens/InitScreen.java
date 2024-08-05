@@ -19,12 +19,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.screens;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.openeggbert.entity.common.ConfigDef;
 import com.openeggbert.entity.common.OpenEggbertScreenType;
 import com.openeggbert.main.OpenEggbertGame;
+import com.openeggbert.utils.EmbeddedFileHandleFactory;
+import com.openeggbert.utils.OpenEggbertDisplayMode;
 import java.util.Optional;
 
 /**
@@ -33,9 +38,53 @@ import java.util.Optional;
  */
 public class InitScreen extends AbstractOpenEggbertScreen {
 
+    private float timeSeconds = 0f;
+
     public InitScreen(OpenEggbertGame openEggbertGame) {
         super(openEggbertGame);
-        
+        System.out.println("game.getGameSpace().getDataDirectory() != null" + (game.getGameSpace().getDataDirectory() != null));
+        if (game.getGameSpace().getDataDirectory() != null) {
+            FileHandle configDefFileHandle = null;
+            String[] array = new String[]{"config.def", "Config.def", "CONFIG.DEF"};
+            if (game.getGameSpace().isEmbeddedAssets()) {
+                for (String a : array) {
+                    configDefFileHandle = EmbeddedFileHandleFactory.create(game.getGameSpace().getDataDirectory() + "/" + a);
+                    if (configDefFileHandle.exists()) {
+                        break;
+                    } else {
+                        continue;
+                    }
+                }
+            } else {
+                for (String a : array) {
+                    configDefFileHandle = Gdx.files.absolute(game.getGameSpace().getDataDirectory() + "/" + a);
+                    if (configDefFileHandle.exists()) {
+                        break;
+                    } else {
+                        continue;
+                    }
+                }
+
+            }
+            if (configDefFileHandle != null && configDefFileHandle.exists()) {
+                game.setConfigDef(new ConfigDef(configDefFileHandle.readString()));
+            }
+
+        }
+        if (game.getConfigDef() == null) {
+            game.setConfigDef(new ConfigDef("CD-Rom=E:\\US\n"
+                    + "FullScreen=0\n"
+                    + "TrueColor=0\n"
+                    + "MouseType=1\n"
+                    + "SpeedRate=1\n"
+                    + "Timer=150ms\n"
+                    + "Language=U\n"
+                    + "Benchmark=251674"));
+            System.out.println("game.getConfigDef()=" + game.getConfigDef());
+        }
+        OpenEggbertDisplayMode openEggbertDisplayMode = OpenEggbertDisplayMode.setDisplayModeFromConfig(game.getConfigDef());
+        game.setOpenEggbertDisplayMode(openEggbertDisplayMode);
+
     }
 
     protected final Optional<OpenEggbertScreenType> getScreenType() {
@@ -45,23 +94,64 @@ public class InitScreen extends AbstractOpenEggbertScreen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(new InputAdapter() {
+
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                timeSeconds = 0f;
+                return false;
+            }
+
+            public boolean touchCancelled(int screenX, int screenY, int pointer, int button) {
+                timeSeconds = 0f;
+                return false;
+            }
+
+            public boolean touchDragged(int screenX, int screenY, int pointer) {
+                timeSeconds = 0f;
+                return false;
+            }
+
+            @Override
+            public boolean mouseMoved(int screenX, int screenY) {
+                timeSeconds = 0f;
+                return false;
+            }
+
             @Override
             public boolean keyDown(int keyCode) {
+                timeSeconds = 0f;
+
+                if (keyCode == Input.Keys.ESCAPE) {
+                    Gdx.app.exit();
+                }
+
                 if (keyCode == Input.Keys.SPACE) {
                     game.setScreen(new GameSpaceListScreen(game));
                 }
+
+                if (game.getConfigDef() != null && Gdx.app.getType() == Application.ApplicationType.Desktop && !game.getConfigDef().isStrictCompatibility() && keyCode == Input.Keys.F) {
+                    OpenEggbertDisplayMode currentDisplayMode = game.getOpenEggbertDisplayMode();
+                    OpenEggbertDisplayMode newDisplayMode = currentDisplayMode.flip();
+                    boolean success = OpenEggbertDisplayMode.setDisplayMode(newDisplayMode) != null;
+                    if (success) {
+                        game.setOpenEggbertDisplayMode(newDisplayMode);
+                    }
+                }
+
                 return true;
             }
         });
     }
 
     @Override
-    public void render(float delta) {
+    public void renderOpenEggbertScreen(float delta) {
+        timeSeconds += Gdx.graphics.getRawDeltaTime();
+
+        if (timeSeconds >= 60) {
+            game.setScreen(new DemoScreen(game));
+        }
         ScreenUtils.clear(0f, 0f, 0f, 1f);
         batch.begin();
-        if (getBackgroundTexture().isPresent()) {
-            batch.draw(getBackgroundTexture().get(), 0, 0);
-        }
+        drawBackgroundIfAvailable();
 
         batch.end();
     }

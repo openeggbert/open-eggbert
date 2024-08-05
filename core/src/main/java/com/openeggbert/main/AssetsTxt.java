@@ -106,7 +106,7 @@ public class AssetsTxt {
     }
 
     public List<String> list(String pathToDirectory, boolean directoryType, boolean fileType) {
-        System.out.println("Calling: AssetsTxt.list( " + pathToDirectory + " ...)");
+//        System.out.println("Calling: AssetsTxt.list( " + pathToDirectory + " ...)");
         if (!directoryType && !fileType) {
             throw new OpenEggbertException("Invalid arguments, both arguments are false: directoryType, fileType");
         }

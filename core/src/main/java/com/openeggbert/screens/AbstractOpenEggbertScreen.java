@@ -83,8 +83,7 @@ public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
                     System.out.println("loading from classpath");
                     fileHandleUpperCase = Gdx.files.classpath(nameUpperCase);
                     fileHandleLowerCase = Gdx.files.classpath(nameLowerCase);
-                    System.out.println("fileHandleUpperCase.exists()=" + fileHandleUpperCase.exists());
-                    System.out.println("fileHandleLowerCase.exists()=" + fileHandleLowerCase.exists());
+                    
 
                 }
             } else {
@@ -106,5 +105,17 @@ public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
             }
         }
     }
+    
+    protected void drawBackgroundIfAvailable() {
+        if (getBackgroundTexture().isPresent()) {
+            batch.draw(getBackgroundTexture().get(), 0, 0);
+        }
+    }
+    
+    @Override
+    public final void render(float delta) {
+        renderOpenEggbertScreen(delta);
+    }
+    public abstract void renderOpenEggbertScreen(float delta);
 
 }

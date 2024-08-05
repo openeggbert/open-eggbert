@@ -17,24 +17,30 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.utils;
 
-
-package com.openeggbert.entity.common;
-
-import lombok.Getter;
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 
 /**
  *
  * @author robertvokac
  */
-public enum OpenEggbertScreenType {
-    INIT("INIT.BLP"),
-    GAMER("GAMER.BLP"),
-    DEMO("DECOR016.BLP");
-    @Getter
-    private String fileName;
-    OpenEggbertScreenType(String fileName) {
-        this.fileName = fileName;
+public class EmbeddedFileHandleFactory {
+
+    private EmbeddedFileHandleFactory() {
+        //Not meant to be instantiated.
     }
-    
+
+    public static FileHandle create(String name) {
+
+        if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.WebGL) {
+            return Gdx.files.internal(name);
+        } else {
+            return Gdx.files.classpath(name);
+
+        }
+    }
+
 }

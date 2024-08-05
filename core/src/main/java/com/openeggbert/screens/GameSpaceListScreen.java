@@ -23,6 +23,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -62,44 +63,42 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
     public GameSpaceListScreen(OpenEggbertGame openEggbertGame) {
         super(openEggbertGame);
         this.fullEmbeddedMods = openEggbertGame.getEmbeddedMods().stream().filter(m -> m.getModType() == ModType.FULL).collect(Collectors.toList());
-        Gdx.app.log("fullEmbeddedMods: ", String.valueOf(fullEmbeddedMods.size()));
-        Gdx.app.log("openEggbertGame.getEmbeddedMods(): ", String.valueOf(openEggbertGame.getEmbeddedMods().size()));
+        
 
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             game.setHeightInPixels(Gdx.app.getGraphics().getHeight());
             game.setWidthInPixels(Gdx.app.getGraphics().getWidth());
         }
+        Preferences prefs = Gdx.app.getPreferences("My Preferences");
+        prefs.putString("test", "abc");
+        prefs.flush();
     }
 
     @Override
     public void show() {
         Gdx.input.setInputProcessor(new InputAdapter() {
 
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                timeSeconds = 0f;
+                return false;
+            }
 
+            public boolean touchCancelled(int screenX, int screenY, int pointer, int button) {
+                timeSeconds = 0f;
+                return false;
+            }
 
-	public boolean touchUp (int screenX, int screenY, int pointer, int button) {
-            timeSeconds = 0f;
-		return false;
-	}
+            public boolean touchDragged(int screenX, int screenY, int pointer) {
+                timeSeconds = 0f;
+                return false;
+            }
 
-	public boolean touchCancelled (int screenX, int screenY, int pointer, int button) {
-            timeSeconds = 0f;
-		return false;
-	}
+            @Override
+            public boolean mouseMoved(int screenX, int screenY) {
+                timeSeconds = 0f;
+                return false;
+            }
 
-	public boolean touchDragged (int screenX, int screenY, int pointer) {
-            timeSeconds = 0f;
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved (int screenX, int screenY) {
-            timeSeconds = 0f;
-		return false;
-	}
-            
-            
-            
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
@@ -114,7 +113,7 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
 
             @Override
             public boolean touchDown(int x, int y, int pointer, int button) {
-            timeSeconds = 0f;
+                timeSeconds = 0f;
                 Gdx.app.log("touchDown: ", "x=" + x + " " + "y=" + y);
                 if (x <= Gdx.graphics.getWidth() / 3f && y >= (Gdx.graphics.getHeight() * 0.92f) && pageNumber > 1) {
                     pageNumber--;
@@ -129,14 +128,14 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
                     System.out.println(buttons[i].toString());
                 }
                 y = Gdx.graphics.getHeight() - y;
-                Gdx.app.log("touchDown2: ", "x=" + x + " " + "y=" + y);
+                
                 for (int i = 0; i < 5; i++) {
                     if (buttons[i] == null) {
                         break;
                     }
                     if (x > buttons[i].x && x < (buttons[i].x + buttons[i].width)
                             && y > buttons[i].y && y < (buttons[i].y + buttons[i].height)) {
-                        System.out.println("button " + i);
+                        
                         activateButton(i);
 
                     }
@@ -175,10 +174,10 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
     }
 
     @Override
-    public void render(float delta) {
+    public void renderOpenEggbertScreen(float delta) {
 
         timeSeconds += Gdx.graphics.getRawDeltaTime();
-        if (timeSeconds > 5) {
+        if (timeSeconds > 60) {
             activateButton(0);
         }
 

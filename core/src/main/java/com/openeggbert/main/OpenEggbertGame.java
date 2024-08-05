@@ -21,6 +21,7 @@ package com.openeggbert.main;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
@@ -30,11 +31,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.openeggbert.entity.common.ConfigDef;
 import com.openeggbert.entity.common.GameSpace;
 import com.openeggbert.mods.Mod;
 import com.openeggbert.mods.ModIdentification;
 import com.openeggbert.screens.GameSpaceListScreen;
 import com.openeggbert.screens.InitScreen;
+import com.openeggbert.utils.OpenEggbertDisplayMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -61,6 +64,8 @@ public class OpenEggbertGame extends Game {
     private Camera camera;
     private Viewport viewport;
     private AssetsTxt assets;
+    private ConfigDef configDef;
+    private OpenEggbertDisplayMode openEggbertDisplayMode = OpenEggbertDisplayMode.WINDOW;
 
     public OpenEggbertGame() {
         this(null, null);
@@ -110,7 +115,6 @@ public class OpenEggbertGame extends Game {
                     continue;
                 }
                 System.out.println("Found mod: " + embeddedMod.name());
-                System.out.println("embeddedMod.exists?=: " + embeddedMod.exists());
                 
                 Mod mod = new Mod(modXml.readString());
                 embeddedMods.add(mod);
