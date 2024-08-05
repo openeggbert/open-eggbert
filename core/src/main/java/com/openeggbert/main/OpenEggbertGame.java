@@ -22,12 +22,16 @@ package com.openeggbert.main;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ObjectMap;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.openeggbert.entity.common.GameSpace;
 import com.openeggbert.mods.Mod;
 import com.openeggbert.screens.GameSpaceListScreen;
@@ -55,6 +59,9 @@ public class OpenEggbertGame extends Game {
     private List<Mod> embeddedMods = new ArrayList<>();
     private int heightInPixels = 480;
     private int widthInPixels = 640;
+    private Camera camera;
+    private Viewport viewport;
+    private AssetsTxt assetsTxt;
 
     public OpenEggbertGame() {
         this(null, null);
@@ -72,8 +79,18 @@ public class OpenEggbertGame extends Game {
 
     @Override
     public void create() {
+//         viewport = new FitViewport(640,480);
+//         viewport.apply();
+        //camera = new OrthographicCamera();
+        
+                //.setToOrtho(false,640,480);
+
+        assetsTxt = new AssetsTxt(Gdx.files.internal("assets.txt").readString());
         System.out.println("Searching mods");
 
+        for(FileHandle f:Gdx.files.internal(".").list()) {
+            System.out.println("assets contains also: " + f.name());
+        }
         FileHandle embeddedModsDirectory = Gdx.files.internal("embedded_mods");
         System.out.println("embeddedModsDirectory.list().length=" + embeddedModsDirectory.list().length);
         for (FileHandle embeddedModGroup : embeddedModsDirectory.list()) {
@@ -107,6 +124,7 @@ public class OpenEggbertGame extends Game {
         }
         ////
         batch = new SpriteBatch();
+        //batch.setProjectionMatrix(viewport.getCamera().combined);
         image = new Texture("libgdx.png");
         shapeRenderer = new ShapeRenderer();
         font = new BitmapFont();

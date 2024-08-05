@@ -80,6 +80,7 @@ public class TestScreen extends AbstractOpenEggbertScreen {
             font = new BitmapFont();
             font.draw(game.getBatch(), game.getCurrentDirectory(), 40, 340);
         }
+        batch.draw(game.getImage(), 40, 400);
         game.getBatch().end();
     }
 

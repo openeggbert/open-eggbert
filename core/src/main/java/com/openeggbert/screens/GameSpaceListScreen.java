@@ -55,7 +55,7 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
         this.fullEmbeddedMods = openEggbertGame.getEmbeddedMods().stream().filter(m -> m.getModType() == ModType.FULL).collect(Collectors.toList());
         Gdx.app.log("fullEmbeddedMods: ", String.valueOf(fullEmbeddedMods.size()));
         Gdx.app.log("openEggbertGame.getEmbeddedMods(): ", String.valueOf(openEggbertGame.getEmbeddedMods().size()));
-        
+
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             game.setHeightInPixels(Gdx.app.getGraphics().getHeight());
             game.setWidthInPixels(Gdx.app.getGraphics().getWidth());
@@ -70,6 +70,10 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
                 if (keyCode == Input.Keys.SPACE) {
                     game.setScreen(new TestScreen(game));
                 }
+                if (keyCode == Input.Keys.ESCAPE) {
+                 Gdx.app.exit();
+                }
+                 
                 return true;
             }
 
@@ -89,7 +93,7 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
                 if(
                         x > fourArray[i].x && x < (fourArray[i].x + fourArray[i].width)
                         &&
-                        y > fourArray[i].y && y < (fourArray[i].y + fourArray[i].height)
+                        y > fourArray[4-i].y && y < (fourArray[4-i].y + fourArray[4-i].height)
                         ) {
                     System.out.println("button " + i);
                 }
@@ -102,7 +106,10 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
 
     @Override
     public void render(float delta) {
+
         ScreenUtils.clear(1f, 1f, 0.6f, 0.5f);
+        int buttonHeight = (int) (game.getHeightInPixels() * 0.1f);
+
         batch.begin();
 
         BitmapFont font;
@@ -128,7 +135,6 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
 
         final boolean isLastPage = !(pageNumber * pageSize < fullEmbeddedMods.size());
 
-        int buttonHeight = (int) (game.getHeightInPixels() * 0.1f);
         final ShapeRenderer shapeRenderer = game.getShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(1f, 1f, 0.8f, 0.5f);
