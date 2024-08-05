@@ -19,6 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.screens;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.files.FileHandle;
@@ -47,10 +48,11 @@ public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
     private final String getBackgroundFileName() {
         return getScreenType().isPresent() ? getScreenType().get().getFileName() : "";
     }
-    
+
     protected Optional<OpenEggbertScreenType> getScreenType() {
         return Optional.empty();
     }
+
     protected Optional<Texture> getBackgroundTexture() {
         if (getBackgroundFileName().isEmpty()) {
             return Optional.empty();
@@ -64,15 +66,43 @@ public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
         }
         String fileName = getBackgroundFileName();
         if (!game.existsImageTexture(fileName)) {
-            FileHandle fileHandleUpperCase = Gdx.files.absolute(game.getGameSpace().getImage08Directory() + "/" + fileName);
-            FileHandle fileHandleLowerCase = Gdx.files.absolute(game.getGameSpace().getImage08Directory() + "/" + fileName.toLowerCase());
+            String nameUpperCase = game.getGameSpace().getImage08Directory() + "/" + fileName;
+            String nameLowerCase = game.getGameSpace().getImage08Directory() + "/" + fileName.toLowerCase();
+            System.out.println("nameUpperCase=" + nameUpperCase);
+            System.out.println("nameLowerCase=" + nameLowerCase);
+            FileHandle fileHandleUpperCase = null;
+            FileHandle fileHandleLowerCase = null;
+            if (game.getGameSpace().isEmbeddedAssets()) {
+
+                if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.WebGL) {
+                    System.out.println("loading from internal");
+                    fileHandleUpperCase = Gdx.files.internal(nameUpperCase);
+                    fileHandleLowerCase = Gdx.files.internal(nameLowerCase);
+                } else {
+
+                    System.out.println("loading from classpath");
+                    fileHandleUpperCase = Gdx.files.classpath(nameUpperCase);
+                    fileHandleLowerCase = Gdx.files.classpath(nameLowerCase);
+                    System.out.println("fileHandleUpperCase.exists()=" + fileHandleUpperCase.exists());
+                    System.out.println("fileHandleLowerCase.exists()=" + fileHandleLowerCase.exists());
+
+                }
+            } else {
+                System.out.println("loading from absolute");
+
+                fileHandleUpperCase = Gdx.files.absolute(nameUpperCase);
+                fileHandleLowerCase = Gdx.files.absolute(nameLowerCase);
+            }
+
             if (fileHandleUpperCase.exists()) {
                 game.loadImageTexture(fileHandleUpperCase);
             } else {
-                if (!fileHandleLowerCase.exists()) {
+                if (fileHandleLowerCase.exists()) {
+                    game.loadImageTexture(fileHandleLowerCase);    
+                } else {
                     throw new OpenEggbertException("Could not load file: " + fileName);
                 }
-                game.loadImageTexture(fileHandleLowerCase);
+                
             }
         }
     }

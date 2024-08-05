@@ -27,10 +27,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.openeggbert.entity.common.GameSpace;
 import com.openeggbert.main.OpenEggbertGame;
 import com.openeggbert.mods.Mod;
 import com.openeggbert.mods.ModType;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -46,6 +46,7 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
     private int pageNumber = 1;
     private final int pageSize = 5;
     private final List<Mod> fullEmbeddedMods;
+    private float timeSeconds = 0f;
 
     @ToString
     @AllArgsConstructor
@@ -73,6 +74,32 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(new InputAdapter() {
+
+
+
+	public boolean touchUp (int screenX, int screenY, int pointer, int button) {
+            timeSeconds = 0f;
+		return false;
+	}
+
+	public boolean touchCancelled (int screenX, int screenY, int pointer, int button) {
+            timeSeconds = 0f;
+		return false;
+	}
+
+	public boolean touchDragged (int screenX, int screenY, int pointer) {
+            timeSeconds = 0f;
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved (int screenX, int screenY) {
+            timeSeconds = 0f;
+		return false;
+	}
+            
+            
+            
             @Override
             public boolean keyDown(int keyCode) {
                 if (keyCode == Input.Keys.SPACE) {
@@ -87,30 +114,73 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
 
             @Override
             public boolean touchDown(int x, int y, int pointer, int button) {
+            timeSeconds = 0f;
                 Gdx.app.log("touchDown: ", "x=" + x + " " + "y=" + y);
-                if (x <= Gdx.graphics.getWidth() / 3f && y >= (Gdx.graphics.getHeight()* 0.92f) && pageNumber > 1) {
+                if (x <= Gdx.graphics.getWidth() / 3f && y >= (Gdx.graphics.getHeight() * 0.92f) && pageNumber > 1) {
                     pageNumber--;
                 }
                 if (x >= Gdx.graphics.getWidth() * 2f / 3f && y >= (Gdx.graphics.getHeight() * 0.92f) && (pageNumber * pageSize) < fullEmbeddedMods.size()) {
                     pageNumber++;
                 }
-//                for (int i = 0; i < 5; i++) {
-//                    System.out.println(fourArray[i].toString());
-//                }
-//                for (int i = 0; i < 5; i++) {
-//                    if (x > fourArray[i].x && x < (fourArray[i].x + fourArray[i].width)
-//                            && y > fourArray[4 - i].y && y < (fourArray[4 - i].y + fourArray[4 - i].height)) {
-//                        System.out.println("button " + i);
-//                    }
-//                }
+                for (int i = 0; i < 5; i++) {
+                    if (buttons[i] == null) {
+                        continue;
+                    }
+                    System.out.println(buttons[i].toString());
+                }
+                y = Gdx.graphics.getHeight() - y;
+                Gdx.app.log("touchDown2: ", "x=" + x + " " + "y=" + y);
+                for (int i = 0; i < 5; i++) {
+                    if (buttons[i] == null) {
+                        break;
+                    }
+                    if (x > buttons[i].x && x < (buttons[i].x + buttons[i].width)
+                            && y > buttons[i].y && y < (buttons[i].y + buttons[i].height)) {
+                        System.out.println("button " + i);
+                        activateButton(i);
+
+                    }
+                }
                 return true;
             }
+
         });
+
+    }
+
+    private void activateButton(int i) {
+        Mod mod = fullEmbeddedMods.get(pageSize * (pageNumber - 1) + i);
+        GameSpace gameSpace = new GameSpace();
+        gameSpace.setFeatureLevel(mod.getFeatureLevel());
+        mod.getImportedMods().stream().map(m -> game.loadMod(m))
+                .filter(m -> m.getModType().name().startsWith("IMAGE"))
+                .forEach(m -> {
+                    if (m.getModType() == ModType.IMAGE08) {
+                        gameSpace.setImage08Directory("embedded_mods/" + m.getIdentification().getGroupId() + "/" + m.getIdentification().getModId());
+                    }
+                    if (m.getModType() == ModType.IMAGE16) {
+                        gameSpace.setImage16Directory("embedded_mods/" + m.getIdentification().getGroupId() + "/" + m.getIdentification().getModId());
+                    }
+                    if (m.getModType() == ModType.IMAGE24) {
+                        gameSpace.setImage24Directory("embedded_mods/" + m.getIdentification().getGroupId() + "/" + m.getIdentification().getModId());
+                    }
+                    if (m.getModType() == ModType.IMAGE24X2) {
+                        gameSpace.setImage24x2Directory("embedded_mods/" + m.getIdentification().getGroupId() + "/" + m.getIdentification().getModId());
+                    }
+                });
+        gameSpace.setEmbeddedAssets(true);
+        game.setGameSpace(gameSpace);
+        game.setScreen(new InitScreen(game));
 
     }
 
     @Override
     public void render(float delta) {
+
+        timeSeconds += Gdx.graphics.getRawDeltaTime();
+        if (timeSeconds > 5) {
+            activateButton(0);
+        }
 
         ScreenUtils.clear(1f, 1f, 0.6f, 0.5f);
         int buttonHeight = (int) (game.getHeightInPixels() * 0.1f);
@@ -149,7 +219,9 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
         int q = 0;
         for (Rectangle r : buttons) {
             q++;
-            if(q> modsForPage.size())break;
+            if (q > modsForPage.size()) {
+                break;
+            }
             shapeRenderer.rect(r.x, r.y, r.width, r.height);
         }
         if (pageNumber

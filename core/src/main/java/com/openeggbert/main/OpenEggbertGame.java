@@ -24,19 +24,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.openeggbert.entity.common.GameSpace;
 import com.openeggbert.mods.Mod;
+import com.openeggbert.mods.ModIdentification;
 import com.openeggbert.screens.GameSpaceListScreen;
 import com.openeggbert.screens.InitScreen;
-import com.openeggbert.utils.OpenEggbertUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -117,9 +115,7 @@ public class OpenEggbertGame extends Game {
                 Mod mod = new Mod(modXml.readString());
                 embeddedMods.add(mod);
                 System.out.println("embeddedMods.size(): " + embeddedMods.size());
-                for (int i = 0; i < 42; i++) {
-                    embeddedMods.add(mod);//for testing purposes
-                }
+//                for (int i = 0; i < 42; i++) embeddedMods.add(mod);//for testing purposes
             }
 
         }
@@ -173,6 +169,9 @@ public class OpenEggbertGame extends Game {
         } else {
             return Optional.empty();
         }
+    }
+    public Mod loadMod(ModIdentification modIdentification) {
+        return embeddedMods.stream().filter(m->m.getIdentification().asString().equals(modIdentification.asString())).findFirst().get();
     }
 
 }

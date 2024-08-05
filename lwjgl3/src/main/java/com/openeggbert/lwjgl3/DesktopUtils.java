@@ -73,7 +73,7 @@ public class DesktopUtils {
             return Optional.empty();
         }
         GameSpace gameSpace = new GameSpace();
-        gameSpace.setCurrenteDirectory(new File(".").getAbsolutePath());
+        gameSpace.setCurrentDirectory(new File(".").getAbsolutePath());
         gameSpace.setFeatureLevel(featureLevel);
         if (featureLevel == FeatureLevel.SPEEDY_BLUPI_DEMO) {
             gameSpace.setDataDirectory(gameSpaceDirectory.getAbsolutePath() + "/" + "Data");

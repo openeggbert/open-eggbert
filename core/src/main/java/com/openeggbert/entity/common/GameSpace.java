@@ -31,6 +31,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class GameSpace {
 
+    private boolean embeddedAssets;
     private FeatureLevel featureLevel;
     private String dataDirectory;
     private String image08Directory;
@@ -38,7 +39,7 @@ public class GameSpace {
     private String image24Directory;
     private String image24x2Directory;
     private String soundDirectory;
-    private String currenteDirectory;
+    private String currentDirectory;
 
     public GameSpace() {
 
