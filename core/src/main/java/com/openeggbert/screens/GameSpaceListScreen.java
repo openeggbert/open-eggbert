@@ -33,6 +33,8 @@ import com.openeggbert.mods.ModType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
@@ -44,11 +46,17 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
     private int pageNumber = 1;
     private final int pageSize = 5;
     private final List<Mod> fullEmbeddedMods;
+
     @ToString
-    class Four {
-        float x,y,width, height;
+    @AllArgsConstructor
+    @NoArgsConstructor
+    class Rectangle {
+
+        float x, y, width, height;
     }
-    Four[] fourArray = new Four[5];
+    private Rectangle[] buttons = new Rectangle[5];
+    private Rectangle previousPageButton = new Rectangle();
+    private Rectangle nextPageButton = new Rectangle();
 
     public GameSpaceListScreen(OpenEggbertGame openEggbertGame) {
         super(openEggbertGame);
@@ -71,33 +79,30 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
                     game.setScreen(new TestScreen(game));
                 }
                 if (keyCode == Input.Keys.ESCAPE) {
-                 Gdx.app.exit();
+                    Gdx.app.exit();
                 }
-                 
+
                 return true;
             }
 
             @Override
             public boolean touchDown(int x, int y, int pointer, int button) {
                 Gdx.app.log("touchDown: ", "x=" + x + " " + "y=" + y);
-                if (x <= game.getWidthInPixels() / 3f && y >= (game.getHeightInPixels() * 0.92f) && pageNumber > 1) {
+                if (x <= Gdx.graphics.getWidth() / 3f && y >= (Gdx.graphics.getHeight()* 0.92f) && pageNumber > 1) {
                     pageNumber--;
                 }
-                if (x >= game.getWidthInPixels() * 2f / 3f && y >= (game.getHeightInPixels() * 0.92f) && (pageNumber * pageSize) < fullEmbeddedMods.size()) {
+                if (x >= Gdx.graphics.getWidth() * 2f / 3f && y >= (Gdx.graphics.getHeight() * 0.92f) && (pageNumber * pageSize) < fullEmbeddedMods.size()) {
                     pageNumber++;
                 }
-                for(int i = 0;i<5;i++) {
-                    System.out.println(fourArray[i].toString());
-                }
-                for(int i = 0;i<5;i++) {
-                if(
-                        x > fourArray[i].x && x < (fourArray[i].x + fourArray[i].width)
-                        &&
-                        y > fourArray[4-i].y && y < (fourArray[4-i].y + fourArray[4-i].height)
-                        ) {
-                    System.out.println("button " + i);
-                }
-                }
+//                for (int i = 0; i < 5; i++) {
+//                    System.out.println(fourArray[i].toString());
+//                }
+//                for (int i = 0; i < 5; i++) {
+//                    if (x > fourArray[i].x && x < (fourArray[i].x + fourArray[i].width)
+//                            && y > fourArray[4 - i].y && y < (fourArray[4 - i].y + fourArray[4 - i].height)) {
+//                        System.out.println("button " + i);
+//                    }
+//                }
                 return true;
             }
         });
@@ -117,71 +122,86 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
         font.getData().setScale(4.0f);
         font.setColor(Color.BLACK);
         int x = (int) (game.getWidthInPixels() * 0.1875f);
-        int y = (int) (game.getHeightInPixels() * 0.9f);
+        int y = (int) (game.getHeightInPixels() * 0.95f);
         font.draw(batch, "Open Eggbert", x, y);
         List<Mod> modsForPage = fullEmbeddedMods.stream().skip(pageSize * (pageNumber - 1)).limit(5).collect(Collectors.toList());
 
-        y = (int) (game.getHeightInPixels() * 0.75f);
-        font.getData().setScale(2.0f);
-        List<Integer> yS = new ArrayList<>();
-        for (int i = 0; i < modsForPage.size(); i++) {
-            yS.add(y);
+        float margin = 0.05f * game.getWidthInPixels();
 
-            y = y - 60;
+        y = (int) (game.getHeightInPixels() * 0.7f);
+        font.getData().setScale(2.0f);
+        final float spaceBetweenLargeButtons = game.getHeightInPixels() * 0.06f;
+        for (int i = 0; i < modsForPage.size(); i++) {
+            buttons[i] = new Rectangle(margin, y, game.getWidthInPixels() * 0.9f, margin * 1.5f);
+
+            y = (int) (y - spaceBetweenLargeButtons - margin);
         }
 
-        float margin = 0.0625f * game.getWidthInPixels();
         batch.end();
 
         final boolean isLastPage = !(pageNumber * pageSize < fullEmbeddedMods.size());
 
         final ShapeRenderer shapeRenderer = game.getShapeRenderer();
+
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
         shapeRenderer.setColor(1f, 1f, 0.8f, 0.5f);
-        int z = 0;
-        for (int e : yS) {
-            Four four = new Four();
-            four.x = margin;
-            four.y = e-margin;
-            four.width = game.getWidthInPixels() * 0.9f;
-            four.height = buttonHeight;
-            fourArray[z] = four;
-            shapeRenderer.rect(four.x, four.y, four.width, four.height);
-            z++;
+        int q = 0;
+        for (Rectangle r : buttons) {
+            q++;
+            if(q> modsForPage.size())break;
+            shapeRenderer.rect(r.x, r.y, r.width, r.height);
         }
-        if (pageNumber > 1) {
+        if (pageNumber
+                > 1) {
             shapeRenderer.rect(margin, margin / 4f, game.getWidthInPixels() * 0.3f, buttonHeight);
         }
         if (!isLastPage) {
             shapeRenderer.rect(game.getWidthInPixels() * 0.66f, margin / 4f, game.getWidthInPixels() * 0.3f, buttonHeight);
         }
-        shapeRenderer.end();
-        batch.begin();
-        font.setColor(0f, 0f, 1f, 1f);
 
-        for (int i = 0; i < modsForPage.size(); i++) {
+        shapeRenderer.end();
+
+        batch.begin();
+
+        font.setColor(
+                0f, 0f, 1f, 1f);
+
+        for (int i = 0;
+                i < modsForPage.size();
+                i++) {
             Mod mod = modsForPage.get(i);
             String name = mod.getName() == null || mod.getName().isEmpty() ? mod.getIdentification().asString() : mod.getName();
             name = "#" + ((pageNumber - 1) * pageSize + (i + 1)) + " " + name;
-            font.draw(batch, name, 40, yS.get(i));
+            font.draw(batch, name, margin * 1.5f, buttons[i].y + 0.8f * buttons[i].height);
         }
-        font.getData().setScale(1.5f);
-        font.setColor(0f, 0f, 1f, 1f);
+
+        font.getData()
+                .setScale(1.5f);
+        font.setColor(
+                0f, 0f, 1f, 1f);
 
         float lastRowHeight = game.getHeightInPixels() * 0.08f;
-        if (pageNumber > 1) {
+        if (pageNumber
+                > 1) {
             font.draw(batch, "Previous page", margin, lastRowHeight);
         }
 
         if (!isLastPage) {
             font.draw(batch, "Next page", game.getWidthInPixels() * 0.765625f, lastRowHeight);
         }
-        font.setColor(0f, 0f, 0f, 1f);
+
+        font.setColor(
+                0f, 0f, 0f, 1f);
         int pageCount = fullEmbeddedMods.size() / 5;
-        if (fullEmbeddedMods.size() > pageCount * pageSize) {
+
+        if (fullEmbeddedMods.size()
+                > pageCount * pageSize) {
             pageCount++;
         }
-        font.draw(batch, "Page " + pageNumber + " from " + pageCount, game.getWidthInPixels() / 2 - 80, lastRowHeight);
+
+        font.draw(batch,
+                "Page " + pageNumber + " from " + pageCount, game.getWidthInPixels() / 2 - 80, lastRowHeight);
 
         batch.end();
 
