@@ -19,6 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.main;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.openeggbert.entity.common.OpenEggbertException;
 import com.openeggbert.utils.OpenEggbertUtils;
 import java.util.ArrayList;
@@ -82,7 +84,7 @@ public class AssetsTxt {
     }
 
     public List<String> listRoot(boolean directoryType, boolean fileType) {
-        return list(".", directoryType, fileType);
+        return AssetsTxt.this.list(".", directoryType, fileType);
     }
 
     public List<String> listRoot() {
@@ -90,18 +92,19 @@ public class AssetsTxt {
     }
 
     public List<String> list(String pathToDirectory) {
-        return list(pathToDirectory, true, true);
+        return AssetsTxt.this.list(pathToDirectory, true, true);
     }
 
     public List<String> listDirectories(String pathToDirectory) {
-        return list(pathToDirectory, true, false);
+        return AssetsTxt.this.list(pathToDirectory, true, false);
     }
 
     public List<String> listFiles(String pathToDirectory) {
-        return list(pathToDirectory, false, true);
+        return AssetsTxt.this.list(pathToDirectory, false, true);
     }
 
     public List<String> list(String pathToDirectory, boolean directoryType, boolean fileType) {
+        System.out.println("Calling: AssetsTxt.list( " + pathToDirectory + " ...)");
         if (!directoryType && !fileType) {
             throw new OpenEggbertException("Invalid arguments, both arguments are false: directoryType, fileType");
         }
@@ -147,6 +150,14 @@ public class AssetsTxt {
         result.addAll(directories);
         return result;
 
+    }
+    
+    public List<FileHandle> list(FileHandle fileHandle) {
+        String pathToDirectory = fileHandle.path();//((fileHandle.path().isEmpty() ? "" : (fileHandle.path() + "/"))) + fileHandle.name();
+        return AssetsTxt.this.list(pathToDirectory)
+                .stream()
+                .map(p-> Gdx.files.classpath((pathToDirectory.equals(".") ? "" : (pathToDirectory + "/")) + p))
+                .collect(Collectors.toList());
     }
 
     private static String convertListStringToStringPath(List<String> list) {

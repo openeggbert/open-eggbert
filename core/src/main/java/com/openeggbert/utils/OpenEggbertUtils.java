@@ -20,6 +20,8 @@
 package com.openeggbert.utils;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -32,6 +34,9 @@ public class OpenEggbertUtils {
     }
     public static Stream<String> lines(String string) {
         return Arrays.asList(string.split("\\r?\\n")).stream();
+    }
+    public static <T> List<T>  streamToList(Stream<T> stream) {
+        return stream.collect(Collectors.toList());
     }
     
 }

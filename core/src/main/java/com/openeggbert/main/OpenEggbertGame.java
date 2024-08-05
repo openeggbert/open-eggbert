@@ -36,6 +36,7 @@ import com.openeggbert.entity.common.GameSpace;
 import com.openeggbert.mods.Mod;
 import com.openeggbert.screens.GameSpaceListScreen;
 import com.openeggbert.screens.InitScreen;
+import com.openeggbert.utils.OpenEggbertUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -61,7 +62,7 @@ public class OpenEggbertGame extends Game {
     private int widthInPixels = 640;
     private Camera camera;
     private Viewport viewport;
-    private AssetsTxt assetsTxt;
+    private AssetsTxt assets;
 
     public OpenEggbertGame() {
         this(null, null);
@@ -85,25 +86,23 @@ public class OpenEggbertGame extends Game {
         
                 //.setToOrtho(false,640,480);
 
-        assetsTxt = new AssetsTxt(Gdx.files.internal("assets.txt").readString());
+        assets = new AssetsTxt(Gdx.files.internal("assets.txt").readString());
         System.out.println("Searching mods");
 
         for(FileHandle f:Gdx.files.internal(".").list()) {
             System.out.println("assets contains also: " + f.name());
         }
         FileHandle embeddedModsDirectory = Gdx.files.internal("embedded_mods");
+        System.out.println("embeddedModsDirectory.exists=" + embeddedModsDirectory.exists());
         System.out.println("embeddedModsDirectory.list().length=" + embeddedModsDirectory.list().length);
-        for (FileHandle embeddedModGroup : embeddedModsDirectory.list()) {
-            if (!embeddedModGroup.isDirectory()) {
-                System.out.println("embedded_mods directory is missing");
-                continue;
-            }
+        for (FileHandle embeddedModGroup : assets.list(embeddedModsDirectory)) {
+            if(embeddedModGroup.name().equals("README.md"))continue;
             System.out.println("Found group " + embeddedModGroup.name());
-            for (FileHandle embeddedMod : embeddedModGroup.list()) {
+            for (FileHandle embeddedMod : assets.list(embeddedModGroup)) {
                 System.out.println("Found mod " + embeddedMod.name());
                 
                 FileHandle modXml = null;
-                for(FileHandle file: embeddedMod.list()) {
+                for(FileHandle file: assets.list(embeddedMod)) {
                     if(file.name().equals("mod.xml")) {
                         modXml = file;
                     }
@@ -113,6 +112,8 @@ public class OpenEggbertGame extends Game {
                     continue;
                 }
                 System.out.println("Found mod: " + embeddedMod.name());
+                System.out.println("embeddedMod.exists?=: " + embeddedMod.exists());
+                
                 Mod mod = new Mod(modXml.readString());
                 embeddedMods.add(mod);
                 System.out.println("embeddedMods.size(): " + embeddedMods.size());
