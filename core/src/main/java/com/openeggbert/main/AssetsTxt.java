@@ -19,6 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.main;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.openeggbert.entity.common.OpenEggbertException;
@@ -28,6 +29,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -154,9 +156,13 @@ public class AssetsTxt {
     
     public List<FileHandle> list(FileHandle fileHandle) {
         String pathToDirectory = fileHandle.path();//((fileHandle.path().isEmpty() ? "" : (fileHandle.path() + "/"))) + fileHandle.name();
+        Function<String, FileHandle> createFileHandle = s -> 
+            Gdx.app.getType() == Application.ApplicationType.Desktop ?
+                Gdx.files.classpath(s):Gdx.files.internal(s)
+        ;
         return AssetsTxt.this.list(pathToDirectory)
                 .stream()
-                .map(p-> Gdx.files.classpath((pathToDirectory.equals(".") ? "" : (pathToDirectory + "/")) + p))
+                .map(p-> createFileHandle.apply((pathToDirectory.equals(".") ? "" : (pathToDirectory + "/")) + p))
                 .collect(Collectors.toList());
     }
 
