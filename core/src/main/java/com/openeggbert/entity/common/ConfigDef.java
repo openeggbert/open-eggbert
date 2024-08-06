@@ -20,7 +20,8 @@
 package com.openeggbert.entity.common;
 
 import com.openeggbert.utils.OpenEggbertUtils;
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.ToString;
 
 /**
@@ -30,7 +31,7 @@ import lombok.ToString;
 @ToString
 public class ConfigDef {
 
-    private Properties properties = new Properties();
+    private Map<String,String> map = new HashMap<>();
 
     public ConfigDef(String textContentofConfigDefFile) {
         OpenEggbertUtils
@@ -42,7 +43,7 @@ public class ConfigDef {
                     String[] array = line.split("=");
                     String key = array[0];
                     String value = array[1];
-                    properties.put(key, value);
+                    map.put(key, value);
                 });
     }
     private static final String HASH_CHARACTER = "#";
@@ -59,15 +60,15 @@ public class ConfigDef {
     }
     private boolean getMandatoryBooleanProperty(ConfigDefKey configDefKey) {
                 String key = configDefKey.getKey();
-        if (!properties.containsKey(key)) {
+        if (!map.containsKey(key)) {
             throw new OpenEggbertException("Fatal error: CONFIG.DEF is missing key: " + key);
         }
-        return convertStringToBoolean(properties.getProperty(configDefKey.getKey()));
+        return convertStringToBoolean(map.get(configDefKey.getKey()));
     }
 
     private boolean getOptionalBooleanProperty(ConfigDefKey configDefKey, boolean defaultValue) {
         String key = configDefKey.getKey();
-        if (!properties.containsKey(key)) {
+        if (!map.containsKey(key)) {
             return defaultValue;
         }
         return getMandatoryBooleanProperty(configDefKey);

@@ -28,9 +28,9 @@ import lombok.Getter;
  * @author robertvokac
  */
 public enum OpenEggbertScreenType {
-    INIT("INIT.BLP"),
+    INIT("INIT.BMP"),
     GAMER("GAMER.BLP"),
-    DEMO("DECOR016.BLP");
+    DEMO("DECOR016.BMP");
     @Getter
     private String fileName;
     OpenEggbertScreenType(String fileName) {

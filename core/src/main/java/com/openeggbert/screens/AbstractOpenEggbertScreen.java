@@ -20,6 +20,7 @@
 package com.openeggbert.screens;
 
 import com.badlogic.gdx.Application;
+import static com.badlogic.gdx.Application.LOG_INFO;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.files.FileHandle;
@@ -46,6 +47,7 @@ public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
     }
 
     private final String getBackgroundFileName() {
+        //return "INIT.BLP.BMP";
         return getScreenType().isPresent() ? getScreenType().get().getFileName() : "";
     }
 
@@ -64,34 +66,39 @@ public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
         if (getBackgroundFileName().isEmpty()) {
             return;
         }
+        
         String fileName = getBackgroundFileName();
         if (!game.existsImageTexture(fileName)) {
             String nameUpperCase = game.getGameSpace().getImage08Directory() + "/" + fileName;
             String nameLowerCase = game.getGameSpace().getImage08Directory() + "/" + fileName.toLowerCase();
-            System.out.println("nameUpperCase=" + nameUpperCase);
-            System.out.println("nameLowerCase=" + nameLowerCase);
+            Gdx.app.setLogLevel(LOG_INFO);
+            Gdx.app.log("screen","nameUpperCase=" + nameUpperCase);
+            Gdx.app.log("screen","nameLowerCase=" + nameLowerCase);
             FileHandle fileHandleUpperCase = null;
             FileHandle fileHandleLowerCase = null;
             if (game.getGameSpace().isEmbeddedAssets()) {
 
                 if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.WebGL) {
-                    System.out.println("loading from internal");
+                    Gdx.app.log("screen","loading from internal");
                     fileHandleUpperCase = Gdx.files.internal(nameUpperCase);
                     fileHandleLowerCase = Gdx.files.internal(nameLowerCase);
                 } else {
 
-                    System.out.println("loading from classpath");
+                    Gdx.app.log("screen","loading from classpath");
                     fileHandleUpperCase = Gdx.files.classpath(nameUpperCase);
                     fileHandleLowerCase = Gdx.files.classpath(nameLowerCase);
                     
 
                 }
             } else {
-                System.out.println("loading from absolute");
+                Gdx.app.log("screen","loading from absolute");
 
                 fileHandleUpperCase = Gdx.files.absolute(nameUpperCase);
                 fileHandleLowerCase = Gdx.files.absolute(nameLowerCase);
             }
+
+            Gdx.app.log("screen", "fileHandleUpperCase.exists()=" + fileHandleUpperCase.exists());
+                        Gdx.app.log("screen", "fileHandleLowerCase.exists()=" + fileHandleLowerCase.exists());
 
             if (fileHandleUpperCase.exists()) {
                 game.loadImageTexture(fileHandleUpperCase);
