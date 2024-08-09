@@ -48,7 +48,7 @@ public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
 
     private final String getBackgroundFileName() {
         //return "INIT.BLP.BMP";
-        return getScreenType().isPresent() ? getScreenType().get().getFileName() : "";
+        return getScreenType().isPresent() ? getScreenType().get().getFileNameWithoutExtension(): "";
     }
 
     protected Optional<OpenEggbertScreenType> getScreenType() {

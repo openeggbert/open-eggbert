@@ -17,13 +17,29 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.compatibility;
 
-package com.openeggbert.entity.common;
+import lombok.Getter;
 
 /**
  *
  * @author robertvokac
  */
-public class GameFiles {
+public enum ImageFormats {
+    BMP("blp", "bmp"),
+    PNG("png"),
+    JPEG("jpeg")
+    ;
+    @Getter
+    private String[] fileExtensions;
+    @Getter
+    private boolean openEggbertOnly;
+    ImageFormats(String... fileExtensionsIn) {
+        this(true, fileExtensionsIn);
+    }
+    ImageFormats(boolean openEggbertOnlyIn, String... fileExtensionsIn) {
+        this.fileExtensions = fileExtensionsIn;
+        this.openEggbertOnly = openEggbertOnlyIn;
+    }
     
 }

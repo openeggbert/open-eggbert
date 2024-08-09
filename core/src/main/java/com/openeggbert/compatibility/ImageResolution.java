@@ -17,20 +17,13 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
-package com.openeggbert.entity.common;
-
-import com.openeggbert.compatibility.FeatureLevel;
+package com.openeggbert.compatibility;
 
 /**
  *
  * @author robertvokac
  */
-public class GameFile {
-
-    private FeatureLevel compatibilityMode;
-    private GameFileType gameFileType;
-    private String path;
-    private String name;
-    private String originalSha512Sum;
+public enum ImageResolution {
+    NORMAL, DOUBLE;
+    
 }

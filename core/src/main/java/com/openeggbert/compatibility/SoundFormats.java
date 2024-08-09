@@ -17,22 +17,29 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.compatibility;
 
-
-package com.openeggbert.entity.common;
-
-import com.openeggbert.compatibility.FeatureLevel;
-import com.openeggbert.compatibility.ResolutionMode;
-import lombok.Data;
+import lombok.Getter;
 
 /**
  *
  * @author robertvokac
  */
-@Data
-public class GameExecution {
-    private FeatureLevel compatibilityMode;
-    private ResolutionMode resolutionMode = ResolutionMode.RESOLUTION_640_480;
-    private Boolean cheatsEnabled = true;
+public enum SoundFormats {
+    WAV("blp", "wav"),
+    MP3("mp3"),
+    OGG("ogg")
+    ;
+    @Getter
+    private String[] fileExtensions;
+    @Getter
+    private boolean openEggbertOnly;
+    SoundFormats(String... fileExtensionsIn) {
+        this(true, fileExtensionsIn);
+    }
+    SoundFormats(boolean openEggbertOnlyIn, String... fileExtensionsIn) {
+        this.fileExtensions = fileExtensionsIn;
+        this.openEggbertOnly = openEggbertOnlyIn;
+    }
     
 }

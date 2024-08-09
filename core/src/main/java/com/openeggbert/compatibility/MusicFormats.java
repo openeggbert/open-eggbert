@@ -17,9 +17,7 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
-
-package com.openeggbert.entity.common;
+package com.openeggbert.compatibility;
 
 import lombok.Getter;
 
@@ -27,23 +25,22 @@ import lombok.Getter;
  *
  * @author robertvokac
  */
-public enum OpenEggbertScreenType {
-    INIT("INIT"),
-    GAMER("GAMER"),
-    MAIN_HUB(""),
-    SUB_HUB(""),
-    GAME(""),
-    DEMO("DECOR016"),//todo fix me
+public enum MusicFormats {
+    MIDI("blp", "mid"),
+    MP3("mp3"),
+    OGG("ogg"),
+    WAV("wav")
     ;
-    
     @Getter
-    private String fileNameWithoutExtension;
-    
-    OpenEggbertScreenType() {
-        this.fileNameWithoutExtension = "";
+    private String[] fileExtensions;
+    @Getter
+    private boolean openEggbertOnly;
+    MusicFormats(String... fileExtensionsIn) {
+        this(true, fileExtensionsIn);
     }
-    OpenEggbertScreenType(String fileName) {
-        this.fileNameWithoutExtension = fileName;
+    MusicFormats(boolean openEggbertOnlyIn, String... fileExtensionsIn) {
+        this.fileExtensions = fileExtensionsIn;
+        this.openEggbertOnly = openEggbertOnlyIn;
     }
     
 }
