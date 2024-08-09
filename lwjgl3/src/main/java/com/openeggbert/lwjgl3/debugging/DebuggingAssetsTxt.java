@@ -17,7 +17,7 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3;
+package com.openeggbert.lwjgl3.debugging;
 
 import com.openeggbert.utils.AssetsTxt;
 import java.util.List;
@@ -27,8 +27,8 @@ import java.util.Scanner;
  *
  * @author robertvokac
  */
-public class TestAssetsTxt {
-    private TestAssetsTxt() {
+public class DebuggingAssetsTxt {
+    private DebuggingAssetsTxt() {
         //Not meant to be instantiated.
     }
     public static void main(String[] args) {

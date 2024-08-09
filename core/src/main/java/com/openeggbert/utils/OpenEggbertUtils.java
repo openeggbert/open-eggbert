@@ -19,6 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.utils;
 
+import com.badlogic.gdx.utils.Base64Coder;
 import com.openeggbert.compatibility.FileNameCaseType;
 import com.openeggbert.compatibility.ImageFormat;
 import com.openeggbert.compatibility.MusicFormat;
@@ -27,6 +28,7 @@ import com.openeggbert.entity.common.GameFileType;
 import com.openeggbert.entity.common.OpenEggbertException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -77,13 +79,11 @@ public class OpenEggbertUtils {
             }
             return list;
         }
-        if (
-                gameFileType == GameFileType.CONFIG || 
-                gameFileType == GameFileType.WORLD ||
-                gameFileType == GameFileType.DEMO ||
-                gameFileType == GameFileType.SAVE ||
-                gameFileType == GameFileType.USER_INFO
-                ) {
+        if (gameFileType == GameFileType.CONFIG
+                || gameFileType == GameFileType.WORLD
+                || gameFileType == GameFileType.DEMO
+                || gameFileType == GameFileType.SAVE
+                || gameFileType == GameFileType.USER_INFO) {
             for (FileNameCaseType fileNameCaseType : FileNameCaseType.values()) {
                 list.add(FileNameCaseType.convertToString(fileName, fileNameCaseType));
             }
@@ -113,6 +113,22 @@ public class OpenEggbertUtils {
         }
         return dotIndex == -1 ? fileName : fileName.substring(0, dotIndex);
 
+    }
+
+    public static String decodeBase64AsString(String string) {
+        return new String(decodeBase64AsByteArray(string));
+    }
+
+    public static byte[] decodeBase64AsByteArray(String string) {
+        return Base64Coder.decode(string);
+    }
+
+    public static String encodeToBase64(String string) {
+        return encodeToBase64(string.getBytes());
+    }
+
+    public static String encodeToBase64(byte[] data) {
+        return String.valueOf(Base64Coder.encode(data));
     }
 
 }
