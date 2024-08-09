@@ -26,19 +26,21 @@ import lombok.Getter;
  * @author robertvokac
  */
 public enum FeatureLevel {
-    SPEEDY_BLUPI_DEMO(ReleaseType.BLUPI, ReleaseVersion.DEMO),
-    SPEEDY_BLUPI_I(ReleaseType.BLUPI, ReleaseVersion.ONE),
-    SPEEDY_BLUPI_II(ReleaseType.BLUPI, ReleaseVersion.TWO),
-    SPEEDY_EGGBERT_DEMO(ReleaseType.EGGBERT, ReleaseVersion.DEMO),
-    SPEEDY_EGGBERT_1(ReleaseType.EGGBERT, ReleaseVersion.ONE),
-    SPEEDY_EGGBERT_2(ReleaseType.EGGBERT, ReleaseVersion.TWO),
-    OPEN_EGGBERT_3(ReleaseType.OPEN, ReleaseVersion.THREE);
+    SPEEDY_BLUPI_DEMO(ReleaseType.BLUPI, ReleaseVersion.DEMO, Publisher.EPSITEC_SA),
+    SPEEDY_BLUPI_I(ReleaseType.BLUPI, ReleaseVersion.ONE, Publisher.EPSITEC_SA),
+    SPEEDY_BLUPI_II(ReleaseType.BLUPI, ReleaseVersion.TWO, Publisher.EPSITEC_SA),
+    SPEEDY_EGGBERT_DEMO(ReleaseType.EGGBERT, ReleaseVersion.DEMO, Publisher.E_GAMES),
+    SPEEDY_EGGBERT_1(ReleaseType.EGGBERT, ReleaseVersion.ONE, Publisher.E_GAMES),
+    SPEEDY_EGGBERT_2(ReleaseType.EGGBERT, ReleaseVersion.TWO, Publisher.E_GAMES),
+    SPEEDY_EGGBERT_VALUEWARE(ReleaseType.EGGBERT, ReleaseVersion.VALUEWARE, Publisher.E_GAMES),
+    SPEEDY_BLUPI_FOR_WINDOWS_PHONE(ReleaseType.BLUPI, ReleaseVersion.WINDOWS_PHONE, Publisher.DADA_GAMES),
+    OPEN_EGGBERT_3(ReleaseType.OPEN, ReleaseVersion.THREE, Publisher.OPEN_EGGBERT);
     @Getter
     private final ReleaseType releaseType;
     @Getter
     private final ReleaseVersion releaseVersion;
 
-    private FeatureLevel(ReleaseType releaseType, ReleaseVersion releaseVersion) {
+    private FeatureLevel(ReleaseType releaseType, ReleaseVersion releaseVersion, Publisher publisher) {
         this.releaseType = releaseType;
         this.releaseVersion = releaseVersion;
     }

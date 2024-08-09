@@ -30,7 +30,7 @@ import lombok.Getter;
  */
 public enum Cheat {
     
-    MEGABLUPI(Utils.ALL__COMPATIBILITY_MODES);
+    MEGABLUPI(Utils.ALL_FEATURE_LEVELS);
     //todo//todo
     
     @Getter

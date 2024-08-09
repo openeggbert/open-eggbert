@@ -21,10 +21,28 @@
 
 package com.openeggbert.entity.common;
 
+import com.openeggbert.compatibility.FeatureLevel;
+import lombok.Getter;
+
 /**
  *
  * @author robertvokac
  */
-public enum EggbertMusic {
+public enum MusicType {
+    MUSIC1(0),
+    MUSIC2(1),
+    MUSIC3(2),
+    MUSIC4(3),
+    MUSIC5(4),
+    MUSIC6(5),
+    MUSIC7(6),
+    MUSIC8(7),
+    MUSIC9(8),
+    MUSIC10(9);
+    @Getter
+    private int number;
+     MusicType(int numberIn, FeatureLevel... featureLevels) {
+        this.number = numberIn;
+    }
     
 }

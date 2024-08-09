@@ -31,5 +31,5 @@ public class Utils {
     private Utils() {
         //Instantiate not needed.
     }
-    public static final FeatureLevel[] ALL__COMPATIBILITY_MODES = FeatureLevel.values();
+    public static final FeatureLevel[] ALL_FEATURE_LEVELS = FeatureLevel.values();
 }

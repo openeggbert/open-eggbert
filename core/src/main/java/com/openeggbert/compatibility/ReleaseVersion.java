@@ -26,5 +26,5 @@ package com.openeggbert.compatibility;
  * @author robertvokac
  */
 public enum ReleaseVersion {
-    DEMO, ONE, TWO, THREE
+    DEMO, ONE, TWO, WINDOWS_PHONE, VALUEWARE, THREE;
 }
