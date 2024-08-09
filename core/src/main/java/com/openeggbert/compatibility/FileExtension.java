@@ -19,27 +19,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.compatibility;
 
-import lombok.Getter;
-
 /**
  *
  * @author robertvokac
  */
-public enum SoundFormats {
-    WAV("blp", "wav"),
-    MP3("mp3"),
-    OGG("ogg")
-    ;
-    @Getter
-    private String[] fileExtensions;
-    @Getter
-    private boolean openEggbertOnly;
-    SoundFormats(String... fileExtensionsIn) {
-        this(true, fileExtensionsIn);
+public class FileExtension {
+    private FileExtension() {
+        //Not meant to be instantiated.
     }
-    SoundFormats(boolean openEggbertOnlyIn, String... fileExtensionsIn) {
-        this.fileExtensions = fileExtensionsIn;
-        this.openEggbertOnly = openEggbertOnlyIn;
+    public boolean isOpenEggbertOnly(String fileExtension) {
+        return fileExtension != null && !fileExtension.toLowerCase().equals(BLP);
     }
-    
+    private static final String BLP = "blp";
 }

@@ -1,6 +1,8 @@
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 eclipse.project.name = appName + '-core'
 
+sourceSets.test.java.srcDirs = [ "src/test/java/" ]
+
 dependencies {
   api "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
   api "com.badlogicgames.gdx:gdx-ai:$aiVersion"
@@ -17,4 +19,11 @@ dependencies {
   api "games.rednblack.miniaudio:miniaudio:$miniaudioVersion"
   annotationProcessor "org.projectlombok:lombok:$lombokVersion"
   compileOnly "org.projectlombok:lombok:$lombokVersion"
+  testImplementation "org.junit.jupiter:junit-jupiter-api:5.10.3"
+  testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.10.3"
+}
+
+test {
+    useJUnitPlatform {
+    }
 }

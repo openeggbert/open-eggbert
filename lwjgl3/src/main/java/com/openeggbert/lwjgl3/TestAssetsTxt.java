@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3;
 
-import com.openeggbert.main.AssetsTxt;
+import com.openeggbert.utils.AssetsTxt;
 import java.util.List;
 import java.util.Scanner;
 

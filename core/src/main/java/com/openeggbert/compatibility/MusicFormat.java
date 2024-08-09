@@ -25,22 +25,16 @@ import lombok.Getter;
  *
  * @author robertvokac
  */
-public enum MusicFormats {
+public enum MusicFormat {
     MIDI("blp", "mid"),
+    WAV("wav"),
     MP3("mp3"),
     OGG("ogg"),
-    WAV("wav")
     ;
     @Getter
     private String[] fileExtensions;
-    @Getter
-    private boolean openEggbertOnly;
-    MusicFormats(String... fileExtensionsIn) {
-        this(true, fileExtensionsIn);
-    }
-    MusicFormats(boolean openEggbertOnlyIn, String... fileExtensionsIn) {
+    MusicFormat(String... fileExtensionsIn) {
         this.fileExtensions = fileExtensionsIn;
-        this.openEggbertOnly = openEggbertOnlyIn;
     }
     
 }

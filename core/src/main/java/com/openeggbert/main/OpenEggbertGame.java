@@ -19,6 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.main;
 
+import com.openeggbert.utils.AssetsTxt;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

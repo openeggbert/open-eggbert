@@ -1,0 +1,1 @@
+./gradlew core:test $1

@@ -17,13 +17,24 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.compatibility;
 
-package com.openeggbert.mods;
+import lombok.Getter;
 
 /**
  *
  * @author robertvokac
  */
-public enum ModType {
-    FULL, LEVEL, SOUND, MUSIC, IMAGE08, IMAGE16, IMAGE24, IMAGE24X2, TEXT, PARTIAL;
+public enum ImageFormat {
+    BMP("blp", "bmp"),
+    PNG("png"),
+    JPEG("jpeg")
+    ;
+    @Getter
+    private String[] fileExtensions;
+
+    ImageFormat(String... fileExtensionsIn) {
+        this.fileExtensions = fileExtensionsIn;
+    }
+    
 }

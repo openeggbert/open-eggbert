@@ -25,21 +25,15 @@ import lombok.Getter;
  *
  * @author robertvokac
  */
-public enum ImageFormats {
-    BMP("blp", "bmp"),
-    PNG("png"),
-    JPEG("jpeg")
+public enum SoundFormat {
+    WAV("blp", "wav"),
+    MP3("mp3"),
+    OGG("ogg")
     ;
     @Getter
     private String[] fileExtensions;
-    @Getter
-    private boolean openEggbertOnly;
-    ImageFormats(String... fileExtensionsIn) {
-        this(true, fileExtensionsIn);
-    }
-    ImageFormats(boolean openEggbertOnlyIn, String... fileExtensionsIn) {
+    SoundFormat(String... fileExtensionsIn) {
         this.fileExtensions = fileExtensionsIn;
-        this.openEggbertOnly = openEggbertOnlyIn;
     }
     
 }
