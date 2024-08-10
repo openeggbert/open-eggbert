@@ -65,19 +65,16 @@ public class MapStorage implements Storage {
     
     @Override
     public String cd(String path) {
-        String absolutePath = convertToAbsolutePathIfNeeded(path);
+        System.out.println("path="+path);
+        String absolutePath = path.equals(TWO_DOTS) ? getParentPath(workingDirectory) : convertToAbsolutePathIfNeeded(path);
 
-        if(path.equals(TWO_DOTS)) {
-            getParentPath(workingDirectory);
-        }
-
-        if (!exists(path)) {
-            final String msg = "Path does not exist: " + path;
+        if (!exists(absolutePath)) {
+            final String msg = "Path does not exist: " + absolutePath;
             logError(msg);
             return msg;
         }
-        if (!isdir(path)) {
-            final String msg = "Path is not directory: " + path;
+        if (!isdir(absolutePath)) {
+            final String msg = "Path is not directory: " + absolutePath;
             logError(msg);
             return msg;
         }
@@ -95,6 +92,11 @@ public class MapStorage implements Storage {
 
     @Override
     public String mkdir(String path) {
+        if(path.isEmpty()) {
+            String msg = "Missing argument";
+            logError(msg);
+            return msg;
+        }
         String absolutePath = convertToAbsolutePathIfNeeded(path);
         final String parentPath = getParentPath(absolutePath);
         if (!path.equals(SLASH) && !exists(parentPath)) {
@@ -120,11 +122,12 @@ public class MapStorage implements Storage {
     private static final String EIGHT_COLONS = "::::::::";
 
     private static String getParentPath(String path) {
+        System.out.println("getParentPath()");
         if (path == null) {
-            throw new OpenEggbertException("path is null");
+            throw new OpenEggbertException("Path is null");
         }
         if (path.trim().isEmpty()) {
-            throw new OpenEggbertException("path is empty");
+            throw new OpenEggbertException("Path is empty");
         }
 
         if (path.equals("/")) {

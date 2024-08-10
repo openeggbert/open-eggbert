@@ -33,6 +33,7 @@ public interface Storage {
     public String cd(String path);
 
     default String cd() {
+        cd("/");
         mkdir("home");
         cd("home");
         mkdir("openeggbert");
@@ -40,10 +41,14 @@ public interface Storage {
         return "";
     }
 
-    public String mkdir(String name);
-    default String mkdir(String... name) {
-        
-        for(String n:name) {
+    public String mkdir(String argument);
+    default String mkdirmore(String... argument) {
+//        System.out.println("argumentCount=" + argument.length);
+//        for(String z: argument){System.out.println(z);}
+        if(argument.length == 0) {
+            return "Missing argument";
+        }
+        for(String n:argument) {
             String result = mkdir(n);
             if(!result.isEmpty()) {
                 return result;

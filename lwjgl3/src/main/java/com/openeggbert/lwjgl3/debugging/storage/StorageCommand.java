@@ -27,7 +27,7 @@ public interface StorageCommand {
 
     public String getName();
 
-    StorageCommandResult execute(String commandWithArguments);
+    StorageCommandResult execute(String arguments);
     StorageCommandLine getStorageCommandLine();
 
     void setStorageCommandLine(StorageCommandLine storageCommandLine);

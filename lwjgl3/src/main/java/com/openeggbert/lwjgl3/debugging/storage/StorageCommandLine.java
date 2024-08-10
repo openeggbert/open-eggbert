@@ -20,12 +20,12 @@
 package com.openeggbert.lwjgl3.debugging.storage;
 
 import com.openeggbert.storage.Storage;
-import com.openeggbert.storage.map.MemoryStorage;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -36,23 +36,34 @@ import java.util.stream.Collectors;
  */
 public class StorageCommandLine {
 
+    private String user;
+    private String hostname;
+    private Storage storage;
+    //
+    private boolean exited = false;
+    //
     private long startNanoTime = System.nanoTime();
+
+    public String getCommandLineStart() {
+        return user + "@" + hostname + ":" + storage.pwd() + "$ ";
+    }
 
     private String extractArgument(String arguments, int argumentIndex) {
         String[] array = arguments.split(" ");
-        if(argumentIndex > (array.length - 1)) {
+        if (argumentIndex > (array.length - 1)) {
             return "";
         }
         return array[argumentIndex];
     }
-    private StorageCommandLine(String userIn, String hostnameIn, Storage storageIn) {
+
+    public StorageCommandLine(String userIn, String hostnameIn, Storage storageIn) {
 
         this.user = userIn;
         this.hostname = hostnameIn;
         this.storage = storageIn;
 
-        addCommand("whoami", arguments -> modifyResult(result -> result.setOutput(user)));
-        addCommand("uptime", arguments -> modifyResult(result
+        addCommand("whoami", arguments -> provideOutput(result -> result.setOutput(user)));
+        addCommand("uptime", arguments -> provideOutput(result
                 -> result.setOutput(
                         LocalDateTime.now().toString().replace("T", " ").substring(10, 19) + " up "
                         + (System.nanoTime() - startNanoTime) / 1000000000l / 60l
@@ -60,31 +71,50 @@ public class StorageCommandLine {
                         + ", 1 user"
                 )));
 
-        addCommand("hostname", arguments -> modifyResult(result -> result.setOutput(hostname)));
-        addCommand("uname", arguments -> modifyResult(result -> result.setOutput(
-        "LinuxBashCommandLinePartialEmulation"
-                +
-                ((extractArgument(arguments, 0).equals("-a")) ? 
-                        (hostname + " 0.0.0 ("
-                                +
-                                LocalDateTime.now().toString().replace("T", " ").substring(0, 10) + ")"
-                        )
-                        : "")
-        
-        
-        
+        addCommand("hostname", arguments -> provideOutput(result -> result.setOutput(hostname)));
+        addCommand("uname", arguments -> provideOutput(result -> result.setOutput(
+                "LinuxBashCommandLinePartialEmulation"
+                + ((extractArgument(arguments, 0).equals("-a"))
+                ? (hostname + " 0.0.0 ("
+                + LocalDateTime.now().toString().replace("T", " ").substring(0, 10) + ")")
+                : "")
         )));
 
-        
-                    
-        
-        
-        
-//         12:31:18 up  2:10,  1 user
+        addCommand("ls", arguments -> provideOutput(result -> result.setOutput(storage
+                .ls()
+                .stream()
+                .map(l -> {
+                    String[] a = l.split("/");
+                    return a[a.length - 1];
+                }
+                ).collect(Collectors.joining("\n")))));
+
+        addCommand("pwd", arguments -> provideOutput(result -> result.setOutput(storage.pwd())));
+        addCommand("depth", arguments -> provideOutput(result -> result.setOutput(storage.depth())));
+
+        addCommand("mkdir", arguments -> provideOutput(result
+                -> {
+            String string = storage.mkdirmore(extractArguments(arguments));
+            if (string.isEmpty()) {
+                result.setOutput("New directory was successfully created");
+
+            } else {
+                result.setErrorOutput("Creating new directory failed: " + string);
+
+            }
+        }
+        ));
+
         commands.keySet().stream().map(k -> commands.get(k)).forEach(c -> c.setStorageCommandLine(this));
     }
 
-    private StorageCommandResult modifyResult(Consumer<StorageCommandResult> consumer) {
+    private String[] extractArguments(String arguments) {
+        return Arrays.asList(arguments.split(" ")).stream()
+                .filter(a->!a.isEmpty())
+                .toArray(String[]::new);
+    }
+
+    private StorageCommandResult provideOutput(Consumer<StorageCommandResult> consumer) {
 
         StorageCommandResult result = StorageCommand.emptyNewResult();
         consumer.accept(result);
@@ -96,11 +126,6 @@ public class StorageCommandLine {
         commands.put(storageCommand.getName(), storageCommand);
     }
 
-    private String user;
-    private String hostname;
-    private Storage storage;
-
-    private boolean exited = false;
     private final Map<String, StorageCommand> commands = new HashMap<>();
 
     public String getUser() {
@@ -136,87 +161,55 @@ public class StorageCommandLine {
 
         StorageCommandResult finalResult = new StorageCommandResult();
         switch (command) {
-            case "exit":
-                exited = true;
-                finalResult.setOutput("Exited");
-                break;
-            case "":
-                break;
-            case "ls":
-                String output = storage
-                        .ls()
-                        .stream()
-                        .map(l -> {
-                            String[] a = l.split("/");
-                            return a[a.length - 1];
-                        }
-                        ).collect(Collectors.joining("\n"));
-                finalResult.setOutput(output);
-                break;
-            case "pwd":
-                finalResult.setOutput(storage.pwd());
-                break;
 
-            case "depth":
-                finalResult.setOutput(storage.depth());
-                break;
-            case "mkdir":
-                if (checkArgumentCount(1, argumentCount)) {
-                    String r = storage.mkdir(argument1.get());
-                    if (r.isEmpty()) {
-                        finalResult.setOutput("New directory was successfully created");
-                    } else {
-                        finalResult.setErrorOutput("Creating new directory failed: " + r);
-                    }
-
-                }
-                break;
             case "touch":
-                if (checkArgumentCount(1, argumentCount)) {
-                    String result = storage.touch(argument1.get());
-                    if (result.isEmpty()) {
-                        finalResult.setOutput("New file was successfully created");
-                    } else {
-                        finalResult.setErrorOutput("Creating new directory failed: " + result);
-                    }
 
+                String r = storage.touch(argument1.get());
+                if (r.isEmpty()) {
+                    finalResult.setOutput("New file was successfully created");
+                } else {
+                    finalResult.setErrorOutput("Creating new directory failed: " + r);
                 }
+
                 break;
             case "readtext":
-                if (checkArgumentCount(1, argumentCount)) {
-                    String result = storage.readtext(argument1.get());
-                    if (result != null) {
-                        finalResult.setOutput("Text file was successfully loaded" + "\n\n" + result);
-                    } else {
-                        finalResult.setErrorOutput("Loading text file failed:");
-                    }
 
+                String rr = storage.readtext(argument1.get());
+                if (rr != null) {
+                    finalResult.setOutput("Text file was successfully loaded" + "\n\n" + rr);
+                } else {
+                    finalResult.setErrorOutput("Loading text file failed:");
                 }
+
                 break;
 
             case "savetext":
-                if (checkArgumentCount(2, argumentCount)) {
-                    String result = storage.savetext(argument1.get(), argument2.get());
-                    if (result.isEmpty()) {
-                        finalResult.setOutput("Text file was successfully saved");
-                    } else {
-                        finalResult.setErrorOutput("Saving text file failed: " + result);
-                    }
 
+                String result = storage.savetext(argument1.get(), argument2.get());
+                if (result.isEmpty()) {
+                    finalResult.setOutput("Text file was successfully saved");
+                } else {
+                    finalResult.setErrorOutput("Saving text file failed: " + result);
                 }
+
                 break;
             case "cd":
-                String r = argument1.isEmpty() ? storage.cd() : storage.cd(argument1.get());
-                if (r.isEmpty()) {
+                String rrr = argument1.isEmpty() ? storage.cd() : storage.cd(argument1.get());
+                if (rrr.isEmpty()) {
                     finalResult.setOutput("Changing working directory was successfully created");
                 } else {
-                    finalResult.setErrorOutput("Changing working directory failed: " + r);
+                    finalResult.setErrorOutput("Changing working directory failed: " + rrr);
                 }
 
                 break;
             case "debug":
                 finalResult.setOutput(storage.debug());
 
+                break;
+
+            case "exit":
+                exited = true;
+                finalResult.setOutput("Exited");
                 break;
             default: {
                 finalResult.setErrorOutput("Unsupported command: " + command);
@@ -225,53 +218,4 @@ public class StorageCommandLine {
         return finalResult;
     }
 
-    public static void main(String[] args) {
-        MemoryStorage memoryStorage = new MemoryStorage();
-
-        StorageCommandLine storageCommandWrapper = new StorageCommandLine("player", "openegggbert", memoryStorage);
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.print("player@openegggbert:" + memoryStorage.pwd() + "$ ");
-            String argument = scanner.nextLine();
-
-            StorageCommandResult result = storageCommandWrapper.execute(argument);
-            if (result.isError()) {
-                printError(result.getOutput());
-            } else {
-                print(result.getOutput());
-
-            }
-            if (storageCommandWrapper.isExited()) {
-                break;
-            }
-        }
-    }
-
-    private static void print(int msg) {
-        print(String.valueOf(msg));
-    }
-
-    private static void print(String msg) {
-        System.out.println(msg);
-    }
-
-    private static void printError(String msg) {
-        System.err.println(msg);
-    }
-
-    private static boolean checkArgumentCount(int wantedCount, int currentCount) {
-//        System.out.println("wantedCount=" + wantedCount);
-//        System.out.println("currentCount=" + currentCount);
-        boolean b = wantedCount < currentCount;
-//        System.out.println("b=" + b);
-        if (currentCount < wantedCount) {
-
-            printError("Wanted argument count is: " + wantedCount + ", but the current count of arguments is: " + currentCount);
-//            System.out.println("return false");
-            return false;
-        }
-//        System.out.println("return true");
-        return true;
-    }
 }
