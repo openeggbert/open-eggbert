@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Gdx Storage: Multiplatform persistent storage.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,42 +17,52 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.storage.filesystem.command;
-
-import com.openeggbert.storage.map.MemoryStorage;
-import java.util.Scanner;
+package com.openeggbert.gdx.storage.command;
 
 /**
  *
  * @author robertvokac
  */
-public class StorageCommandLineScanner {
+public class StorageCommandResult {
 
-    public StorageCommandLineScanner(StorageCommandLine storageCommandLine, CommandLineScanner scanner) {
-
-        while (true) {
-            System.out.print(storageCommandLine.getCommandLineStart());
-            String argument = scanner.nextLine();
-
-            StorageCommandResult result = storageCommandLine.execute(argument);
-            if (result.isError()) {
-                printError(result.getOutput());
-            } else {
-                print(result.getOutput());
-
-            }
-            if (storageCommandLine.isExited()) {
-                break;
-            }
-        }
+    public StorageCommandResult() {
+        this("");
     }
 
-    private static void print(String msg) {
-        System.out.println(msg);
+    public StorageCommandResult(String output) {
+        this(output, false);
     }
 
-    private static void printError(String msg) {
-        System.err.println(msg);
+    public StorageCommandResult(String output, boolean error) {
+        this.output = output;
+        this.error = error;
     }
 
+    public String getOutput() {
+        return output;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setOutput(int output) {
+        setOutput(String.valueOf(output));
+    }
+
+    public void setErrorOutput(String output) {
+        this.output = output;
+        setError(true);
+    }
+
+    public void setOutput(String output) {
+        this.output = output;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
+
+    private String output;
+    private boolean error;
 }

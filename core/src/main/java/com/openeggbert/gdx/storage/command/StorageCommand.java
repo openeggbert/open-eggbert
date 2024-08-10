@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Gdx Storage: Multiplatform persistent storage.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -13,38 +13,26 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see
+// along with this program. If not, see 
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.storage.map;
-
-import java.util.List;
-import java.util.Map;
+package com.openeggbert.gdx.storage.command;
 
 /**
  *
  * @author robertvokac
  */
-public interface SimpleMap {
+public interface StorageCommand {
 
-    public void putString(String key, String val);
+    public String getName();
 
-    public void put(Map<String, String> map);
+    StorageCommandResult execute(String arguments);
+    StorageCommandLine getStorageCommandLine();
 
-    public String getString(String key);
+    void setStorageCommandLine(StorageCommandLine storageCommandLine);
+    static StorageCommandResult emptyNewResult() {
+        return new StorageCommandResult();
+    }
 
-    public String getString(String key, String defaultValue);
-
-    public Map<String, String> getReadOnlyMap();
-
-    public boolean contains(String key);
-
-    public void clear();
-
-    public void remove(String key);
-
-    public void flush();
-    
-    public List<String> keyList();
 }

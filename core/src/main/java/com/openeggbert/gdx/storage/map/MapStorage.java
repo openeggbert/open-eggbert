@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Gdx Storage: Multiplatform persistent storage.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,13 +17,13 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.storage.map;
+package com.openeggbert.gdx.storage.map;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.openeggbert.entity.common.OpenEggbertException;
-import com.openeggbert.storage.Storage;
-import com.openeggbert.utils.OpenEggbertUtils;
+import com.openeggbert.gdx.storage.GdxStorageException;
+import com.openeggbert.gdx.storage.GdxStorageUtils;
+import com.openeggbert.gdx.storage.Storage;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -124,10 +124,10 @@ public class MapStorage implements Storage {
     private static String getParentPath(String path) {
 //        System.out.println("getParentPath()");
         if (path == null) {
-            throw new OpenEggbertException("Path is null");
+            throw new GdxStorageException("Path is null");
         }
         if (path.trim().isEmpty()) {
-            throw new OpenEggbertException("Path is empty");
+            throw new GdxStorageException("Path is empty");
         }
 
         if (path.equals("/")) {
@@ -218,10 +218,10 @@ public class MapStorage implements Storage {
 
     private String moveOrCp(String source, String target, boolean move, boolean cp) {
         if (move && cp) {
-            throw new OpenEggbertException("move == true && cp == true");
+            throw new GdxStorageException("move == true && cp == true");
         }
         if (!move && !cp) {
-            throw new OpenEggbertException("move != true && cp != true");
+            throw new GdxStorageException("move != true && cp != true");
         }
         String absolutePathSource = convertToAbsolutePathIfNeeded(source);
         String absolutePathTarget = convertToAbsolutePathIfNeeded(target);
@@ -287,7 +287,7 @@ public class MapStorage implements Storage {
             return null;
         }
         text = text.substring(BINARYFILE.length());
-        return OpenEggbertUtils.decodeBase64AsByteArray(text);
+        return GdxStorageUtils.decodeBase64AsByteArray(text);
     }
     private static final String BINARYFILE = "BINARYFILE";
 
@@ -298,7 +298,7 @@ public class MapStorage implements Storage {
 
     @Override
     public String savebin(String name, byte[] data) {
-        return savetext(name, BINARYFILE + OpenEggbertUtils.encodeToBase64(data));
+        return savetext(name, BINARYFILE + GdxStorageUtils.encodeToBase64(data));
     }
 
     @Override

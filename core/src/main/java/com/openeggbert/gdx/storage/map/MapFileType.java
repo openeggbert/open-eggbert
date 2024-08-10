@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Gdx Storage: Multiplatform persistent storage.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,24 +17,31 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.storage.map;
+package com.openeggbert.gdx.storage.map;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
+import com.openeggbert.gdx.storage.GdxStorageException;
+
 
 /**
  *
  * @author robertvokac
  */
-public class WebGLStorage extends MapStorage {
-    public WebGLStorage() {
-        this("open-eggbert.webGL.Local-Storage");
-    }
-    public WebGLStorage(String preferencesName) {
-        this(Gdx.app.getPreferences(preferencesName));
-    }
-        public WebGLStorage(Preferences preferences) {
-        super(new SimpleLocalStorageMap(preferences));
+public enum MapFileType {
+    FILE, DIRECTORY;
+
+    public static MapFileType ofKey(String key, SimpleMap map) {
+        if (!map.contains(key)) {
+            throw new GdxStorageException("Map does not contain key: " + key);
+        }
+        String value = map.getString(key);
+        if (value.startsWith(FILE.name())) {
+            return FILE;
+        }
+        if (value.startsWith(DIRECTORY.name())) {
+            return DIRECTORY;
+        }
+        throw new GdxStorageException("Unsupported MapFileType for key in the map: " + key);
+
     }
 
 }

@@ -57,7 +57,8 @@ dependencies {
   implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
   implementation "com.github.MrStahlfelge.gdx-websockets:common:$websocketVersion"
   implementation project(':core')
-
+  //implementation "com.openeggbert.gdx:gdx-storage:0.0.0-SNAPSHOT"
+  
   natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-arm64-v8a"
   natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi-v7a"
   natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"

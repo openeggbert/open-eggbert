@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Gdx Storage: Multiplatform persistent storage.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,15 +17,14 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.storage;
+package com.openeggbert.gdx.storage;
 
-import com.openeggbert.storage.map.WebGLStorage;
-import com.openeggbert.storage.map.MemoryStorage;
-import com.openeggbert.storage.filesystem.AndroidStorage;
-import com.openeggbert.storage.filesystem.DesktopStorage;
+import com.openeggbert.gdx.storage.map.WebGLStorage;
+import com.openeggbert.gdx.storage.map.MemoryStorage;
+import com.openeggbert.gdx.storage.filesystem.AndroidStorage;
+import com.openeggbert.gdx.storage.filesystem.DesktopStorage;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.openeggbert.entity.common.OpenEggbertException;
 
 /**
  *
@@ -56,7 +55,7 @@ public class StorageImplementationLoader {
             }
         }
         if (storage == null) {
-            throw new OpenEggbertException("Platform is not supported: " + type);
+            throw new GdxStorageException("Platform is not supported: " + type);
         }
         return storage;
     }

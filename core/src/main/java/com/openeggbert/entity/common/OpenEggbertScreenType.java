@@ -28,6 +28,8 @@ import lombok.Getter;
  * @author robertvokac
  */
 public enum OpenEggbertScreenType {
+    MAIN,
+    GAME_SPACE_SELECTION,
     INIT("INIT"),
     GAMER("GAMER"),
     MAIN_HUB(""),

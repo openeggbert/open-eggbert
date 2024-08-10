@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Gdx Storage: Multiplatform persistent storage.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,15 +17,16 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.storage.filesystem;
+package com.openeggbert.gdx.storage;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorage extends DesktopAndroidStorage {
+public class GdxStorageException extends RuntimeException {
 
-    public DesktopStorage() {
+    public GdxStorageException(String string) {
+        super(string);
     }
     
 }

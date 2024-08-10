@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3.debugging.storage;
 
-import com.openeggbert.storage.filesystem.command.CommandLineScanner;
+import com.openeggbert.gdx.storage.command.CommandLineScanner;
 import java.util.Scanner;
 
 /**

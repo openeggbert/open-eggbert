@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Gdx Storage: Multiplatform persistent storage.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,30 +17,34 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.storage.map;
+package com.openeggbert.gdx.storage;
 
-import com.openeggbert.entity.common.OpenEggbertException;
+import com.badlogic.gdx.utils.Base64Coder;
 
 /**
  *
  * @author robertvokac
  */
-public enum MapFileType {
-    FILE, DIRECTORY;
+public class GdxStorageUtils {
+    
+    private GdxStorageUtils() {
+        //Not meant to be instantiated.
+    }
 
-    public static MapFileType ofKey(String key, SimpleMap map) {
-        if (!map.contains(key)) {
-            throw new OpenEggbertException("Map does not contain key: " + key);
-        }
-        String value = map.getString(key);
-        if (value.startsWith(FILE.name())) {
-            return FILE;
-        }
-        if (value.startsWith(DIRECTORY.name())) {
-            return DIRECTORY;
-        }
-        throw new OpenEggbertException("Unsupported MapFileType for key in the map: " + key);
+        public static String decodeBase64AsString(String string) {
+        return new String(decodeBase64AsByteArray(string));
+    }
 
+    public static byte[] decodeBase64AsByteArray(String string) {
+        return Base64Coder.decode(string);
+    }
+
+    public static String encodeToBase64(String string) {
+        return encodeToBase64(string.getBytes());
+    }
+
+    public static String encodeToBase64(byte[] data) {
+        return String.valueOf(Base64Coder.encode(data));
     }
 
 }

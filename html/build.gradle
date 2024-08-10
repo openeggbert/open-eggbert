@@ -18,6 +18,7 @@ gwt {
 
   src = files(file('src/main/java')) // Needs to be in front of "modules" below.
   modules 'com.openeggbert.GdxDefinition'
+//,'com.openeggbert.gdx.storage.GdxStorageMainClass'
   devModules 'com.openeggbert.GdxDefinitionSuperdev'
   project.webAppDirName = 'webapp'
 
@@ -50,6 +51,7 @@ dependencies {
   implementation("com.badlogicgames.gdx-controllers:gdx-controllers-gwt:$gdxControllersVersion:sources"){exclude group: "com.badlogicgames.gdx", module: "gdx-backend-gwt"}
   implementation("com.badlogicgames.gdx:gdx-box2d-gwt:$gdxVersion:sources") {exclude group: "com.google.gwt", module: "gwt-user"}
   implementation("com.github.crykn.guacamole:gdx-gwt:$guacamoleVersion:sources"){exclude group: "com.badlogicgames.gdx", module: "gdx-backend-gwt"}
+  //implementation "com.openeggbert.gdx:gdx-storage:0.0.0-SNAPSHOT"
 
 }
 

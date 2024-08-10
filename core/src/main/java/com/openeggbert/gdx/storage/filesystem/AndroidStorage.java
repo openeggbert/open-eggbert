@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Gdx Storage: Multiplatform persistent storage.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -13,56 +13,19 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see 
+// along with this program. If not, see
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.storage.filesystem.command;
+package com.openeggbert.gdx.storage.filesystem;
 
 /**
  *
  * @author robertvokac
  */
-public class StorageCommandResult {
+public class AndroidStorage extends DesktopAndroidStorage {
 
-    public StorageCommandResult() {
-        this("");
+    public AndroidStorage() {
     }
-
-    public StorageCommandResult(String output) {
-        this(output, false);
-    }
-
-    public StorageCommandResult(String output, boolean error) {
-        this.output = output;
-        this.error = error;
-    }
-
-    public String getOutput() {
-        return output;
-    }
-
-    public boolean isError() {
-        return error;
-    }
-
-    public void setOutput(int output) {
-        setOutput(String.valueOf(output));
-    }
-
-    public void setErrorOutput(String output) {
-        this.output = output;
-        setError(true);
-    }
-
-    public void setOutput(String output) {
-        this.output = output;
-    }
-
-    public void setError(boolean error) {
-        this.error = error;
-    }
-
-    private String output;
-    private boolean error;
+    
 }

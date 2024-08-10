@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Gdx Storage: Multiplatform persistent storage.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,22 +17,42 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.storage.filesystem.command;
+package com.openeggbert.gdx.storage.command;
+
+import com.openeggbert.gdx.storage.map.MemoryStorage;
+import java.util.Scanner;
 
 /**
  *
  * @author robertvokac
  */
-public interface StorageCommand {
+public class StorageCommandLineScanner {
 
-    public String getName();
+    public StorageCommandLineScanner(StorageCommandLine storageCommandLine, CommandLineScanner scanner) {
 
-    StorageCommandResult execute(String arguments);
-    StorageCommandLine getStorageCommandLine();
+        while (true) {
+            System.out.print(storageCommandLine.getCommandLineStart());
+            String argument = scanner.nextLine();
 
-    void setStorageCommandLine(StorageCommandLine storageCommandLine);
-    static StorageCommandResult emptyNewResult() {
-        return new StorageCommandResult();
+            StorageCommandResult result = storageCommandLine.execute(argument);
+            if (result.isError()) {
+                printError(result.getOutput());
+            } else {
+                print(result.getOutput());
+
+            }
+            if (storageCommandLine.isExited()) {
+                break;
+            }
+        }
+    }
+
+    private static void print(String msg) {
+        System.out.println(msg);
+    }
+
+    private static void printError(String msg) {
+        System.err.println(msg);
     }
 
 }
