@@ -37,6 +37,8 @@ import com.openeggbert.mods.Mod;
 import com.openeggbert.mods.ModIdentification;
 import com.openeggbert.screens.GameSpaceListScreen;
 import com.openeggbert.screens.InitScreen;
+import com.openeggbert.storage.Storage;
+import com.openeggbert.storage.StorageImplementationLoader;
 import com.openeggbert.utils.OpenEggbertDisplayMode;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +68,7 @@ public class OpenEggbertGame extends Game {
     private AssetsTxt assets;
     private ConfigDef configDef;
     private OpenEggbertDisplayMode openEggbertDisplayMode = OpenEggbertDisplayMode.WINDOW;
+    private Storage storage;
 
     public OpenEggbertGame() {
         this(null, null);
@@ -79,6 +82,13 @@ public class OpenEggbertGame extends Game {
         this.gameSpace = gameSpace;
         this.currentDirectory = currentDirectory;
 
+    }
+    
+    public Storage getStorage() {
+        if(storage == null) {
+            this.storage = StorageImplementationLoader.getStorage();
+        }
+        return storage;
     }
 
     @Override

@@ -60,10 +60,16 @@ public class MapStorage implements Storage {
 
         return workingDirectory + (workingDirectory.equals("/") ? "" : SLASH) + path;
     }
-
+    
+    private static final String TWO_DOTS = "..";
+    
     @Override
     public String cd(String path) {
         String absolutePath = convertToAbsolutePathIfNeeded(path);
+
+        if(path.equals(TWO_DOTS)) {
+            getParentPath(workingDirectory);
+        }
 
         if (!exists(path)) {
             final String msg = "Path does not exist: " + path;
@@ -322,6 +328,11 @@ public class MapStorage implements Storage {
                     .append("\n");
         }
         return sb.toString();
+    }
+
+    @Override
+    public void flush() {
+        map.flush();
     }
 
 }

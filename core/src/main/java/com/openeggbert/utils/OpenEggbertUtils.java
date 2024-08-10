@@ -28,7 +28,6 @@ import com.openeggbert.entity.common.GameFileType;
 import com.openeggbert.entity.common.OpenEggbertException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

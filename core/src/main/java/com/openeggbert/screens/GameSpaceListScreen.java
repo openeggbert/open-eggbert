@@ -72,6 +72,8 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
         Preferences prefs = Gdx.app.getPreferences("My Preferences");
         prefs.putString("test", "abc");
         prefs.flush();
+        game.getStorage().mkdir("modes");
+        game.getStorage().mkdir("game_spaces");
     }
 
     @Override
@@ -175,6 +177,7 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
 
     @Override
     public void renderOpenEggbertScreen(float delta) {
+        Gdx.app.log(getClass().getName(), game.getStorage().debug());
 
         timeSeconds += Gdx.graphics.getRawDeltaTime();
         if (timeSeconds > 60) {

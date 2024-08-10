@@ -63,6 +63,7 @@ public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
     }
 
     private void loadBackgroundTextureIfNeeded() {
+        if(true) return;//todo
         if (getBackgroundFileName().isEmpty()) {
             return;
         }

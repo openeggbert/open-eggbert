@@ -120,5 +120,10 @@ public abstract class DesktopAndroidStorage implements Storage {
     @Override
     public String debug() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }    
+    }
+    
+    @Override
+    public void flush() {
+        //nothing to do
+    }
 }

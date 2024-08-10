@@ -89,5 +89,7 @@ public interface Storage {
     public boolean isdir(String name);
 
     public String debug();
+    
+    public void flush();
 
 }
