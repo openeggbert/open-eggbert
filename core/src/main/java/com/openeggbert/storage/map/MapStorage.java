@@ -65,7 +65,7 @@ public class MapStorage implements Storage {
     
     @Override
     public String cd(String path) {
-        System.out.println("path="+path);
+//        System.out.println("path="+path);
         String absolutePath = path.equals(TWO_DOTS) ? getParentPath(workingDirectory) : convertToAbsolutePathIfNeeded(path);
 
         if (!exists(absolutePath)) {
@@ -122,7 +122,7 @@ public class MapStorage implements Storage {
     private static final String EIGHT_COLONS = "::::::::";
 
     private static String getParentPath(String path) {
-        System.out.println("getParentPath()");
+//        System.out.println("getParentPath()");
         if (path == null) {
             throw new OpenEggbertException("Path is null");
         }

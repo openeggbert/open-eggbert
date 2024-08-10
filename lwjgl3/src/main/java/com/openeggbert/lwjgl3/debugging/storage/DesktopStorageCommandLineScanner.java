@@ -19,20 +19,28 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3.debugging.storage;
 
+import com.openeggbert.storage.filesystem.command.StorageCommandLine;
+import com.openeggbert.storage.filesystem.command.StorageCommandLineScanner;
+import com.openeggbert.storage.map.MemoryStorage;
+
 /**
  *
  * @author robertvokac
  */
-public interface StorageCommand {
+public class DesktopStorageCommandLineScanner {
 
-    public String getName();
+    private DesktopStorageCommandLineScanner() {
+        //Not meant to be instantiated.
+    }
 
-    StorageCommandResult execute(String arguments);
-    StorageCommandLine getStorageCommandLine();
+    public static void main(String[] args) {
+        MemoryStorage memoryStorage = new MemoryStorage();
+        final String user = "player";
+        final String hostname = "openegggbert";
+        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
+        StorageCommandLineScanner storageCommandLineScanner = new StorageCommandLineScanner(
+                storageCommandLine, new DesktopCommandLineScanner());
 
-    void setStorageCommandLine(StorageCommandLine storageCommandLine);
-    static StorageCommandResult emptyNewResult() {
-        return new StorageCommandResult();
     }
 
 }

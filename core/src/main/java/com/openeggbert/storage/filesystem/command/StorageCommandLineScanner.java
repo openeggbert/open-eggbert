@@ -17,7 +17,7 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging.storage;
+package com.openeggbert.storage.filesystem.command;
 
 import com.openeggbert.storage.map.MemoryStorage;
 import java.util.Scanner;
@@ -28,17 +28,7 @@ import java.util.Scanner;
  */
 public class StorageCommandLineScanner {
 
-    private StorageCommandLineScanner() {
-        //Not meant to be instantiated.
-    }
-
-    public static void main(String[] args) {
-        MemoryStorage memoryStorage = new MemoryStorage();
-        final String user = "player";
-        final String hostname = "openegggbert";
-
-        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
-        Scanner scanner = new Scanner(System.in);
+    public StorageCommandLineScanner(StorageCommandLine storageCommandLine, CommandLineScanner scanner) {
 
         while (true) {
             System.out.print(storageCommandLine.getCommandLineStart());

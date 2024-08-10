@@ -17,13 +17,12 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging.storage;
+package com.openeggbert.storage.filesystem.command;
 
 import com.openeggbert.storage.Storage;
-import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -49,11 +48,14 @@ public class StorageCommandLine {
     }
 
     private String extractArgument(String arguments, int argumentIndex) {
+        if(arguments.isEmpty()) {
+            return arguments;
+        }
         String[] array = arguments.split(" ");
-        if (argumentIndex > (array.length - 1)) {
+        if (argumentIndex > (array.length)) {
             return "";
         }
-        return array[argumentIndex];
+        return array[argumentIndex + 1];
     }
 
     public StorageCommandLine(String userIn, String hostnameIn, Storage storageIn) {
@@ -62,21 +64,23 @@ public class StorageCommandLine {
         this.hostname = hostnameIn;
         this.storage = storageIn;
 
+        addCommand("date", arguments -> provideOutput(result -> result.setOutput(new Date().toString())));
         addCommand("whoami", arguments -> provideOutput(result -> result.setOutput(user)));
         addCommand("uptime", arguments -> provideOutput(result
                 -> result.setOutput(
-                        LocalDateTime.now().toString().replace("T", " ").substring(10, 19) + " up "
+                        new Date().toString().substring(11, 19) + " up "
                         + (System.nanoTime() - startNanoTime) / 1000000000l / 60l
                         + " minutes"
                         + ", 1 user"
                 )));
 
         addCommand("hostname", arguments -> provideOutput(result -> result.setOutput(hostname)));
+        addCommand("test", arguments-> provideOutput(result-> result.setOutput((extractArgument(arguments, 0)))));
         addCommand("uname", arguments -> provideOutput(result -> result.setOutput(
                 "LinuxBashCommandLinePartialEmulation"
                 + ((extractArgument(arguments, 0).equals("-a"))
                 ? (hostname + " 0.0.0 ("
-                + LocalDateTime.now().toString().replace("T", " ").substring(0, 10) + ")")
+                + new Date().toString() + ")")
                 : "")
         )));
 

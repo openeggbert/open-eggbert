@@ -17,47 +17,13 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging.storage;
-
-import java.util.function.Function;
+package com.openeggbert.storage.filesystem.command;
 
 /**
  *
  * @author robertvokac
  */
-public class BaseCommandLine implements StorageCommand {
-
-    private StorageCommandLine storageCommandLine = null;
-    private String name;
-    private final Function<String, StorageCommandResult> function;
-
-    public BaseCommandLine(
-            StorageCommandLine storageCommandLineIn, String nameIn, Function<String, StorageCommandResult> functionIn
-    ) {
-        setStorageCommandLine(storageCommandLineIn);
-        this.name = nameIn;
-        this.function = functionIn;
-
-    }
-
-    @Override
-    public final void setStorageCommandLine(StorageCommandLine storageCommandLineIn) {
-        storageCommandLine = storageCommandLineIn;
-    }
-
-    @Override
-    public final StorageCommandLine getStorageCommandLine() {
-        return storageCommandLine;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public StorageCommandResult execute(String commandWithArguments) {
-        return function.apply(commandWithArguments);
-    }
-
+public interface CommandLineScanner {
+    String nextLine();
+    
 }

@@ -17,6 +17,7 @@ dependencies {
   api "com.github.tommyettinger:libgdx-utils:$utilsVersion"
   api "de.golfgl.gdxcontrollerutils:gdx-controllerutils-mapping:$controllerMappingVersion"
   api "games.rednblack.miniaudio:miniaudio:$miniaudioVersion"
+  api "com.openeggbert.gdx:gdx-storage:0.0.0-SNAPSHOT"
   annotationProcessor "org.projectlombok:lombok:$lombokVersion"
   compileOnly "org.projectlombok:lombok:$lombokVersion"
   testImplementation "org.junit.jupiter:junit-jupiter-api:5.10.3"
