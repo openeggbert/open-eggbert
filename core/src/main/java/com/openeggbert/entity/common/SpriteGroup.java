@@ -21,10 +21,19 @@
 
 package com.openeggbert.entity.common;
 
+import com.openeggbert.compatibility.ReleaseVersion;
+import lombok.Getter;
+
 /**
  *
  * @author robertvokac
  */
-public enum EggbertState {
+public enum SpriteGroup {
+    AAA(ReleaseVersion.ONE);
+    @Getter
+    private ReleaseVersion releaseVersion;
+     SpriteGroup(ReleaseVersion releaseVersion) {
+        this.releaseVersion = releaseVersion;
+    }
     
 }
