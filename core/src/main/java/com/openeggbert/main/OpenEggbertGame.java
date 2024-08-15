@@ -40,6 +40,7 @@ import com.openeggbert.screens.InitScreen;
 import com.openeggbert.gdx.storage.Storage;
 import com.openeggbert.gdx.storage.StorageImplementationLoader;
 import com.openeggbert.utils.OpenEggbertDisplayMode;
+import com.openeggbert.utils.OpenEggbertUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -156,7 +157,7 @@ public class OpenEggbertGame extends Game {
 
     public void loadImageTexture(FileHandle fileHandle) {
         Texture texture = new Texture(fileHandle);
-        imageTextures.put(fileHandle.name().toUpperCase(), texture);
+        imageTextures.put(OpenEggbertUtils.getFileNameWithoutExtension(fileHandle.name().toUpperCase()), texture);
     }
 
     public boolean existsImageTexture(String key) {

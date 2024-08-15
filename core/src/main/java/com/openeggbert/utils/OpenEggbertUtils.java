@@ -101,6 +101,9 @@ public class OpenEggbertUtils {
     private static final String IMAGE = "IMAGE";
 
     public static String getFileNameWithoutExtension(String fileName) {
+        if(!fileName.contains(".")) {
+            return fileName;
+        }
         int dotIndex = -1;
         for (int i = fileName.length() - 1; i >= 0; i--) {
             char ch = fileName.charAt(i);

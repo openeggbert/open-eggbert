@@ -177,7 +177,7 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
 
     @Override
     public void renderOpenEggbertScreen(float delta) {
-        Gdx.app.log(getClass().getName(), game.getStorage().debug());
+        //Gdx.app.log(getClass().getName(), game.getStorage().debug());
 
         timeSeconds += Gdx.graphics.getRawDeltaTime();
         if (timeSeconds > 60) {

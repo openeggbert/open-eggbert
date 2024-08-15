@@ -26,9 +26,12 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.openeggbert.entity.common.GameFileType;
 import com.openeggbert.entity.common.OpenEggbertException;
 import com.openeggbert.entity.common.OpenEggbertScreenType;
 import com.openeggbert.main.OpenEggbertGame;
+import com.openeggbert.utils.OpenEggbertUtils;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -63,54 +66,49 @@ public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
     }
 
     private void loadBackgroundTextureIfNeeded() {
-        if(true) return;//todo
+        //if(true) return;//todo
         if (getBackgroundFileName().isEmpty()) {
             return;
         }
         
+        
         String fileName = getBackgroundFileName();
-        if (!game.existsImageTexture(fileName)) {
-            String nameUpperCase = game.getGameSpace().getImage08Directory() + "/" + fileName;
-            String nameLowerCase = game.getGameSpace().getImage08Directory() + "/" + fileName.toLowerCase();
+        List<String> possibleFileNames = OpenEggbertUtils.createPossibleFileNames(GameFileType.IMAGE8, fileName);
+        for(String possibleFileName: possibleFileNames) {
+        if (!game.existsImageTexture(possibleFileName)) {
+            String name = game.getGameSpace().getImage08Directory() + "/" + possibleFileName;
+            
             Gdx.app.setLogLevel(LOG_INFO);
-            Gdx.app.log("screen","nameUpperCase=" + nameUpperCase);
-            Gdx.app.log("screen","nameLowerCase=" + nameLowerCase);
-            FileHandle fileHandleUpperCase = null;
-            FileHandle fileHandleLowerCase = null;
+            Gdx.app.log("screen","name=" + name);
+            FileHandle fileHandle = null;
             if (game.getGameSpace().isEmbeddedAssets()) {
 
                 if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.WebGL) {
                     Gdx.app.log("screen","loading from internal");
-                    fileHandleUpperCase = Gdx.files.internal(nameUpperCase);
-                    fileHandleLowerCase = Gdx.files.internal(nameLowerCase);
+                    fileHandle = Gdx.files.internal(name);
                 } else {
 
                     Gdx.app.log("screen","loading from classpath");
-                    fileHandleUpperCase = Gdx.files.classpath(nameUpperCase);
-                    fileHandleLowerCase = Gdx.files.classpath(nameLowerCase);
-                    
+                    fileHandle = Gdx.files.classpath(name);
 
                 }
             } else {
                 Gdx.app.log("screen","loading from absolute");
 
-                fileHandleUpperCase = Gdx.files.absolute(nameUpperCase);
-                fileHandleLowerCase = Gdx.files.absolute(nameLowerCase);
+                fileHandle = Gdx.files.absolute(name);
             }
 
-            Gdx.app.log("screen", "fileHandleUpperCase.exists()=" + fileHandleUpperCase.exists());
-                        Gdx.app.log("screen", "fileHandleLowerCase.exists()=" + fileHandleLowerCase.exists());
+            Gdx.app.log("screen", "fileHandleUpperCase.exists()=" + fileHandle.exists());
 
-            if (fileHandleUpperCase.exists()) {
-                game.loadImageTexture(fileHandleUpperCase);
-            } else {
-                if (fileHandleLowerCase.exists()) {
-                    game.loadImageTexture(fileHandleLowerCase);    
-                } else {
-                    throw new OpenEggbertException("Could not load file: " + fileName);
-                }
+            if (fileHandle.exists()) {
+                game.loadImageTexture(fileHandle);
+                break;
+            } 
+//            else {
+//                    throw new OpenEggbertException("Could not load file: " + fileName);
+//                }
                 
-            }
+        }
         }
     }
     
