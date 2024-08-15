@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-package com.openeggbert.entity.common;
+package com.openeggbert.entity.sprites;
 
 import com.openeggbert.compatibility.ReleaseVersion;
 import lombok.Getter;
@@ -29,7 +29,7 @@ import lombok.Getter;
  * @author robertvokac
  */
 public enum SpriteGroup {
-    AAA(ReleaseVersion.ONE);
+    YELLOW_EGGBERT_BORN(ReleaseVersion.ONE);
     @Getter
     private ReleaseVersion releaseVersion;
      SpriteGroup(ReleaseVersion releaseVersion) {

@@ -17,14 +17,32 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.entity.sprites;
 
-
-package com.openeggbert.entity.common;
+import lombok.Getter;
 
 /**
- *
+ * Represents a row in a sprite sheet.
+ * This class is responsible for parsing and serializing sprite sheet rows from/to CSV format.
+ * 
  * @author robertvokac
  */
-public class SpriteAnimation {
-    
+public enum SpriteSheetRowColumn {
+    FILE("File"),
+    GROUP("Group"),
+    NUMBER_IN_GROUP("Number in Group"),
+    ROW("Row"),
+    COLUMN("Column"),
+    X("X"),
+    Y("Y"),
+    WIDTH("Width"),
+    HEIGHT("Height"),
+    NOTES("Notes"),
+    TAGS("Tags"),
+    NUMBER_PER_FILE("Number per file");
+    @Getter
+    private final String columnName;
+    SpriteSheetRowColumn(String columnName) {
+        this.columnName = columnName;
+    }
 }

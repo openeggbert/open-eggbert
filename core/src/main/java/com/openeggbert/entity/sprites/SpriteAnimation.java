@@ -19,12 +19,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-package com.openeggbert.entity.common;
+package com.openeggbert.entity.sprites;
 
 /**
  *
  * @author robertvokac
  */
-public class SpriteSheet {
+public class SpriteAnimation {
     
 }
