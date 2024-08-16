@@ -19,6 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3;
 
+import com.openeggbert.core.gamespace.GameDirectoryType;
 import com.openeggbert.core.release.Release;
 import com.openeggbert.core.gamespace.GameSpace;
 import com.openeggbert.core.main.OpenEggbertException;
@@ -156,8 +157,8 @@ public class DesktopUtils {
     }
 
     public static Release findFeatureLevelFromDirectory(File dir) {
-        final File image24Directory = new File(dir, "IMAGE24");
-        final File image24x2Directory = new File(dir, "IMAGE24X2");
+        final File image24Directory = new File(dir, GameDirectoryType.IMAGE24.name());
+        final File image24x2Directory = new File(dir, GameDirectoryType.IMAGE24X2.name());
         if (image24Directory.exists() && image24x2Directory.exists()) {
             return Release.OPEN_EGGBERT_3;
         }
@@ -165,9 +166,9 @@ public class DesktopUtils {
             return Release.SPEEDY_BLUPI_DEMO;
         }
         if (!new File(dir, "DATA").exists()) {
-            throw new OpenEggbertException("Directory does not exist: " + new File(dir, "DATA").getAbsolutePath());
+            throw new OpenEggbertException("Directory does not exist: " + new File(dir, GameDirectoryType.DATA.name()).getAbsolutePath());
         }
-        final File image08Directory = new File(dir, "IMAGE08");
+        final File image08Directory = new File(dir, GameDirectoryType.IMAGE08.name());
         if (image08Directory.exists()) {
             if (new File(image08Directory, "INSERT.BLP").exists()) {
                 //blupi
@@ -178,7 +179,7 @@ public class DesktopUtils {
                 }
             } else {
                 //eggbert
-                final File image16Directory = new File(dir, "IMAGE16");
+                final File image16Directory = new File(dir, GameDirectoryType.IMAGE16.name());
                 if (!image16Directory.exists()) {
                     return Release.SPEEDY_EGGBERT_DEMO;
                 }
