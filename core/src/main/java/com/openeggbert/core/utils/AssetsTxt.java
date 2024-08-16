@@ -23,7 +23,6 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.openeggbert.core.main.OpenEggbertException;
-import com.openeggbert.core.utils.OpenEggbertUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;

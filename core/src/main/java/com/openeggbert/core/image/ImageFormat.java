@@ -33,9 +33,9 @@ public enum ImageFormat implements IsThisFeatureEnabledForStrictMode{
     JPEG("jpeg", false)
     ;
     @Getter
-    private String fileExtension;
+    private final String fileExtension;
     @Getter
-    private boolean enabledInCaseOfStrictMode;
+    private final boolean enabledInCaseOfStrictMode;
 
     ImageFormat(String fileExtensionIn, boolean enabledInCaseOfStrictMode) {
         this.fileExtension = fileExtensionIn;

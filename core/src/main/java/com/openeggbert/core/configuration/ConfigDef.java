@@ -84,5 +84,8 @@ public class ConfigDef {
         }
         throw new OpenEggbertException("Could not convert String to boolean: " + string);
     }
+    public String toPropertiesText() {
+        throw new OpenEggbertException("Not yet implemented.");
+    }
 
 }

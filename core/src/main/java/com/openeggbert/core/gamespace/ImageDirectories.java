@@ -17,13 +17,22 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.core.gamespace;
 
-package com.openeggbert.core.mod;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  *
  * @author robertvokac
  */
-public class MusicSheet {
+@AllArgsConstructor
+@Getter
+public class ImageDirectories {
+    public static final ImageDirectories DEFAULT = new ImageDirectories(GameDirectoryType.IMAGE08, GameDirectoryType.IMAGE16, null, null);
+    private final GameDirectoryType image08;
+    private final GameDirectoryType image16;
+    private final GameDirectoryType image24;
+    private final GameDirectoryType image24x2;
     
 }

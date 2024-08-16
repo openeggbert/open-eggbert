@@ -17,26 +17,13 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.core.image;
 
-import lombok.Getter;
-import com.openeggbert.core.configuration.IsThisFeatureEnabledForStrictMode;
+package com.openeggbert.core.sound;
 
 /**
  *
  * @author robertvokac
  */
-public enum ImageResolution implements IsThisFeatureEnabledForStrictMode{
-    NORMAL(true), DOUBLE(false);
-    @Getter
-    private final boolean enabledInCaseOfStrictMode;
-    ImageResolution(boolean enabledInCaseOfStrictMode) {
-        this.enabledInCaseOfStrictMode = enabledInCaseOfStrictMode;
-    }
-
-    @Override
-    public boolean isThisFeatureEnabledForStrictMode() {
-        return enabledInCaseOfStrictMode;
-    }
+public class SoundSheet {
     
 }

@@ -38,7 +38,7 @@ public enum GameDirectoryType implements IsThisFeatureEnabledForStrictMode{
     MOD(false),
     ;
     @Getter
-    private boolean enabledInCaseOfStrictMode;
+    private final boolean enabledInCaseOfStrictMode;
 
     GameDirectoryType(boolean enabledInCaseOfStrictMode) {
         this.enabledInCaseOfStrictMode = enabledInCaseOfStrictMode;
