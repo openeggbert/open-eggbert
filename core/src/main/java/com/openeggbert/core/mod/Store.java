@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.mod;
 
-import com.badlogic.gdx.utils.XmlReader;
+import com.openeggbert.core.fbox.api.XmlElement;
 
 /**
  *
@@ -31,7 +31,7 @@ public class Store {
     String name;
     String url;
 
-    Store(XmlReader.Element store) {
+    Store(XmlElement store) {
         id = store.get("id");
         name = store.get("name");
         url = store.get("url");

@@ -20,22 +20,43 @@
 package com.openeggbert.core.fbox.impl.libgdx;
 
 import com.badlogic.gdx.utils.XmlReader;
-import com.openeggbert.core.fbox.api.FBoxUtilsInterface;
 import com.openeggbert.core.fbox.api.XmlElement;
 
 /**
  *
  * @author robertvokac
  */
-public class FBoxUtilsLibGDXImpl implements FBoxUtilsInterface {
+public class ElementLibGDXImpl implements XmlElement {
 
-    @Override
-    public XmlElement parseXml(String xmlString) {
-        XmlReader.Element root = new XmlReader().parse(xmlString);
-        return new ElementLibGDXImpl(root);
+    private final XmlReader.Element element;
 
+    public ElementLibGDXImpl(com.badlogic.gdx.utils.XmlReader.Element element) {
+        this.element = element;
     }
 
-   
+    @Override
+    public XmlElement getChildByName(String name) {
+        XmlReader.Element child = element.getChildByName(name);
+        return child == null ? null : new ElementLibGDXImpl(child);
+    }
 
+    @Override
+    public String get(String elementName) {
+        return element.get(elementName);
+    }
+
+    @Override
+    public int getChildCount() {
+        return element.getChildCount();
+    }
+
+    @Override
+    public XmlElement getChild(int i) {
+        XmlReader.Element child = element.getChild(i);
+        return child == null ? null : new ElementLibGDXImpl(child);    }
+
+    @Override
+    public String getText() {
+        return element.getText();
+    }
 }

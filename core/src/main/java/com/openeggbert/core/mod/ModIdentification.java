@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.mod;
 
-import com.badlogic.gdx.utils.XmlReader.Element;
+import com.openeggbert.core.fbox.api.XmlElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -35,7 +35,7 @@ public class ModIdentification {
     private final String modId;
     private final String version;
 
-    public ModIdentification(Element element) {
+    public ModIdentification(XmlElement element) {
         groupId = element.get("groupId");
         modId = element.get("modId");
         version = element.get("version");

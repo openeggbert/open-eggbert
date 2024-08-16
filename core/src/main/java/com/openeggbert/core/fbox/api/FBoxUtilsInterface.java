@@ -24,5 +24,5 @@ package com.openeggbert.core.fbox.api;
  * @author robertvokac
  */
 public interface FBoxUtilsInterface {
-    
+    XmlElement parseXml(String xmlString);
 }

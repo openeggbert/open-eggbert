@@ -17,25 +17,17 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.core.fbox.impl.libgdx;
-
-import com.badlogic.gdx.utils.XmlReader;
-import com.openeggbert.core.fbox.api.FBoxUtilsInterface;
-import com.openeggbert.core.fbox.api.XmlElement;
+package com.openeggbert.core.fbox.api;
 
 /**
  *
  * @author robertvokac
  */
-public class FBoxUtilsLibGDXImpl implements FBoxUtilsInterface {
-
-    @Override
-    public XmlElement parseXml(String xmlString) {
-        XmlReader.Element root = new XmlReader().parse(xmlString);
-        return new ElementLibGDXImpl(root);
-
-    }
-
-   
+public interface XmlElement {
+    XmlElement getChildByName(String name);
+    String get(String elementName);
+    int getChildCount();
+    XmlElement getChild(int i);
+    String getText();
 
 }

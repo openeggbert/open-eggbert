@@ -19,8 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.mod;
 
-import com.badlogic.gdx.utils.XmlReader;
-import com.badlogic.gdx.utils.XmlReader.Element;
+import com.openeggbert.core.fbox.api.XmlElement;
+import com.openeggbert.core.fbox.core.FBox;
 import com.openeggbert.core.release.Release;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +34,8 @@ import lombok.Data;
 public class Mod {
 
     public Mod(String xml) {
-        Element root = new XmlReader().parse(xml);
-        Element parentElement = root.getChildByName("parent");
+        XmlElement root = FBox.get().utils().parseXml(xml);
+        XmlElement parentElement = root.getChildByName("parent");
         if (parentElement != null) {
             parent = new ModIdentification(parentElement);
         }
@@ -48,25 +48,25 @@ public class Mod {
         featureLevel = Release.valueOf(root.get("featureLevel"));
         name = root.get("name");
         description = root.get("description");
-        Element imports = root.getChildByName("imports");
+        XmlElement imports = root.getChildByName("imports");
         if (imports != null) {
             for (int i = 0; i < imports.getChildCount(); i++) {
-                Element import_ = imports.getChild(i);
+                XmlElement import_ = imports.getChild(i);
                 importedMods.add(new ModIdentification(import_));
             }
         }
-        Element files_ = root.getChildByName("files");
+        XmlElement files_ = root.getChildByName("files");
         if (files_ != null) {
             for (int i = 0; i < files_.getChildCount(); i++) {
-                Element file = files_.getChild(i);
+                XmlElement file = files_.getChild(i);
                 files.add(file.getText());
             }
         }
 
-        Element stores_ = root.getChildByName("stores");
+        XmlElement stores_ = root.getChildByName("stores");
         if (stores_ != null) {
             for (int i = 0; i < stores_.getChildCount(); i++) {
-                Element store = stores_.getChild(i);
+                XmlElement store = stores_.getChild(i);
                 stores.add(new Store(store));
             }
         }
