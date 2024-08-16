@@ -17,30 +17,27 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.core.utils;
+package com.openeggbert.lwjgl3.debugging;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.openeggbert.core.fbox.core.FBox;
+import com.openeggbert.gdx.storage.command.CommandLineScanner;
+import java.util.Scanner;
 
 /**
  *
  * @author robertvokac
  */
-public class EmbeddedFileHandleFactory {
+public class DesktopCommandLineScanner implements CommandLineScanner {
 
-    private EmbeddedFileHandleFactory() {
-        //Not meant to be instantiated.
+    private final Scanner scanner;
+
+    public DesktopCommandLineScanner() {
+        this.scanner = new Scanner(System.in);
+
     }
 
-    public static FileHandle create(String name) {
-
-        if (FBox.get().getPlatform().isAndroid() || FBox.get().getPlatform().isWeb()) {
-            return Gdx.files.internal(name);
-        } else {
-            return Gdx.files.classpath(name);
-
-        }
+    @Override
+    public String nextLine() {
+        return scanner.nextLine();
     }
 
 }

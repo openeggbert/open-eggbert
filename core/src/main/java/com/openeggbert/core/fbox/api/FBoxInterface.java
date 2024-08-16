@@ -17,12 +17,18 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.core.definitiveframework;
+package com.openeggbert.core.fbox.api;
+
+import com.openeggbert.core.fbox.entity.Platform;
 
 /**
  *
  * @author robertvokac
  */
-public interface DefinitiveFramework {
-    
+public interface FBoxInterface {
+
+    void exit();
+    Platform getPlatform();
+    FBoxGraphicsInterface graphics();
+
 }

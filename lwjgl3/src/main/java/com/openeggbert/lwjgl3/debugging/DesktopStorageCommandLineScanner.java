@@ -17,30 +17,30 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.core.utils;
+package com.openeggbert.lwjgl3.debugging;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.openeggbert.core.fbox.core.FBox;
+import com.openeggbert.gdx.storage.command.StorageCommandLine;
+import com.openeggbert.gdx.storage.command.StorageCommandLineScanner;
+import com.openeggbert.gdx.storage.map.MemoryStorage;
 
 /**
  *
  * @author robertvokac
  */
-public class EmbeddedFileHandleFactory {
+public class DesktopStorageCommandLineScanner {
 
-    private EmbeddedFileHandleFactory() {
+    private DesktopStorageCommandLineScanner() {
         //Not meant to be instantiated.
     }
 
-    public static FileHandle create(String name) {
+    public static void main(String[] args) {
+        MemoryStorage memoryStorage = new MemoryStorage();
+        final String user = "player";
+        final String hostname = "openegggbert";
+        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
+        StorageCommandLineScanner storageCommandLineScanner = new StorageCommandLineScanner(
+                storageCommandLine, new DesktopCommandLineScanner());
 
-        if (FBox.get().getPlatform().isAndroid() || FBox.get().getPlatform().isWeb()) {
-            return Gdx.files.internal(name);
-        } else {
-            return Gdx.files.classpath(name);
-
-        }
     }
 
 }

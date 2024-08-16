@@ -19,13 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.configuration;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.Graphics.DisplayMode;
+import com.openeggbert.core.fbox.core.FBox;
 import com.openeggbert.core.main.OpenEggbertException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -52,64 +47,25 @@ public enum OpenEggbertDisplayMode {
     public static OpenEggbertDisplayMode setDisplayModeToWindow() {
         return setDisplayMode(WINDOW);
     }
-    private static DisplayMode originalDisplayMode = null;
 
-    public static OpenEggbertDisplayMode setDisplayMode(OpenEggbertDisplayMode displayMode) {
-
-        if (displayMode == OpenEggbertDisplayMode.FULLSCREEN) {
-            Graphics.Monitor currentMonitor = Gdx.graphics.getMonitor();
-            Graphics.DisplayMode displayModeFromLibGdx = Gdx.graphics.getDisplayMode(currentMonitor);
-            if (originalDisplayMode == null) {
-                originalDisplayMode = displayModeFromLibGdx;
-            }
-
-            DisplayMode foundVgaDisplayMode = null;
-            ////
-//            System.out.println("started loading all display modes");
-            List<DisplayMode> vgaDisplayModes = Arrays
-                    .asList(Gdx.graphics.getDisplayModes(currentMonitor))
-                    .stream()
-                    .filter(d -> d.width == 640 && d.height == 480)
-                    .collect(Collectors.toList());
-
-
-//fixme            
-//            foundVgaDisplayMode = vgaDisplayModes.stream()
-//                    .sorted((a, b) -> Integer.valueOf(a.refreshRate).compareTo(b.refreshRate)).findFirst().get();
-
-//            System.out.println("ended loading all display modes");
-
-//            System.out.println(foundVgaDisplayMode.refreshRate);
-//            System.out.println(foundVgaDisplayMode.width);
-//            System.out.println(foundVgaDisplayMode.height);
-
-            ////
-            if (!Gdx.graphics.setFullscreenMode(foundVgaDisplayMode == null ? displayModeFromLibGdx : foundVgaDisplayMode)) {
-                Gdx.app.error("InitScreen", "Switching to fullscreen mode failed.");
-                return null;
-            }
-            return FULLSCREEN;
-
+    public static OpenEggbertDisplayMode find(boolean fullscreen, boolean window) {
+        if (fullscreen && window) {
+            throw new OpenEggbertException("Both arguments fullscreen and window are true.");
         }
-        if (displayMode == OpenEggbertDisplayMode.WINDOW) {
-            setToOriginalDisplayMode();
-            Gdx.graphics.setWindowedMode(640, 480);
+        if (!fullscreen && !window) {
+            throw new OpenEggbertException("Both arguments fullscreen and window are false.");
+        }
+        if (fullscreen) {
+            return FULLSCREEN;
+        } else {
             return WINDOW;
         }
-        throw new OpenEggbertException("Unsupported DisplayMode: " + displayMode);
-
     }
 
-    public static void setToOriginalDisplayMode() {
-        if (originalDisplayMode == null) {
-            //nothing to do
-            return;
-        }
-        if (!Gdx.graphics.setFullscreenMode(originalDisplayMode)) {
-            Gdx.app.error("OpenEggbertDisplayMode", "Switching to original display mode failed.");
-            return;
-        }
+    public static OpenEggbertDisplayMode setDisplayMode(OpenEggbertDisplayMode displayMode) {
+        String result = FBox.get().graphics().setDisplayMode(displayMode == FULLSCREEN, displayMode == WINDOW);
 
+        return result == null ? null : OpenEggbertDisplayMode.valueOf(result);
     }
 
     public OpenEggbertDisplayMode flip() {

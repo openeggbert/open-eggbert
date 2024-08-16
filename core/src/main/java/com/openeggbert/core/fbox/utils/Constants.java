@@ -17,30 +17,18 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging.storage;
-
-import com.openeggbert.gdx.storage.command.StorageCommandLine;
-import com.openeggbert.gdx.storage.command.StorageCommandLineScanner;
-import com.openeggbert.gdx.storage.map.MemoryStorage;
+package com.openeggbert.core.fbox.utils;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorageCommandLineScanner {
+public class Constants {
 
-    private DesktopStorageCommandLineScanner() {
+    private Constants() {
         //Not meant to be instantiated.
     }
-
-    public static void main(String[] args) {
-        MemoryStorage memoryStorage = new MemoryStorage();
-        final String user = "player";
-        final String hostname = "openegggbert";
-        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
-        StorageCommandLineScanner storageCommandLineScanner = new StorageCommandLineScanner(
-                storageCommandLine, new DesktopCommandLineScanner());
-
-    }
-
+    
+    public static final String WINDOW = "WINDOW";
+    public static final String FULLSCREEN = "FULLSCREEN";
 }

@@ -17,27 +17,25 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging.storage;
+package com.openeggbert.core.fbox.core;
 
-import com.openeggbert.gdx.storage.command.CommandLineScanner;
-import java.util.Scanner;
+import com.openeggbert.core.fbox.impl.libgdx.FBoxLibGdxImpl;
+import com.openeggbert.core.fbox.api.FBoxInterface;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopCommandLineScanner implements CommandLineScanner {
-
-    private final Scanner scanner;
-
-    public DesktopCommandLineScanner() {
-        this.scanner = new Scanner(System.in);
-
+public class FBox {
+    private static FBoxInterface INSTANCE = null;
+    
+    private FBox() {
+        //Not meant to be instantiated.
     }
-
-    @Override
-    public String nextLine() {
-        return scanner.nextLine();
+    public static FBoxInterface get() {
+        if(INSTANCE == null) {
+            INSTANCE = new FBoxLibGdxImpl();
+        }
+        return INSTANCE;
     }
-
 }

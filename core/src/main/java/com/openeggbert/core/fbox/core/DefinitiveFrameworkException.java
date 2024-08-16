@@ -17,30 +17,17 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.core.utils;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.openeggbert.core.fbox.core.FBox;
+package com.openeggbert.core.fbox.core;
 
 /**
  *
  * @author robertvokac
  */
-public class EmbeddedFileHandleFactory {
+public class DefinitiveFrameworkException extends RuntimeException{
 
-    private EmbeddedFileHandleFactory() {
-        //Not meant to be instantiated.
+    public DefinitiveFrameworkException(String string) {
+        super(string);
     }
-
-    public static FileHandle create(String name) {
-
-        if (FBox.get().getPlatform().isAndroid() || FBox.get().getPlatform().isWeb()) {
-            return Gdx.files.internal(name);
-        } else {
-            return Gdx.files.classpath(name);
-
-        }
-    }
-
+    
 }
