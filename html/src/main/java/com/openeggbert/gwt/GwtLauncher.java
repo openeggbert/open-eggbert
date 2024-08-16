@@ -3,7 +3,7 @@ package com.openeggbert.gwt;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.openeggbert.core.compatibility.ScreenResolution;
+import com.openeggbert.core.configuration.ScreenResolution;
 import com.openeggbert.core.main.OpenEggbertGame;
 
 /** Launches the GWT application. */

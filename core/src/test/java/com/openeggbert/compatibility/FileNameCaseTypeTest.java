@@ -19,9 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.compatibility;
 
-import com.openeggbert.core.compatibility.FileNameCaseType;
-import com.openeggbert.core.entity.common.GameFileType;
-import com.openeggbert.core.entity.common.OpenEggbertException;
+import com.openeggbert.core.utils.FileNameCaseType;
+import com.openeggbert.core.gamespace.GameFileType;
+import com.openeggbert.core.main.OpenEggbertException;
 import com.openeggbert.core.utils.OpenEggbertUtils;
 import java.util.List;
 import java.util.stream.Collectors;

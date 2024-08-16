@@ -19,9 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3;
 
-import com.openeggbert.core.compatibility.Release;
-import com.openeggbert.core.entity.common.GameSpace;
-import com.openeggbert.core.entity.common.OpenEggbertException;
+import com.openeggbert.core.release.Release;
+import com.openeggbert.core.gamespace.GameSpace;
+import com.openeggbert.core.main.OpenEggbertException;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.Optional;

@@ -19,12 +19,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.utils;
 
-import com.openeggbert.core.compatibility.FileNameCaseType;
-import com.openeggbert.core.compatibility.ImageFormat;
-import com.openeggbert.core.compatibility.MusicFormat;
-import com.openeggbert.core.compatibility.SoundFormat;
-import com.openeggbert.core.entity.common.GameFileType;
-import com.openeggbert.core.entity.common.OpenEggbertException;
+import com.openeggbert.core.image.ImageFormat;
+import com.openeggbert.core.music.MusicFormat;
+import com.openeggbert.core.sound.SoundFormat;
+import com.openeggbert.core.gamespace.GameFileType;
+import com.openeggbert.core.main.OpenEggbertException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

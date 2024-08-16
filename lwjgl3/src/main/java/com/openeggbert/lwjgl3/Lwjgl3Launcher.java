@@ -22,9 +22,9 @@ package com.openeggbert.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.openeggbert.core.compatibility.ScreenResolution;
+import com.openeggbert.core.configuration.ScreenResolution;
 import com.openeggbert.core.main.OpenEggbertGame;
-import com.openeggbert.core.entity.common.GameSpace;
+import com.openeggbert.core.gamespace.GameSpace;
 import java.util.Optional;
 
 /** Launches the desktop (LWJGL3) application. */
