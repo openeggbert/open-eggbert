@@ -19,9 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3;
 
-import com.openeggbert.compatibility.Release;
-import com.openeggbert.entity.common.GameSpace;
-import com.openeggbert.entity.common.OpenEggbertException;
+import com.openeggbert.core.compatibility.Release;
+import com.openeggbert.core.entity.common.GameSpace;
+import com.openeggbert.core.entity.common.OpenEggbertException;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.Optional;
@@ -41,17 +41,17 @@ public class DesktopUtils {
         String gameSpaceDirectoryFromSystemProperty = System.getProperty(GAME_SPACE_DIRECTORY, "");
         
         if (!gameSpaceDirectoryFromEnvironmentVariable.isBlank()) {
-            return tryToLoadGameSpaceFromEnvironmentVariable(gameSpaceDirectoryFromEnvironmentVariable);
+            return tryToLoadGameSpaceFromDirectory(gameSpaceDirectoryFromEnvironmentVariable);
         }        
         if (!gameSpaceDirectoryFromSystemProperty.isBlank()) {
-            return tryToLoadGameSpaceFromEnvironmentVariable(gameSpaceDirectoryFromSystemProperty);
+            return tryToLoadGameSpaceFromDirectory(gameSpaceDirectoryFromSystemProperty);
         }
         Optional<GameSpace> gameOptional = tryToLoadGameSpaceFromCurrentDirectory();
         return gameOptional;
     }
     private static final String GAME_SPACE_DIRECTORY = "GAME_SPACE_DIRECTORY";
 
-    private static Optional<GameSpace> tryToLoadGameSpaceFromEnvironmentVariable(String gameSpaceDirectoryFromEnvironmentVariable) {
+    private static Optional<GameSpace> tryToLoadGameSpaceFromDirectory(String gameSpaceDirectoryFromEnvironmentVariable) {
 
         File gameSpaceDirectory = new File(gameSpaceDirectoryFromEnvironmentVariable);
 

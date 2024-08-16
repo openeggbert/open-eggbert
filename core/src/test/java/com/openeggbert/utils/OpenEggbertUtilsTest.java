@@ -19,7 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.utils;
 
-import com.openeggbert.entity.common.GameFileType;
+import com.openeggbert.core.utils.OpenEggbertUtils;
+import com.openeggbert.core.entity.common.GameFileType;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;

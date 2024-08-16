@@ -19,9 +19,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.compatibility;
 
-import com.openeggbert.entity.common.GameFileType;
-import com.openeggbert.entity.common.OpenEggbertException;
-import com.openeggbert.utils.OpenEggbertUtils;
+import com.openeggbert.core.compatibility.FileNameCaseType;
+import com.openeggbert.core.entity.common.GameFileType;
+import com.openeggbert.core.entity.common.OpenEggbertException;
+import com.openeggbert.core.utils.OpenEggbertUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.AfterEach;
