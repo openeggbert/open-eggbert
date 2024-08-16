@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.fbox.core;
 
-import com.openeggbert.core.fbox.impl.libgdx.FBoxLibGdxImpl;
+import com.openeggbert.core.fbox.impl.libgdx.FBoxLibGDXImpl;
 import com.openeggbert.core.fbox.api.FBoxInterface;
 
 /**
@@ -34,7 +34,7 @@ public class FBox {
     }
     public static FBoxInterface get() {
         if(INSTANCE == null) {
-            INSTANCE = new FBoxLibGdxImpl();
+            INSTANCE = new FBoxLibGDXImpl();
         }
         return INSTANCE;
     }

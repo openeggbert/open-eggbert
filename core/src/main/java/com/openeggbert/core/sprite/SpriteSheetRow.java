@@ -20,7 +20,6 @@
 package com.openeggbert.core.sprite;
 
 import com.openeggbert.core.main.OpenEggbertException;
-import com.openeggbert.core.utils.OpenEggbertUtils;
 import java.util.Map;
 import java.util.function.Function;
 import lombok.Getter;

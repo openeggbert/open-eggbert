@@ -95,29 +95,29 @@ public class InitScreen extends AbstractOpenEggbertScreen {
         Gdx.input.setInputProcessor(new InputAdapter() {
 
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                timeSeconds = 0f;
+//                timeSeconds = 0f;
                 return false;
             }
 
             public boolean touchCancelled(int screenX, int screenY, int pointer, int button) {
-                timeSeconds = 0f;
+//                timeSeconds = 0f;
                 return false;
             }
 
             public boolean touchDragged(int screenX, int screenY, int pointer) {
-                timeSeconds = 0f;
+//                timeSeconds = 0f;
                 return false;
             }
 
             @Override
             public boolean mouseMoved(int screenX, int screenY) {
-                timeSeconds = 0f;
+                //timeSeconds = 0f;
                 return false;
             }
 
             @Override
             public boolean keyDown(int keyCode) {
-                timeSeconds = 0f;
+//                timeSeconds = 0f;
 
                 if (keyCode == Input.Keys.ESCAPE) {
                     Gdx.app.exit();
@@ -145,7 +145,8 @@ public class InitScreen extends AbstractOpenEggbertScreen {
     public void renderOpenEggbertScreen(float delta) {
         timeSeconds += Gdx.graphics.getRawDeltaTime();
 
-        if (timeSeconds >= 60) {
+        if (timeSeconds >= 50) {
+            timeSeconds = 0;
             game.setScreen(new DemoScreen(game));
         }
         ScreenUtils.clear(0f, 0f, 0f, 1f);

@@ -22,12 +22,11 @@ package com.openeggbert.core.screen;
 import com.badlogic.gdx.Application;
 import static com.badlogic.gdx.Application.LOG_INFO;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.openeggbert.core.fbox.core.FBoxScreen;
 import com.openeggbert.core.gamespace.GameFileType;
-import com.openeggbert.core.main.OpenEggbertException;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.utils.OpenEggbertUtils;
 import java.util.List;
@@ -37,7 +36,7 @@ import java.util.Optional;
  *
  * @author robertvokac
  */
-public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
+public abstract class AbstractOpenEggbertScreen extends FBoxScreen {
 
     protected OpenEggbertGame game;
     protected SpriteBatch batch;
@@ -48,7 +47,7 @@ public abstract class AbstractOpenEggbertScreen extends ScreenAdapter {
         loadBackgroundTextureIfNeeded();
     }
 
-    private final String getBackgroundFileName() {
+    private String getBackgroundFileName() {
         //return "INIT.BLP.BMP";
         return getScreenType().isPresent() ? getScreenType().get().getFileNameWithoutExtension(): "";
     }

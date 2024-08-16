@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.gdx.storage;
 
-import com.badlogic.gdx.Application;
+import com.openeggbert.core.fbox.entity.Platform;
 import java.util.List;
 
 /**
@@ -28,7 +28,7 @@ import java.util.List;
  */
 public interface Storage {
 
-    Application.ApplicationType getApplicationType();
+    Platform getPlatform();
 
     public String cd(String path);
 

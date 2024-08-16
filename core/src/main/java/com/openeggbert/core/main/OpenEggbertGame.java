@@ -20,7 +20,6 @@
 package com.openeggbert.core.main;
 
 import com.openeggbert.core.utils.AssetsTxt;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Camera;
@@ -40,6 +39,7 @@ import com.openeggbert.core.screen.InitScreen;
 import com.openeggbert.gdx.storage.Storage;
 import com.openeggbert.gdx.storage.StorageImplementationLoader;
 import com.openeggbert.core.configuration.OpenEggbertDisplayMode;
+import com.openeggbert.core.fbox.core.FBoxGame;
 import com.openeggbert.core.utils.OpenEggbertUtils;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,7 @@ import lombok.Data;
  * platforms.
  */
 @Data
-public class OpenEggbertGame extends Game {
+public class OpenEggbertGame extends FBoxGame {
 
     private Texture image;
     private GameSpace gameSpace = null;

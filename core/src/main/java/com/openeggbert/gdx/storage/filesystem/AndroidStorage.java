@@ -19,6 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.gdx.storage.filesystem;
 
+import com.openeggbert.core.fbox.entity.Platform;
+
 /**
  *
  * @author robertvokac
@@ -27,5 +29,8 @@ public class AndroidStorage extends DesktopAndroidStorage {
 
     public AndroidStorage() {
     }
-    
+
+    public Platform getPlatform() {
+        return Platform.ANDROID;
+    }
 }

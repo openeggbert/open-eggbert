@@ -30,5 +30,11 @@ public interface FBoxInterface {
     void exit();
     Platform getPlatform();
     FBoxGraphicsInterface graphics();
+    FBoxAudioInterface audio();
+    FBoxInputInterface input();
+    FBoxNetInterface net();
+    FBoxAssetInterface asset();
+    FBoxStorageInterface storage();
+    FBoxUtilsInterface utils();
 
 }

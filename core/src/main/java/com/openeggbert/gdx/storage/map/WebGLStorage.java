@@ -21,12 +21,16 @@ package com.openeggbert.gdx.storage.map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.openeggbert.core.fbox.entity.Platform;
 
 /**
  *
  * @author robertvokac
  */
 public class WebGLStorage extends MapStorage {
+    public Platform getPlatform() {
+        return Platform.WEB;
+    }
     public WebGLStorage() {
         this("open-eggbert.webGL.Local-Storage");
     }

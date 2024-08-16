@@ -20,8 +20,6 @@
 package com.openeggbert.core.sprite;
 
 import com.openeggbert.core.main.OpenEggbertException;
-import com.openeggbert.core.utils.OpenEggbertUtils;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

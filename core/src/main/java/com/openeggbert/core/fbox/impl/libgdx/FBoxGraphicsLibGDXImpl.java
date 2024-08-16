@@ -32,7 +32,7 @@ import com.openeggbert.core.fbox.api.FBoxGraphicsInterface;
  *
  * @author robertvokac
  */
-public class FBoxGraphicsLibGdxImpl implements FBoxGraphicsInterface {
+public class FBoxGraphicsLibGDXImpl implements FBoxGraphicsInterface {
 
     
     @Override

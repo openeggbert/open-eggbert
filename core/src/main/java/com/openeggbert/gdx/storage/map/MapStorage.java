@@ -21,6 +21,7 @@ package com.openeggbert.gdx.storage.map;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.openeggbert.core.fbox.entity.Platform;
 import com.openeggbert.gdx.storage.GdxStorageException;
 import com.openeggbert.gdx.storage.GdxStorageUtils;
 import com.openeggbert.gdx.storage.Storage;
@@ -49,7 +50,7 @@ public class MapStorage implements Storage {
     private String workingDirectory = "/";
 
     @Override
-    public Application.ApplicationType getApplicationType() {
+    public Platform getPlatform() {
         return null;
     }
 

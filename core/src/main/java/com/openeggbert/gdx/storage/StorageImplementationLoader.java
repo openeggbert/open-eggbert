@@ -23,8 +23,8 @@ import com.openeggbert.gdx.storage.map.WebGLStorage;
 import com.openeggbert.gdx.storage.map.MemoryStorage;
 import com.openeggbert.gdx.storage.filesystem.AndroidStorage;
 import com.openeggbert.gdx.storage.filesystem.DesktopStorage;
-import com.badlogic.gdx.Application;
-import com.badlogic.gdx.Gdx;
+import com.openeggbert.core.fbox.core.FBox;
+import com.openeggbert.core.fbox.entity.Platform;
 
 /**
  *
@@ -38,24 +38,24 @@ public class StorageImplementationLoader {
     private static Storage storage = null;
 
     public static Storage getStorage() {
-        final Application.ApplicationType type = Gdx.app.getType();
+        final Platform platform = FBox.get().getPlatform();
         if (storage == null) {
             storage = new MemoryStorage();
         }
         if (storage == null) {
 
-            if (type == Application.ApplicationType.Desktop) {
+            if (platform.isDesktop()) {
                 storage = new DesktopStorage();
             }
-            if (type == Application.ApplicationType.Android) {
+            if (platform.isAndroid()) {
                 storage = new AndroidStorage();
             }
-            if (type == Application.ApplicationType.WebGL) {
+            if (platform.isWeb()) {
                 storage = new WebGLStorage();
             }
         }
         if (storage == null) {
-            throw new GdxStorageException("Platform is not supported: " + type);
+            throw new GdxStorageException("Platform is not supported: " + platform);
         }
         return storage;
     }
