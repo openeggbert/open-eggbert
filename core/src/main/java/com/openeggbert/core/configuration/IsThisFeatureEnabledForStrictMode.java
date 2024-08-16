@@ -25,7 +25,7 @@ package com.openeggbert.core.configuration;
  *
  * @author robertvokac
  */
-public interface StrictMode {
-    boolean isEnabledInCaseOfStrictMode();
+public interface IsThisFeatureEnabledForStrictMode {
+    boolean isThisFeatureEnabledForStrictMode();
     
 }

@@ -27,7 +27,7 @@ import lombok.Getter;
  *
  * @author robertvokac
  */
-public enum ScreenResolution implements StrictMode {
+public enum ScreenResolution implements IsThisFeatureEnabledForStrictMode {
     VGA(640,480,true),
     QUAD_VGA(1280, 960, false),
     CURRENT(0, 0, false);
@@ -44,7 +44,7 @@ public enum ScreenResolution implements StrictMode {
     }
 
     @Override
-    public boolean isEnabledInCaseOfStrictMode() {
+    public boolean isThisFeatureEnabledForStrictMode() {
         return enabledInCaseOfStrictMode;
     }
 }

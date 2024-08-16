@@ -19,14 +19,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.image;
 
-import com.openeggbert.core.configuration.StrictMode;
 import lombok.Getter;
+import com.openeggbert.core.configuration.IsThisFeatureEnabledForStrictMode;
 
 /**
  *
  * @author robertvokac
  */
-public enum ImageFormat implements StrictMode{
+public enum ImageFormat implements IsThisFeatureEnabledForStrictMode{
     BLP("blp", true),
     BMP("bmp", false),
     PNG("png", false),
@@ -43,7 +43,7 @@ public enum ImageFormat implements StrictMode{
     }
     
     @Override
-    public boolean isEnabledInCaseOfStrictMode() {
+    public boolean isThisFeatureEnabledForStrictMode() {
         return enabledInCaseOfStrictMode;
     }
     public ImageFormat getTargetFormat() {

@@ -19,14 +19,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.sound;
 
-import com.openeggbert.core.configuration.StrictMode;
 import lombok.Getter;
+import com.openeggbert.core.configuration.IsThisFeatureEnabledForStrictMode;
 
 /**
  *
  * @author robertvokac
  */
-public enum SoundFormat implements StrictMode {
+public enum SoundFormat implements IsThisFeatureEnabledForStrictMode {
     BLP("blp", true),
     WAV("wav", false),
     MP3("mp3", false),
@@ -43,7 +43,7 @@ public enum SoundFormat implements StrictMode {
     private boolean enabledInCaseOfStrictMode;
 
     @Override
-    public boolean isEnabledInCaseOfStrictMode() {
+    public boolean isThisFeatureEnabledForStrictMode() {
         return enabledInCaseOfStrictMode;
     }
     public SoundFormat getTargetFormat() {

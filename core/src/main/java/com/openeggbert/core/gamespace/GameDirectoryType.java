@@ -19,14 +19,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.gamespace;
 
-import com.openeggbert.core.configuration.StrictMode;
 import lombok.Getter;
+import com.openeggbert.core.configuration.IsThisFeatureEnabledForStrictMode;
 
 /**
  *
  * @author robertvokac
  */
-public enum GameDirectoryType implements StrictMode{
+public enum GameDirectoryType implements IsThisFeatureEnabledForStrictMode{
     DATA(true),
     IMAGE(true),
     IMAGE08(true),
@@ -44,7 +44,7 @@ public enum GameDirectoryType implements StrictMode{
         this.enabledInCaseOfStrictMode = enabledInCaseOfStrictMode;
     }
     @Override
-    public boolean isEnabledInCaseOfStrictMode() {
+    public boolean isThisFeatureEnabledForStrictMode() {
         return enabledInCaseOfStrictMode;
     }
         

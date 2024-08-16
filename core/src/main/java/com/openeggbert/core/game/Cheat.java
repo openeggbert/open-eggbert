@@ -31,7 +31,7 @@ import lombok.Getter;
 public enum Cheat {
     
     MEGABLUPI(Release.ALL_RELEASES);
-    //todo//todo//todo//todo
+    //todo
     
     @Getter
     private final Release[] compatibilityModes;
