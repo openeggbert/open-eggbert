@@ -17,46 +17,30 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+package com.openeggbert.core.mod;
 
-
-package com.openeggbert.core.screen;
-
-import lombok.Getter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author robertvokac
  */
-public enum ScreenType {
-    MAIN,
-    GAME_SPACE_LIST,
-    GAME_SPACE_CREATE,
-    GAME_SPACE_READ,
-    GAME_SPACE_UPDATE,
-    GAME_SPACE_DELETE,
-    MOD_LIST,
-    MOD_CREATE,
-    MOD_READ,
-    MOD_UPDATE,
-    MOD_DELETE,
-    INIT("INIT"),
-    GAMER("GAMER"),
-    MAIN_HUB(""),
-    SUB_HUB(""),
-    GAME(""),
-    EDITOR(""),
-    EDITOR_DEMO(""),
-    DEMO("DECOR016"),//todo fix me
-    ;
-    
-    @Getter
-    private String fileNameWithoutExtension;
-    
-    ScreenType() {
-        this.fileNameWithoutExtension = "";
+public class ModManager {
+    public ModManager() {
+        
     }
-    ScreenType(String fileName) {
-        this.fileNameWithoutExtension = fileName;
+    private List<Mod> embeddedMods = new ArrayList<>();
+    private List<Mod> installedMods = new ArrayList<>();
+    public List<Mod> listEmbeddedMods() {
+        return embeddedMods;
+    }
+    public List<Mod> listInstalledMods() {
+        return installedMods;
+    }
+    
+    public Mod findMod(ModIdentification modIdentification) {
+        return null;
     }
     
 }
