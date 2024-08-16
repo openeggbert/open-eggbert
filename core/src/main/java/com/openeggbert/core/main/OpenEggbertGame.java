@@ -55,7 +55,7 @@ public class OpenEggbertGame extends Game {
 
     private Texture image;
     private GameSpace gameSpace = null;
-    private String currentDirectory;
+    private String absolutePathOfRootDirectory;
 
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
@@ -75,13 +75,13 @@ public class OpenEggbertGame extends Game {
         this(null, null);
     }
 
-    public OpenEggbertGame(String currentDirectory) {
-        this(null, currentDirectory);
+    public OpenEggbertGame(String absolutePathOfRootDirectoryIn) {
+        this(null, absolutePathOfRootDirectoryIn);
     }
 
-    public OpenEggbertGame(GameSpace gameSpace, String currentDirectory) {
+    public OpenEggbertGame(GameSpace gameSpace, String absolutePathOfRootDirectoryIn) {
         this.gameSpace = gameSpace;
-        this.currentDirectory = currentDirectory;
+        this.absolutePathOfRootDirectory = absolutePathOfRootDirectoryIn;
 
     }
     

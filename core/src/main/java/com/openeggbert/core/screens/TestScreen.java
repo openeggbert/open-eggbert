@@ -55,7 +55,7 @@ public class TestScreen extends AbstractOpenEggbertScreen {
     public void renderOpenEggbertScreen(float delta) {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
         game.getBatch().begin();
-        Function<String, String> removeCurrentDir = i -> i == null ? null : i.replace(game.getCurrentDirectory() + "/", "");
+        Function<String, String> removeCurrentDir = i -> i == null ? null : i.replace(game.getAbsolutePathOfRootDirectory()+ "/", "");
         if (Gdx.app.getType() == Application.ApplicationType.Desktop && game.getGameSpace() != null) {
             BitmapFont font;
             font = new BitmapFont();
@@ -75,10 +75,10 @@ public class TestScreen extends AbstractOpenEggbertScreen {
             font.draw(game.getBatch(), "getSoundDirectory=" + removeCurrentDir.apply(game.getGameSpace().getSoundDirectory()), 40, x);
         }
 
-        if (game.getCurrentDirectory() != null) {
+        if (game.getAbsolutePathOfRootDirectory()!= null) {
             BitmapFont font;
             font = new BitmapFont();
-            font.draw(game.getBatch(), game.getCurrentDirectory(), 40, 340);
+            font.draw(game.getBatch(), game.getAbsolutePathOfRootDirectory(), 40, 340);
         }
         batch.draw(game.getImage(), 40, 400);
         game.getBatch().end();

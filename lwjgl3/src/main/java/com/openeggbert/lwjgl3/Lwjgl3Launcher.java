@@ -22,6 +22,7 @@ package com.openeggbert.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.openeggbert.core.compatibility.ScreenResolution;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.entity.common.GameSpace;
 import java.util.Optional;
@@ -34,8 +35,6 @@ public class Lwjgl3Launcher {
     }
 
     private static Lwjgl3Application createApplication() {
-        //System.getProperties().put("GAME_SPACE_DIRECTORY", "/rv/data/desktop/code/code.nanoboot.org/nanoboot/open-eggbert/assets/open-eggbert-legacy-assets/speedy_blupi_I");
-        
         Optional<GameSpace> gameSpace = DesktopUtils.tryToLoadGameSpace();
         String currentDirectory = DesktopUtils.getPathOfDirectoryWhereJarIsRunning();
         final OpenEggbertGame openEggbertGame = gameSpace.isPresent() ? new OpenEggbertGame(gameSpace.get(), currentDirectory) : new OpenEggbertGame(currentDirectory);
@@ -51,7 +50,7 @@ public class Lwjgl3Launcher {
         //// If you remove the above line and set Vsync to false, you can get unlimited FPS, which can be
         //// useful for testing performance, but can also be very stressful to some hardware.
         //// You may also need to configure GPU drivers to fully disable Vsync; this can cause screen tearing.
-        configuration.setWindowedMode(640, 480);
+        configuration.setWindowedMode(ScreenResolution.VGA.getWidth(), ScreenResolution.VGA.getHeight());
         configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png");
         return configuration;
     }
