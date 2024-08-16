@@ -21,7 +21,7 @@ package com.openeggbert.mods;
 
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.openeggbert.compatibility.FeatureLevel;
+import com.openeggbert.compatibility.Release;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -45,7 +45,7 @@ public class Mod {
                 root.get("version"));
         modPackaging = ModPackaging.valueOf(root.get("packaging"));
         modType = ModType.valueOf(root.get("type"));
-        featureLevel = FeatureLevel.valueOf(root.get("featureLevel"));
+        featureLevel = Release.valueOf(root.get("featureLevel"));
         name = root.get("name");
         description = root.get("description");
         Element imports = root.getChildByName("imports");
@@ -76,7 +76,7 @@ public class Mod {
     private ModIdentification identification;
     private ModPackaging modPackaging;
     private ModType modType;
-    private FeatureLevel featureLevel;
+    private Release featureLevel;
     private String name;
     private String description;
     private List<ModIdentification> importedMods = new ArrayList<>();

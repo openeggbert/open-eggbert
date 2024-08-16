@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.entity.common;
 
-import com.openeggbert.compatibility.FeatureLevel;
+import com.openeggbert.compatibility.Release;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,17 +31,17 @@ import lombok.Getter;
  * @author robertvokac
  */
 public enum ConfigDefKey {
-    FULLSCREEN("FullScreen", new FeatureLevel[]{FeatureLevel.SPEEDY_BLUPI_DEMO}),
-    STRICT_COMPATIBILITY("StrictCompatibility", new FeatureLevel[]{FeatureLevel.OPEN_EGGBERT_3});
+    FULLSCREEN("FullScreen", new Release[]{Release.SPEEDY_BLUPI_DEMO}),
+    STRICT_COMPATIBILITY("StrictCompatibility", new Release[]{Release.OPEN_EGGBERT_3});
     
     @Getter
     private String key;
     @Getter
-    private final List<FeatureLevel> featureLevels;
-    ConfigDefKey(String keyIn, FeatureLevel[] featureLevelsIn) {
+    private final List<Release> featureLevels;
+    ConfigDefKey(String keyIn, Release[] featureLevelsIn) {
         this.key = keyIn;
-        List<FeatureLevel> list = Arrays.asList(featureLevelsIn);
-        Stream<FeatureLevel> stream = list.stream();
+        List<Release> list = Arrays.asList(featureLevelsIn);
+        Stream<Release> stream = list.stream();
         this.featureLevels = stream.collect(Collectors.toList());
     }
     

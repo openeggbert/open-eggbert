@@ -25,7 +25,7 @@ import lombok.Getter;
  *
  * @author robertvokac
  */
-public enum FeatureLevel {
+public enum Release {
     SPEEDY_BLUPI_DEMO(ReleaseType.BLUPI, ReleaseVersion.DEMO, Publisher.EPSITEC_SA),
     SPEEDY_BLUPI_I(ReleaseType.BLUPI, ReleaseVersion.ONE, Publisher.EPSITEC_SA),
     SPEEDY_BLUPI_II(ReleaseType.BLUPI, ReleaseVersion.TWO, Publisher.EPSITEC_SA),
@@ -40,9 +40,21 @@ public enum FeatureLevel {
     @Getter
     private final ReleaseVersion releaseVersion;
 
-    private FeatureLevel(ReleaseType releaseType, ReleaseVersion releaseVersion, Publisher publisher) {
+    private Release(ReleaseType releaseType, ReleaseVersion releaseVersion, Publisher publisher) {
         this.releaseType = releaseType;
         this.releaseVersion = releaseVersion;
+    }
+    
+    public String createLabel() {
+        String[] array = this.name().split("_");
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0;i < array.length; i++) {
+            sb.append(FileNameCaseType.convertToString(array[i], FileNameCaseType.CAPITALIZATION));
+            if(i < (array.length - 1)) {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
     }
 
 }

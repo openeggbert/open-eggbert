@@ -21,7 +21,7 @@
 
 package com.openeggbert.entity.common;
 
-import com.openeggbert.compatibility.FeatureLevel;
+import com.openeggbert.compatibility.Release;
 import lombok.Getter;
 
 /**
@@ -108,7 +108,7 @@ public enum SoundType {
     ;
     @Getter
     private int number;
-    SoundType(int numberIn, FeatureLevel... featureLevels) {
+    SoundType(int numberIn, Release... featureLevels) {
         this.number = numberIn;
     }
     

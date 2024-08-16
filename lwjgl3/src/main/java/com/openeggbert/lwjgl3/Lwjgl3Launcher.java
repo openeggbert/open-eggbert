@@ -37,7 +37,7 @@ public class Lwjgl3Launcher {
         //System.getProperties().put("GAME_SPACE_DIRECTORY", "/rv/data/desktop/code/code.nanoboot.org/nanoboot/open-eggbert/assets/open-eggbert-legacy-assets/speedy_blupi_I");
         
         Optional<GameSpace> gameSpace = DesktopUtils.tryToLoadGameSpace();
-        String currentDirectory = DesktopUtils.getPathToDirectoryWhereJarIsRunning();
+        String currentDirectory = DesktopUtils.getPathOfDirectoryWhereJarIsRunning();
         final OpenEggbertGame openEggbertGame = gameSpace.isPresent() ? new OpenEggbertGame(gameSpace.get(), currentDirectory) : new OpenEggbertGame(currentDirectory);
         return new Lwjgl3Application(openEggbertGame, getDefaultConfiguration());
     }

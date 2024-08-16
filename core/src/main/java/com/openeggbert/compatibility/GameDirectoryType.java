@@ -17,17 +17,34 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
-
 package com.openeggbert.compatibility;
+
+import lombok.Getter;
 
 /**
  *
  * @author robertvokac
  */
-public enum ResolutionMode {
-    RESOLUTION_640_480,
-    RESOLUTION_1280_960,
-    RESOLUTION_SCALED,
-    RESOLUTION_CURRENT;
+public enum GameDirectoryType implements StrictMode{
+    DATA(true),
+    IMAGE(true),
+    IMAGE08(true),
+    IMAGE16(true),
+    IMAGE24(false),
+    IMAGE24X2(false),
+    SOUND(true),
+    TEXT(false),
+    MOD(false),
+    ;
+    @Getter
+    private boolean enabledInCaseOfStrictMode;
+
+    GameDirectoryType(boolean enabledInCaseOfStrictMode) {
+        this.enabledInCaseOfStrictMode = enabledInCaseOfStrictMode;
+    }
+    @Override
+    public boolean isEnabledInCaseOfStrictMode() {
+        return enabledInCaseOfStrictMode;
+    }
+        
 }

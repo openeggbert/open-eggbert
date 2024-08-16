@@ -102,11 +102,11 @@ public enum FileNameCaseType {
                     && thereIsNoUppercaseCharacterExcludingTheFirstCharacter) {
                 return CAPITALIZATION;
             } else {
-                throw new OpenEggbertException("1Could not find FileNameCaseType from String: " + string);
+                throw new OpenEggbertException("Could not find FileNameCaseType from String: " + string);
             }
 
         }
-        throw new OpenEggbertException("2Could not find FileNameCaseType from String: " + string);
+        throw new OpenEggbertException("Could not find FileNameCaseType from String: " + string);
 
     }
 
@@ -115,7 +115,7 @@ public enum FileNameCaseType {
                 new FileNameCaseTypeStringComparator());
     }
 
-    static class FileNameCaseTypeStringComparator implements Comparator<String> {
+    private static class FileNameCaseTypeStringComparator implements Comparator<String> {
 
         @Override
         public int compare(String o1, String o2) {

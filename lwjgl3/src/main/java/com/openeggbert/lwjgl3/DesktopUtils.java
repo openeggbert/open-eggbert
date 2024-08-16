@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3;
 
-import com.openeggbert.compatibility.FeatureLevel;
+import com.openeggbert.compatibility.Release;
 import com.openeggbert.entity.common.GameSpace;
 import com.openeggbert.entity.common.OpenEggbertException;
 import java.io.File;
@@ -37,8 +37,8 @@ public class DesktopUtils {
     }
 
     public static Optional<GameSpace> tryToLoadGameSpace() {
-        String gameSpaceDirectoryFromEnvironmentVariable = System.getenv().getOrDefault("GAME_SPACE_DIRECTORY", "");
-        String gameSpaceDirectoryFromSystemProperty = System.getProperty("GAME_SPACE_DIRECTORY", "");
+        String gameSpaceDirectoryFromEnvironmentVariable = System.getenv().getOrDefault(GAME_SPACE_DIRECTORY, "");
+        String gameSpaceDirectoryFromSystemProperty = System.getProperty(GAME_SPACE_DIRECTORY, "");
         
         if (!gameSpaceDirectoryFromEnvironmentVariable.isBlank()) {
             return tryToLoadGameSpaceFromEnvironmentVariable(gameSpaceDirectoryFromEnvironmentVariable);
@@ -49,6 +49,7 @@ public class DesktopUtils {
         Optional<GameSpace> gameOptional = tryToLoadGameSpaceFromCurrentDirectory();
         return gameOptional;
     }
+    private static final String GAME_SPACE_DIRECTORY = "GAME_SPACE_DIRECTORY";
 
     private static Optional<GameSpace> tryToLoadGameSpaceFromEnvironmentVariable(String gameSpaceDirectoryFromEnvironmentVariable) {
 
@@ -63,7 +64,7 @@ public class DesktopUtils {
         if (!gameSpaceDirectory.exists()) {
             throw new OpenEggbertException("Directory does not exist: " + gameSpaceDirectory.getAbsolutePath());
         }
-        FeatureLevel featureLevel = null;
+        Release featureLevel = null;
         try {
             featureLevel = findFeatureLevelFromDirectory(gameSpaceDirectory);
         } catch (Exception e) {
@@ -75,7 +76,7 @@ public class DesktopUtils {
         GameSpace gameSpace = new GameSpace();
         gameSpace.setCurrentDirectory(new File(".").getAbsolutePath());
         gameSpace.setFeatureLevel(featureLevel);
-        if (featureLevel == FeatureLevel.SPEEDY_BLUPI_DEMO) {
+        if (featureLevel == Release.SPEEDY_BLUPI_DEMO) {
             gameSpace.setDataDirectory(gameSpaceDirectory.getAbsolutePath() + "/" + "Data");
             gameSpace.setImage08Directory(gameSpaceDirectory.getAbsolutePath() + "/" + "Image");
             gameSpace.setSoundDirectory(gameSpaceDirectory.getAbsolutePath() + "/" + "Sound");
@@ -93,19 +94,19 @@ public class DesktopUtils {
         gameSpace.setImage08Directory(image08Directory.getAbsolutePath());
         gameSpace.setSoundDirectory(soundDirectory.getAbsolutePath());
 
-        if (featureLevel != FeatureLevel.SPEEDY_EGGBERT_DEMO) {
+        if (featureLevel != Release.SPEEDY_EGGBERT_DEMO) {
             gameSpace.setImage16Directory(image16Directory.getAbsolutePath());
         }
 
-        if (featureLevel != FeatureLevel.OPEN_EGGBERT_3) {
+        if (featureLevel != Release.OPEN_EGGBERT_3) {
             throwExceptionIfDirectoryDoesNotExist(image08Directory);
-            if (featureLevel != FeatureLevel.SPEEDY_EGGBERT_DEMO) {
+            if (featureLevel != Release.SPEEDY_EGGBERT_DEMO) {
                 throwExceptionIfDirectoryDoesNotExist(image16Directory);
             }
             throwExceptionIfDirectoryDoesNotExist(soundDirectory);
             return Optional.of(gameSpace);
         }
-        if (featureLevel == FeatureLevel.OPEN_EGGBERT_3) {
+        if (featureLevel == Release.OPEN_EGGBERT_3) {
 
             if (!image08Directory.exists()) {
                 image08Directory = null;
@@ -135,7 +136,7 @@ public class DesktopUtils {
 
     private static Optional<GameSpace> tryToLoadGameSpaceFromCurrentDirectory() {
         try {
-            return tryToLoadGameSpaceFromDirectory(new File(DesktopUtils.getPathToDirectoryWhereJarIsRunning()));
+            return tryToLoadGameSpaceFromDirectory(new File(DesktopUtils.getPathOfDirectoryWhereJarIsRunning()));
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -154,14 +155,14 @@ public class DesktopUtils {
         throwExceptionIfDirectoryDoesNotExist(new File(directoryString));
     }
 
-    public static FeatureLevel findFeatureLevelFromDirectory(File dir) {
+    public static Release findFeatureLevelFromDirectory(File dir) {
         final File image24Directory = new File(dir, "IMAGE24");
-        final File image24x2Directory = new File(dir, "IMAGE24x2");
+        final File image24x2Directory = new File(dir, "IMAGE24X2");
         if (image24Directory.exists() && image24x2Directory.exists()) {
-            return FeatureLevel.OPEN_EGGBERT_3;
+            return Release.OPEN_EGGBERT_3;
         }
         if (new File(dir, "Data").exists() && new File(dir, "Image").exists() && new File(dir, "Sound").exists()) {
-            return FeatureLevel.SPEEDY_BLUPI_DEMO;
+            return Release.SPEEDY_BLUPI_DEMO;
         }
         if (!new File(dir, "DATA").exists()) {
             throw new OpenEggbertException("Directory does not exist: " + new File(dir, "DATA").getAbsolutePath());
@@ -171,27 +172,27 @@ public class DesktopUtils {
             if (new File(image08Directory, "INSERT.BLP").exists()) {
                 //blupi
                 if (new File(image08Directory, "DECOR024.BLP").exists()) {
-                    return FeatureLevel.SPEEDY_BLUPI_II;
+                    return Release.SPEEDY_BLUPI_II;
                 } else {
-                    return FeatureLevel.SPEEDY_BLUPI_I;
+                    return Release.SPEEDY_BLUPI_I;
                 }
             } else {
                 //eggbert
                 final File image16Directory = new File(dir, "IMAGE16");
                 if (!image16Directory.exists()) {
-                    return FeatureLevel.SPEEDY_EGGBERT_DEMO;
+                    return Release.SPEEDY_EGGBERT_DEMO;
                 }
                 if (new File(image08Directory, "DECOR024.BLP").exists() || new File(image08Directory, "decor024.blp").exists()) {
-                    return FeatureLevel.SPEEDY_EGGBERT_2;
+                    return Release.SPEEDY_EGGBERT_2;
                 } else {
-                    return FeatureLevel.SPEEDY_EGGBERT_1;
+                    return Release.SPEEDY_EGGBERT_1;
                 }
             }
         }
         throw new OpenEggbertException("Directory is not compatible with any supported version: " + dir.getAbsolutePath());
     }
 
-    public static String getPathToDirectoryWhereJarIsRunning() {
+    public static String getPathOfDirectoryWhereJarIsRunning() {
         try {
             return new File(DesktopUtils.class.getProtectionDomain().getCodeSource().getLocation()
                     .toURI()).getParentFile().getAbsolutePath();

@@ -21,7 +21,7 @@
 
 package com.openeggbert.entity.common;
 
-import com.openeggbert.compatibility.FeatureLevel;
+import com.openeggbert.compatibility.Release;
 import lombok.Getter;
 
 /**
@@ -41,7 +41,7 @@ public enum MusicType {
     MUSIC10(9);
     @Getter
     private int number;
-     MusicType(int numberIn, FeatureLevel... featureLevels) {
+     MusicType(int numberIn, Release... featureLevels) {
         this.number = numberIn;
     }
     

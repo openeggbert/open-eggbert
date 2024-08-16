@@ -19,29 +19,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-package com.openeggbert.entity.common;
-
-import com.openeggbert.compatibility.Release;
-import lombok.Getter;
+package com.openeggbert.compatibility;
 
 /**
  *
  * @author robertvokac
  */
-public enum Cheat {
+public interface StrictMode {
+    boolean isEnabledInCaseOfStrictMode();
     
-    MEGABLUPI(Utils.ALL_FEATURE_LEVELS);
-    //todo//todo//todo//todo
-    
-    @Getter
-    private final Release[] compatibilityModes;
-    @Getter
-    private String note;
-    Cheat (Release[] compatibilityModes) {
-        this(compatibilityModes, "");
-    }
-    Cheat (Release[] compatibilityModes, String note) {
-        this.compatibilityModes = compatibilityModes;
-        this.note = note;
-    }
 }

@@ -55,7 +55,7 @@ public class OpenEggbertUtils {
             String fileNameWithoutExtension = getFileNameWithoutExtension(fileName);
 
             for (ImageFormat imageFormat : ImageFormat.values()) {
-                fillListWithPossibleFileNamesForGivenFileExtension(imageFormat.getFileExtensions(), fileNameWithoutExtension, list);
+                fillListWithPossibleFileNamesForGivenFileExtension(imageFormat.getFileExtension(), fileNameWithoutExtension, list);
             }
             return list;
         }
@@ -64,7 +64,7 @@ public class OpenEggbertUtils {
             String fileNameWithoutExtension = getFileNameWithoutExtension(fileName);
 
             for (MusicFormat musicFormat : MusicFormat.values()) {
-                fillListWithPossibleFileNamesForGivenFileExtension(musicFormat.getFileExtensions(), fileNameWithoutExtension, list);
+                fillListWithPossibleFileNamesForGivenFileExtension(musicFormat.getFileExtension(), fileNameWithoutExtension, list);
             }
             return list;
         }
@@ -73,7 +73,7 @@ public class OpenEggbertUtils {
             String fileNameWithoutExtension = getFileNameWithoutExtension(fileName);
 
             for (SoundFormat soundFormat : SoundFormat.values()) {
-                fillListWithPossibleFileNamesForGivenFileExtension(soundFormat.getFileExtensions(), fileNameWithoutExtension, list);
+                fillListWithPossibleFileNamesForGivenFileExtension(soundFormat.getFileExtension(), fileNameWithoutExtension, list);
             }
             return list;
         }
@@ -90,13 +90,13 @@ public class OpenEggbertUtils {
         throw new OpenEggbertException("Unsupported GameFileType: " + gameFileType);
     }
 
-    private static void fillListWithPossibleFileNamesForGivenFileExtension(String[] fileExtensions, String fileNameWithoutExtension, List<String> list) {
-        for (String fileExtension : fileExtensions) {
-            String fileNameWithExtension = fileNameWithoutExtension + "." + fileExtension;
-            for (FileNameCaseType fileNameCaseType : FileNameCaseType.values()) {
-                list.add(FileNameCaseType.convertToString(fileNameWithExtension, fileNameCaseType));
-            }
+    private static void fillListWithPossibleFileNamesForGivenFileExtension(String fileExtension, String fileNameWithoutExtension, List<String> list) {
+
+        String fileNameWithExtension = fileNameWithoutExtension + "." + fileExtension;
+        for (FileNameCaseType fileNameCaseType : FileNameCaseType.values()) {
+            list.add(FileNameCaseType.convertToString(fileNameWithExtension, fileNameCaseType));
         }
+
     }
     private static final String IMAGE = "IMAGE";
 

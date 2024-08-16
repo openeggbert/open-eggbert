@@ -19,11 +19,23 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.compatibility;
 
+import lombok.Getter;
+
 /**
  *
  * @author robertvokac
  */
-public enum ImageResolution {
-    NORMAL, DOUBLE;
+public enum ImageResolution implements StrictMode{
+    NORMAL(true), DOUBLE(false);
+    @Getter
+    private boolean enabledInCaseOfStrictMode;
+    ImageResolution(boolean enabledInCaseOfStrictMode) {
+        this.enabledInCaseOfStrictMode = enabledInCaseOfStrictMode;
+    }
+
+    @Override
+    public boolean isEnabledInCaseOfStrictMode() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

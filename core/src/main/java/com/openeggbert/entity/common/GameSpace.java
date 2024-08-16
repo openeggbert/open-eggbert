@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.entity.common;
 
-import com.openeggbert.compatibility.FeatureLevel;
+import com.openeggbert.compatibility.Release;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -32,7 +32,7 @@ import lombok.Data;
 public class GameSpace {
 
     private boolean embeddedAssets;
-    private FeatureLevel featureLevel;
+    private Release featureLevel;
     private String dataDirectory;
     private String image08Directory;
     private String image16Directory;

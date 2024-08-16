@@ -21,7 +21,7 @@
 
 package com.openeggbert.entity.common;
 
-import com.openeggbert.compatibility.FeatureLevel;
+import com.openeggbert.compatibility.Release;
 
 /**
  *
@@ -31,5 +31,5 @@ public class Utils {
     private Utils() {
         //Instantiate not needed.
     }
-    public static final FeatureLevel[] ALL_FEATURE_LEVELS = FeatureLevel.values();
+    public static final Release[] ALL_FEATURE_LEVELS = Release.values();
 }

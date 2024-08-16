@@ -25,16 +25,28 @@ import lombok.Getter;
  *
  * @author robertvokac
  */
-public enum ImageFormat {
-    BMP("blp", "bmp"),
-    PNG("png"),
-    JPEG("jpeg")
+public enum ImageFormat implements StrictMode{
+    BLP("blp", true),
+    BMP("bmp", false),
+    PNG("png", false),
+    JPEG("jpeg", false)
     ;
     @Getter
-    private String[] fileExtensions;
+    private String fileExtension;
+    @Getter
+    private boolean enabledInCaseOfStrictMode;
 
-    ImageFormat(String... fileExtensionsIn) {
-        this.fileExtensions = fileExtensionsIn;
+    ImageFormat(String fileExtensionIn, boolean enabledInCaseOfStrictMode) {
+        this.fileExtension = fileExtensionIn;
+        this.enabledInCaseOfStrictMode = enabledInCaseOfStrictMode;
     }
     
+    @Override
+    public boolean isEnabledInCaseOfStrictMode() {
+        return enabledInCaseOfStrictMode;
+    }
+    public ImageFormat getTargetFormat() {
+        return this == BLP ? BMP : this;
+    }
+        
 }

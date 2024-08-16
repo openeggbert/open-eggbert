@@ -25,16 +25,29 @@ import lombok.Getter;
  *
  * @author robertvokac
  */
-public enum MusicFormat {
-    MIDI("blp", "mid"),
-    WAV("wav"),
-    MP3("mp3"),
-    OGG("ogg"),
+public enum MusicFormat implements StrictMode {
+    BLP("blp", true),
+    MIDI("mid", false),
+    WAV("wav", false),
+    MP3("mp3", false),
+    OGG("ogg", false),
     ;
     @Getter
-    private String[] fileExtensions;
-    MusicFormat(String... fileExtensionsIn) {
-        this.fileExtensions = fileExtensionsIn;
+    private String fileExtension;
+    
+    @Getter
+    private boolean enabledInCaseOfStrictMode;
+    MusicFormat(String fileExtension, boolean enabledInCaseOfStrictMode) {
+        this.fileExtension = fileExtension;
+        this.enabledInCaseOfStrictMode = enabledInCaseOfStrictMode;
+    }
+
+    @Override
+    public boolean isEnabledInCaseOfStrictMode() {
+        return enabledInCaseOfStrictMode;
     }
     
+    public MusicFormat getTargetFormat() {
+        return this == BLP ? MIDI : this;
+    }
 }
