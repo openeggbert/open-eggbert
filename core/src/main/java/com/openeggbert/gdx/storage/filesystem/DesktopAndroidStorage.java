@@ -19,7 +19,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.gdx.storage.filesystem;
 
-import com.badlogic.gdx.Application;
 import com.openeggbert.core.fbox.entity.Platform;
 import com.openeggbert.gdx.storage.Storage;
 import java.util.List;
@@ -126,5 +125,10 @@ public abstract class DesktopAndroidStorage implements Storage {
     @Override
     public void flush() {
         //nothing to do
+    }
+    
+    @Override
+    public boolean rmdir(String dirname) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -41,7 +41,7 @@ public class ConfigDef {
                 .filter(l -> !l.trim().startsWith(HASH_CHARACTER))
                 .filter(l -> l.contains(EQUALS_CHARACTER))
                 .forEach(line -> {
-                    String[] array = line.split("=");
+                    String[] array = line.split(EQUALS_CHARACTER);
                     String key = array[0];
                     String value = array[1];
                     map.put(key, value);

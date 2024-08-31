@@ -36,8 +36,8 @@ public interface Storage {
         cd("/");
         mkdir("home");
         cd("home");
-        mkdir("openeggbert");
-        cd("openeggbert");
+        mkdir(uname());
+        cd(uname());
         return "";
     }
 
@@ -74,6 +74,8 @@ public interface Storage {
     public String touch(String name);
 
     public boolean rm(String name);
+    
+    public boolean rmdir(String dirname);
 
     public String cp(String source, String target);
 
@@ -96,5 +98,8 @@ public interface Storage {
     public String debug();
     
     public void flush();
+    
+    default String uname() {return OPENEGGBERT;}
+    static final String OPENEGGBERT = "openeggbert";
 
 }
