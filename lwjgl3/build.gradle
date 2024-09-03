@@ -33,6 +33,7 @@ dependencies {
   implementation "games.rednblack.miniaudio:miniaudio:$miniaudioVersion:natives-desktop"
   //implementation "com.openeggbert.gdx:gdx-storage:0.0.0-SNAPSHOT"
   implementation project(':core')
+  implementation project(':pixel')
 }
 
 def jarName = "${appName}-${version}.jar"
