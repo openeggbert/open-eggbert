@@ -34,7 +34,7 @@ import lombok.Data;
 public class Mod {
 
     public Mod(String xml) {
-        XmlElement root = Pixel.get().utils().parseXml(xml);
+        XmlElement root = Pixel.utils().parseXml(xml);
         XmlElement parentElement = root.getChildByName("parent");
         if (parentElement != null) {
             parent = new ModIdentification(parentElement);

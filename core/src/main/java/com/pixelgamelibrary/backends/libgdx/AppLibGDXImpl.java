@@ -20,7 +20,12 @@
 package com.pixelgamelibrary.backends.libgdx;
 
 import com.badlogic.gdx.Application;
+import static com.badlogic.gdx.Application.ApplicationType.Android;
+import static com.badlogic.gdx.Application.ApplicationType.Desktop;
+import static com.badlogic.gdx.Application.ApplicationType.WebGL;
 import com.badlogic.gdx.Gdx;
+import com.pixelgamelibrary.PixelException;
+import com.pixelgamelibrary.Platform;
 import com.pixelgamelibrary.api.AppI;
 
 /**
@@ -29,6 +34,26 @@ import com.pixelgamelibrary.api.AppI;
  */
 public class AppLibGDXImpl implements AppI {
 
+    
+    @Override
+    public void exit() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Platform getPlatform() {
+        Application.ApplicationType applicationType = Gdx.app.getType();
+        switch (applicationType) {
+            case Desktop:
+                return Platform.DESKTOP;
+            case Android:
+                return Platform.ANDROID;
+            case WebGL:
+                return Platform.WEB;
+            default:
+                throw new PixelException("Unsupported platform: " + applicationType);
+        }
+    }
     @Override
     public void log(String msg) {
         Application app = Gdx.app;

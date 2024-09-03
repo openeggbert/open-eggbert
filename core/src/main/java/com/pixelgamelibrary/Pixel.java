@@ -19,7 +19,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary;
 
+import com.pixelgamelibrary.api.AppI;
+import com.pixelgamelibrary.api.AssetI;
+import com.pixelgamelibrary.api.AudioI;
+import com.pixelgamelibrary.api.GraphicsI;
+import com.pixelgamelibrary.api.InputI;
+import com.pixelgamelibrary.api.NetI;
 import com.pixelgamelibrary.api.PixelBackend;
+import com.pixelgamelibrary.api.StorageI;
+import com.pixelgamelibrary.api.UtilsI;
 
 /**
  *
@@ -33,9 +41,43 @@ public class Pixel {
         //Not meant to be instantiated.
     }
 
-    public static PixelBackend get() {
+    private static PixelBackend get() {
         return getBackend();
     }
+
+    ////
+    public static AppI app() {
+        return get().app();
+    }
+
+    public static GraphicsI graphics() {
+        return get().graphics();
+    }
+
+    public static AudioI audio() {
+        return get().audio();
+    }
+
+    public static InputI input() {
+        return get().input();
+    }
+
+    public static NetI net() {
+        return get().net();
+    }
+
+    public static AssetI asset() {
+        return get().asset();
+    }
+
+    public static StorageI storage() {
+        return get().storage();
+    }
+
+    public static UtilsI utils() {
+        return get().utils();
+    }
+    ////
 
     public static void setBackend(PixelBackend pixelBackend) {
         if (isBackendSet()) {
@@ -44,7 +86,7 @@ public class Pixel {
         INSTANCE = pixelBackend;
     }
 
-    public static PixelBackend getBackend() {
+    private static PixelBackend getBackend() {
         if (!isBackendSet()) {
             throw new PixelException("Pixel Backend was not set");
         }

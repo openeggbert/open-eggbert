@@ -37,7 +37,7 @@ public class StorageFactory {
     private static Storage storage = null;
 
     public static Storage getStorage() {
-        final Platform platform = Pixel.get().getPlatform();
+        final Platform platform = Pixel.app().getPlatform();
         if (storage == null) {
             storage = new MemoryStorage();
         }

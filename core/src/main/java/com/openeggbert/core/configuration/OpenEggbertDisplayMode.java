@@ -63,7 +63,7 @@ public enum OpenEggbertDisplayMode {
     }
 
     public static OpenEggbertDisplayMode setDisplayMode(OpenEggbertDisplayMode displayMode) {
-        String result = Pixel.get().graphics().setDisplayMode(displayMode == FULLSCREEN, displayMode == WINDOW);
+        String result = Pixel.graphics().setDisplayMode(displayMode == FULLSCREEN, displayMode == WINDOW);
 
         return result == null ? null : OpenEggbertDisplayMode.valueOf(result);
     }

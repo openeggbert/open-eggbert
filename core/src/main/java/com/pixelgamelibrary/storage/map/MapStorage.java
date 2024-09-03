@@ -281,7 +281,7 @@ public class MapStorage implements Storage {
             return null;
         }
         text = text.substring(BINARYFILE.length());
-        return Pixel.get().utils().decodeBase64AsByteArray(text);
+        return Pixel.utils().decodeBase64AsByteArray(text);
     }
     private static final String BINARYFILE = "BINARYFILE";
 
@@ -292,7 +292,7 @@ public class MapStorage implements Storage {
 
     @Override
     public String savebin(String name, byte[] data) {
-        return savetext(name, BINARYFILE + Pixel.get().utils().encodeToBase64(data));
+        return savetext(name, BINARYFILE + Pixel.utils().encodeToBase64(data));
     }
 
     @Override
@@ -338,7 +338,7 @@ public class MapStorage implements Storage {
     }
 
     private void logError(String msg) {
-        Pixel.get().app().error(msg);
+        Pixel.app().error(msg);
     }
 
 }

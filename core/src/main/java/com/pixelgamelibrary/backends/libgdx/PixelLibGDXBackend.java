@@ -49,25 +49,6 @@ public class PixelLibGDXBackend implements PixelBackend {
     private StorageI pixelStorageLibGdxImpl = null;
     private UtilsI pixelUtilsLibGdxImpl = null;
 
-    @Override
-    public void exit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Platform getPlatform() {
-        Application.ApplicationType applicationType = Gdx.app.getType();
-        switch (applicationType) {
-            case Desktop:
-                return Platform.DESKTOP;
-            case Android:
-                return Platform.ANDROID;
-            case WebGL:
-                return Platform.WEB;
-            default:
-                throw new PixelException("Unsupported platform: " + applicationType);
-        }
-    }
 
     @Override
     public GraphicsI graphics() {

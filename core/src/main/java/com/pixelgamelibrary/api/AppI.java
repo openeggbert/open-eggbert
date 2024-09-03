@@ -19,11 +19,24 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.api;
 
+import com.pixelgamelibrary.Platform;
+
 /**
  *
  * @author robertvokac
  */
 public interface AppI {
+    Platform getPlatform();
+    
+    default boolean isOneOfPlatforms(Platform ... platforms) {
+        for(Platform p: platforms) {
+            if(getPlatform() == p) {
+                return true;
+            }
+        }
+        return false;
+    }
+    void exit();
     void log(String msg);
     void error(String msg);
     void debug(String msg);
