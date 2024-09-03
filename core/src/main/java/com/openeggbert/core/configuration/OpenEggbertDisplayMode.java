@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.configuration;
 
-import com.openeggbert.core.fbox.core.FBox;
+import com.pixelgamelibrary.Pixel;
 import com.openeggbert.core.main.OpenEggbertException;
 
 /**
@@ -63,7 +63,7 @@ public enum OpenEggbertDisplayMode {
     }
 
     public static OpenEggbertDisplayMode setDisplayMode(OpenEggbertDisplayMode displayMode) {
-        String result = FBox.get().graphics().setDisplayMode(displayMode == FULLSCREEN, displayMode == WINDOW);
+        String result = Pixel.get().graphics().setDisplayMode(displayMode == FULLSCREEN, displayMode == WINDOW);
 
         return result == null ? null : OpenEggbertDisplayMode.valueOf(result);
     }

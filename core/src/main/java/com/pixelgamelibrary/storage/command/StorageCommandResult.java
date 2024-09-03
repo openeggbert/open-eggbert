@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Pixel: Game library.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,30 +17,52 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging;
-
-import com.pixelgamelibrary.storage.command.StorageCommandLine;
-import com.pixelgamelibrary.storage.command.StorageCommandLineScanner;
-import com.pixelgamelibrary.storage.map.MemoryStorage;
+package com.pixelgamelibrary.storage.command;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorageCommandLineScanner {
+public class StorageCommandResult {
 
-    private DesktopStorageCommandLineScanner() {
-        //Not meant to be instantiated.
+    public StorageCommandResult() {
+        this("");
     }
 
-    public static void main(String[] args) {
-        MemoryStorage memoryStorage = new MemoryStorage();
-        final String user = "player";
-        final String hostname = "openegggbert";
-        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
-        StorageCommandLineScanner storageCommandLineScanner = new StorageCommandLineScanner(
-                storageCommandLine, new DesktopCommandLineScanner());
-
+    public StorageCommandResult(String output) {
+        this(output, false);
     }
 
+    public StorageCommandResult(String output, boolean error) {
+        this.output = output;
+        this.error = error;
+    }
+
+    public String getOutput() {
+        return output;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setOutput(int output) {
+        setOutput(String.valueOf(output));
+    }
+
+    public void setErrorOutput(String output) {
+        this.output = output;
+        setError(true);
+    }
+
+    public void setOutput(String output) {
+        this.output = output;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
+
+    private String output;
+    private boolean error;
 }

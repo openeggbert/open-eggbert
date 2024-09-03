@@ -36,11 +36,13 @@ import com.openeggbert.core.mod.Mod;
 import com.openeggbert.core.mod.ModIdentification;
 import com.openeggbert.core.screen.GameSpaceListScreen;
 import com.openeggbert.core.screen.InitScreen;
-import com.openeggbert.gdx.storage.Storage;
-import com.openeggbert.gdx.storage.StorageImplementationLoader;
+import com.pixelgamelibrary.storage.Storage;
+import com.pixelgamelibrary.storage.StorageImplementationLoader;
 import com.openeggbert.core.configuration.OpenEggbertDisplayMode;
-import com.openeggbert.core.fbox.core.FBoxGame;
+import com.pixelgamelibrary.Game;
 import com.openeggbert.core.utils.OpenEggbertUtils;
+import com.pixelgamelibrary.Pixel;
+import com.pixelgamelibrary.backends.libgdx.PixelLibGDXBackend;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -51,7 +53,7 @@ import lombok.Data;
  * platforms.
  */
 @Data
-public class OpenEggbertGame extends FBoxGame {
+public class OpenEggbertGame extends Game {
 
     private Texture image;
     private GameSpace gameSpace = null;
@@ -82,6 +84,7 @@ public class OpenEggbertGame extends FBoxGame {
     public OpenEggbertGame(GameSpace gameSpace, String absolutePathOfRootDirectoryIn) {
         this.gameSpace = gameSpace;
         this.absolutePathOfRootDirectory = absolutePathOfRootDirectoryIn;
+        Pixel.setBackend(new PixelLibGDXBackend());
 
     }
     

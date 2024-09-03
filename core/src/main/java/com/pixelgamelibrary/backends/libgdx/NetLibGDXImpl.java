@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Pixel: Game library.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,30 +17,16 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging;
+package com.pixelgamelibrary.backends.libgdx;
 
-import com.pixelgamelibrary.storage.command.StorageCommandLine;
-import com.pixelgamelibrary.storage.command.StorageCommandLineScanner;
-import com.pixelgamelibrary.storage.map.MemoryStorage;
+import com.pixelgamelibrary.api.NetI;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorageCommandLineScanner {
+public class NetLibGDXImpl implements NetI {
 
-    private DesktopStorageCommandLineScanner() {
-        //Not meant to be instantiated.
-    }
-
-    public static void main(String[] args) {
-        MemoryStorage memoryStorage = new MemoryStorage();
-        final String user = "player";
-        final String hostname = "openegggbert";
-        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
-        StorageCommandLineScanner storageCommandLineScanner = new StorageCommandLineScanner(
-                storageCommandLine, new DesktopCommandLineScanner());
-
-    }
+   
 
 }

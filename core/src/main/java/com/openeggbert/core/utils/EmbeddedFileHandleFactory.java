@@ -21,7 +21,7 @@ package com.openeggbert.core.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.openeggbert.core.fbox.core.FBox;
+import com.pixelgamelibrary.Pixel;
 
 /**
  *
@@ -35,7 +35,7 @@ public class EmbeddedFileHandleFactory {
 
     public static FileHandle create(String name) {
 
-        if (FBox.get().getPlatform().isAndroid() || FBox.get().getPlatform().isWeb()) {
+        if (Pixel.get().getPlatform().isAndroid() || Pixel.get().getPlatform().isWeb()) {
             return Gdx.files.internal(name);
         } else {
             return Gdx.files.classpath(name);

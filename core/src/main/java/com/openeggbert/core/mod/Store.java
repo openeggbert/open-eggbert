@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.mod;
 
-import com.openeggbert.core.fbox.api.XmlElement;
+import com.pixelgamelibrary.api.XmlElement;
 
 /**
  *

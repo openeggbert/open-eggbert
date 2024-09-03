@@ -25,7 +25,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.openeggbert.core.fbox.core.FBoxScreen;
+import com.pixelgamelibrary.Screen;
 import com.openeggbert.core.gamespace.GameFileType;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.utils.OpenEggbertUtils;
@@ -36,7 +36,7 @@ import java.util.Optional;
  *
  * @author robertvokac
  */
-public abstract class AbstractOpenEggbertScreen extends FBoxScreen {
+public abstract class AbstractOpenEggbertScreen extends Screen {
 
     protected OpenEggbertGame game;
     protected SpriteBatch batch;

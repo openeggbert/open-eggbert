@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Pixel: Game library.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -13,33 +13,34 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see 
+// along with this program. If not, see
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging;
+package com.pixelgamelibrary.storage.map;
 
-import com.pixelgamelibrary.storage.command.StorageCommandLine;
-import com.pixelgamelibrary.storage.command.StorageCommandLineScanner;
-import com.pixelgamelibrary.storage.map.MemoryStorage;
+import com.pixelgamelibrary.storage.GdxStorageException;
+
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorageCommandLineScanner {
+public enum MapFileType {
+    FILE, DIRECTORY;
 
-    private DesktopStorageCommandLineScanner() {
-        //Not meant to be instantiated.
-    }
-
-    public static void main(String[] args) {
-        MemoryStorage memoryStorage = new MemoryStorage();
-        final String user = "player";
-        final String hostname = "openegggbert";
-        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
-        StorageCommandLineScanner storageCommandLineScanner = new StorageCommandLineScanner(
-                storageCommandLine, new DesktopCommandLineScanner());
+    public static MapFileType ofKey(String key, SimpleMap map) {
+        if (!map.contains(key)) {
+            throw new GdxStorageException("Map does not contain key: " + key);
+        }
+        String value = map.getString(key);
+        if (value.startsWith(FILE.name())) {
+            return FILE;
+        }
+        if (value.startsWith(DIRECTORY.name())) {
+            return DIRECTORY;
+        }
+        throw new GdxStorageException("Unsupported MapFileType for key in the map: " + key);
 
     }
 

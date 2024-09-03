@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Pixel: Game library.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,30 +17,46 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging;
+package com.pixelgamelibrary.backends.libgdx;
 
-import com.pixelgamelibrary.storage.command.StorageCommandLine;
-import com.pixelgamelibrary.storage.command.StorageCommandLineScanner;
-import com.pixelgamelibrary.storage.map.MemoryStorage;
+import com.badlogic.gdx.utils.XmlReader;
+import com.pixelgamelibrary.api.XmlElement;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorageCommandLineScanner {
+public class ElementLibGDXImpl implements XmlElement {
 
-    private DesktopStorageCommandLineScanner() {
-        //Not meant to be instantiated.
+    private final XmlReader.Element element;
+
+    public ElementLibGDXImpl(com.badlogic.gdx.utils.XmlReader.Element element) {
+        this.element = element;
     }
 
-    public static void main(String[] args) {
-        MemoryStorage memoryStorage = new MemoryStorage();
-        final String user = "player";
-        final String hostname = "openegggbert";
-        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
-        StorageCommandLineScanner storageCommandLineScanner = new StorageCommandLineScanner(
-                storageCommandLine, new DesktopCommandLineScanner());
-
+    @Override
+    public XmlElement getChildByName(String name) {
+        XmlReader.Element child = element.getChildByName(name);
+        return child == null ? null : new ElementLibGDXImpl(child);
     }
 
+    @Override
+    public String get(String elementName) {
+        return element.get(elementName);
+    }
+
+    @Override
+    public int getChildCount() {
+        return element.getChildCount();
+    }
+
+    @Override
+    public XmlElement getChild(int i) {
+        XmlReader.Element child = element.getChild(i);
+        return child == null ? null : new ElementLibGDXImpl(child);    }
+
+    @Override
+    public String getText() {
+        return element.getText();
+    }
 }

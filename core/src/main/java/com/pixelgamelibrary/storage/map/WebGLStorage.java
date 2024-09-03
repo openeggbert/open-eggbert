@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Pixel: Game library.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -13,34 +13,32 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see 
+// along with this program. If not, see
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging;
+package com.pixelgamelibrary.storage.map;
 
-import com.pixelgamelibrary.storage.command.StorageCommandLine;
-import com.pixelgamelibrary.storage.command.StorageCommandLineScanner;
-import com.pixelgamelibrary.storage.map.MemoryStorage;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
+import com.pixelgamelibrary.Platform;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorageCommandLineScanner {
-
-    private DesktopStorageCommandLineScanner() {
-        //Not meant to be instantiated.
+public class WebGLStorage extends MapStorage {
+    public Platform getPlatform() {
+        return Platform.WEB;
     }
-
-    public static void main(String[] args) {
-        MemoryStorage memoryStorage = new MemoryStorage();
-        final String user = "player";
-        final String hostname = "openegggbert";
-        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
-        StorageCommandLineScanner storageCommandLineScanner = new StorageCommandLineScanner(
-                storageCommandLine, new DesktopCommandLineScanner());
-
+    public WebGLStorage() {
+        this("open-eggbert.webGL.Local-Storage");
+    }
+    public WebGLStorage(String preferencesName) {
+        this(Gdx.app.getPreferences(preferencesName));
+    }
+        public WebGLStorage(Preferences preferences) {
+        super(new SimpleLocalStorageMap(preferences));
     }
 
 }

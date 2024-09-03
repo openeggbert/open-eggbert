@@ -19,8 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.mod;
 
-import com.openeggbert.core.fbox.api.XmlElement;
-import com.openeggbert.core.fbox.core.FBox;
+import com.pixelgamelibrary.api.XmlElement;
+import com.pixelgamelibrary.Pixel;
 import com.openeggbert.core.release.Release;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ import lombok.Data;
 public class Mod {
 
     public Mod(String xml) {
-        XmlElement root = FBox.get().utils().parseXml(xml);
+        XmlElement root = Pixel.get().utils().parseXml(xml);
         XmlElement parentElement = root.getChildByName("parent");
         if (parentElement != null) {
             parent = new ModIdentification(parentElement);

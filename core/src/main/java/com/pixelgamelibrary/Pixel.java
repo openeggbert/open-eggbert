@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// Open Eggbert: Free recreation of the computer game Speedy Eggbert.
+// Pixel: Game library.
 // Copyright (C) 2024 the original author or authors.
 //
 // This program is free software: you can redistribute it and/or
@@ -17,30 +17,41 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.openeggbert.lwjgl3.debugging;
+package com.pixelgamelibrary;
 
-import com.pixelgamelibrary.storage.command.StorageCommandLine;
-import com.pixelgamelibrary.storage.command.StorageCommandLineScanner;
-import com.pixelgamelibrary.storage.map.MemoryStorage;
+import com.pixelgamelibrary.api.PixelBackend;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorageCommandLineScanner {
+public class Pixel {
 
-    private DesktopStorageCommandLineScanner() {
+    private static PixelBackend INSTANCE = null;
+
+    private Pixel() {
         //Not meant to be instantiated.
     }
 
-    public static void main(String[] args) {
-        MemoryStorage memoryStorage = new MemoryStorage();
-        final String user = "player";
-        final String hostname = "openegggbert";
-        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
-        StorageCommandLineScanner storageCommandLineScanner = new StorageCommandLineScanner(
-                storageCommandLine, new DesktopCommandLineScanner());
-
+    public static PixelBackend get() {
+        return getBackend();
     }
 
+    public static void setBackend(PixelBackend pixelBackend) {
+        if (isBackendSet()) {
+            throw new PixelException("Pixel Backend was already set");
+        }
+        INSTANCE = pixelBackend;
+    }
+
+    public static PixelBackend getBackend() {
+        if (!isBackendSet()) {
+            throw new PixelException("Pixel Backend was not set");
+        }
+        return INSTANCE;
+    }
+
+    public static boolean isBackendSet() {
+        return INSTANCE != null;
+    }
 }
