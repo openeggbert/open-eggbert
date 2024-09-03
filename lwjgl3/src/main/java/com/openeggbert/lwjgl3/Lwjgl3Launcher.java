@@ -25,11 +25,14 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.openeggbert.core.configuration.ScreenResolution;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.gamespace.GameSpace;
+import com.pixelgamelibrary.Pixel;
+import com.pixelgamelibrary.backends.libgdx.PixelLibGDXBackend;
 import java.util.Optional;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
     public static void main(String[] args) {
+        Pixel.initBackend(new PixelLibGDXBackend());
         if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
         createApplication();
     }

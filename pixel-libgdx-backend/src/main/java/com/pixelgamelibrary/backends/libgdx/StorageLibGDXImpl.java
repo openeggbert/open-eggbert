@@ -20,12 +20,19 @@
 package com.pixelgamelibrary.backends.libgdx;
 
 import com.pixelgamelibrary.api.StorageI;
+import com.pixelgamelibrary.backends.libgdx.storage.StorageFactory;
+import com.pixelgamelibrary.storage.Storage;
 
 /**
  *
  * @author robertvokac
  */
 public class StorageLibGDXImpl implements StorageI {
+
+    @Override
+    public Storage getStorage() {
+        return StorageFactory.getStorage();
+    }
 
    
 

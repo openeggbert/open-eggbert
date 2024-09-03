@@ -61,6 +61,9 @@ subprojects {
   if (project.name == 'pixel') {
     ext.appName = 'pixel'
   }
+  if (project.name == 'pixel-libgdx-backend') {
+    ext.appName = 'pixel-libgdx-backend'
+  }
   repositories {
     mavenCentral()
     maven { url 'https://s01.oss.sonatype.org' }

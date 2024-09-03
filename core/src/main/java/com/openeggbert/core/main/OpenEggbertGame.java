@@ -37,12 +37,10 @@ import com.openeggbert.core.mod.ModIdentification;
 import com.openeggbert.core.screen.GameSpaceListScreen;
 import com.openeggbert.core.screen.InitScreen;
 import com.pixelgamelibrary.storage.Storage;
-import com.pixelgamelibrary.backends.libgdx.storage.StorageFactory;
 import com.openeggbert.core.configuration.OpenEggbertDisplayMode;
 import com.pixelgamelibrary.Game;
 import com.openeggbert.core.utils.OpenEggbertUtils;
 import com.pixelgamelibrary.Pixel;
-import com.pixelgamelibrary.backends.libgdx.PixelLibGDXBackend;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -84,13 +82,12 @@ public class OpenEggbertGame extends Game {
     public OpenEggbertGame(GameSpace gameSpace, String absolutePathOfRootDirectoryIn) {
         this.gameSpace = gameSpace;
         this.absolutePathOfRootDirectory = absolutePathOfRootDirectoryIn;
-        Pixel.setBackend(new PixelLibGDXBackend());
 
     }
     
     public Storage getStorage() {
         if(storage == null) {
-            this.storage = StorageFactory.getStorage();
+            this.storage = Pixel.storage().getStorage();
         }
         return storage;
     }

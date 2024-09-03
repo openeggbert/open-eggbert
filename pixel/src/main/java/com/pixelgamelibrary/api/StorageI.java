@@ -19,10 +19,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.api;
 
+import com.pixelgamelibrary.storage.Storage;
+
 /**
  *
  * @author robertvokac
  */
 public interface StorageI {
-    
+    Storage getStorage();
 }

@@ -79,7 +79,7 @@ public class Pixel {
     }
     ////
 
-    public static void setBackend(PixelBackend pixelBackend) {
+    public static void initBackend(PixelBackend pixelBackend) {
         if (isBackendSet()) {
             throw new PixelException("Pixel Backend was already set");
         }

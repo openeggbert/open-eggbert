@@ -5,6 +5,8 @@ import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 import com.openeggbert.core.configuration.ScreenResolution;
 import com.openeggbert.core.main.OpenEggbertGame;
+import com.pixelgamelibrary.Pixel;
+import com.pixelgamelibrary.backends.libgdx.PixelLibGDXBackend;
 
 /** Launches the GWT application. */
 public class GwtLauncher extends GwtApplication {
@@ -17,6 +19,7 @@ public class GwtLauncher extends GwtApplication {
             //return cfg;
             // If you want a fixed size application, comment out the above resizable section,
             // and uncomment below:
+            Pixel.initBackend(new PixelLibGDXBackend());
             return new GwtApplicationConfiguration(ScreenResolution.VGA.getWidth(), ScreenResolution.VGA.getHeight());
         }
 
