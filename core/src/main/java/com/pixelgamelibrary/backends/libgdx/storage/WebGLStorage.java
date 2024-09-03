@@ -17,31 +17,33 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.storage.map;
+package com.pixelgamelibrary.backends.libgdx.storage;
 
-import com.pixelgamelibrary.storage.StorageException;
-
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
+import com.pixelgamelibrary.Platform;
+import com.pixelgamelibrary.storage.map.MapStorage;
 
 /**
  *
  * @author robertvokac
  */
-public enum MapFileType {
-    FILE, DIRECTORY;
+public class WebGLStorage extends MapStorage {
 
-    public static MapFileType ofKey(String key, SimpleMap map) {
-        if (!map.contains(key)) {
-            throw new StorageException("Map does not contain key: " + key);
-        }
-        String value = map.getString(key);
-        if (value.startsWith(FILE.name())) {
-            return FILE;
-        }
-        if (value.startsWith(DIRECTORY.name())) {
-            return DIRECTORY;
-        }
-        throw new StorageException("Unsupported MapFileType for key in the map: " + key);
+    public Platform getPlatform() {
+        return Platform.WEB;
+    }
 
+    public WebGLStorage() {
+        this("pixel.libgdx.webGL.Local-Storage");
+    }
+
+    public WebGLStorage(String preferencesName) {
+        this(Gdx.app.getPreferences(preferencesName));
+    }
+
+    public WebGLStorage(Preferences preferences) {
+        super(new SimpleLocalStorageMap(preferences));
     }
 
 }

@@ -19,11 +19,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.storage.map;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.pixelgamelibrary.Pixel;
 import com.pixelgamelibrary.Platform;
-import com.pixelgamelibrary.storage.GdxStorageException;
-import com.pixelgamelibrary.storage.GdxStorageUtils;
+import com.pixelgamelibrary.storage.StorageException;
 import com.pixelgamelibrary.storage.Storage;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -83,13 +82,7 @@ public class MapStorage implements Storage {
         workingDirectory = absolutePath;
         return "";
     }
-    private static final String SLASH = "/";
-
-    private void logError(String msg) {
-        Application app = Gdx.app;
-        if(app != null) Gdx.app.error(getClass().getName(), msg);
-    }
-    
+    private static final String SLASH = "/";    
 
     @Override
     public String mkdir(String path) {
@@ -125,10 +118,10 @@ public class MapStorage implements Storage {
     private static String getParentPath(String path) {
 //        System.out.println("getParentPath()");
         if (path == null) {
-            throw new GdxStorageException("Path is null");
+            throw new StorageException("Path is null");
         }
         if (path.trim().isEmpty()) {
-            throw new GdxStorageException("Path is empty");
+            throw new StorageException("Path is empty");
         }
 
         if (path.equals("/")) {
@@ -219,10 +212,10 @@ public class MapStorage implements Storage {
 
     private String moveOrCp(String source, String target, boolean move, boolean cp) {
         if (move && cp) {
-            throw new GdxStorageException("move == true && cp == true");
+            throw new StorageException("move == true && cp == true");
         }
         if (!move && !cp) {
-            throw new GdxStorageException("move != true && cp != true");
+            throw new StorageException("move != true && cp != true");
         }
         String absolutePathSource = convertToAbsolutePathIfNeeded(source);
         String absolutePathTarget = convertToAbsolutePathIfNeeded(target);
@@ -288,7 +281,7 @@ public class MapStorage implements Storage {
             return null;
         }
         text = text.substring(BINARYFILE.length());
-        return GdxStorageUtils.decodeBase64AsByteArray(text);
+        return Pixel.get().utils().decodeBase64AsByteArray(text);
     }
     private static final String BINARYFILE = "BINARYFILE";
 
@@ -299,7 +292,7 @@ public class MapStorage implements Storage {
 
     @Override
     public String savebin(String name, byte[] data) {
-        return savetext(name, BINARYFILE + GdxStorageUtils.encodeToBase64(data));
+        return savetext(name, BINARYFILE + Pixel.get().utils().encodeToBase64(data));
     }
 
     @Override
@@ -342,6 +335,10 @@ public class MapStorage implements Storage {
     @Override
     public boolean rmdir(String dirname) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void logError(String msg) {
+        Pixel.get().app().error(msg);
     }
 
 }

@@ -24,6 +24,7 @@ import static com.badlogic.gdx.Application.ApplicationType.Desktop;
 import com.badlogic.gdx.Gdx;
 import com.pixelgamelibrary.PixelException;
 import com.pixelgamelibrary.Platform;
+import com.pixelgamelibrary.api.AppI;
 import com.pixelgamelibrary.api.AssetI;
 import com.pixelgamelibrary.api.AudioI;
 import com.pixelgamelibrary.api.GraphicsI;
@@ -39,6 +40,7 @@ import com.pixelgamelibrary.api.PixelBackend;
  */
 public class PixelLibGDXBackend implements PixelBackend {
 
+    private AppI pixelAppLibGdxImpl = null;
     private GraphicsI pixelGraphicsLibGdxImpl = null;
     private AudioI pixelAudioLibGdxImpl = null;
     private InputI pixelInputLibGdxImpl = null;
@@ -127,5 +129,12 @@ public class PixelLibGDXBackend implements PixelBackend {
             pixelUtilsLibGdxImpl = new UtilsLibGDXImpl();
         }
         return pixelUtilsLibGdxImpl;    }
+
+    @Override
+    public AppI app() {
+        if (pixelAppLibGdxImpl == null) {
+            pixelAppLibGdxImpl = new AppLibGDXImpl();
+        }
+        return pixelAppLibGdxImpl;       }
 
 }

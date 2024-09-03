@@ -13,24 +13,45 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see
+// along with this program. If not, see 
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.storage.filesystem;
+package com.pixelgamelibrary.backends.libgdx;
 
-import com.pixelgamelibrary.Platform;
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
+import com.pixelgamelibrary.api.AppI;
 
 /**
  *
  * @author robertvokac
  */
-public class AndroidStorage extends DesktopAndroidStorage {
+public class AppLibGDXImpl implements AppI {
 
-    public AndroidStorage() {
+    @Override
+    public void log(String msg) {
+        Application app = Gdx.app;
+        if (app != null) {
+            Gdx.app.log(getClass().getName(), msg);
+        }
     }
 
-    public Platform getPlatform() {
-        return Platform.ANDROID;
+    @Override
+    public void error(String msg) {
+
+        Application app = Gdx.app;
+        if (app != null) {
+            Gdx.app.error(getClass().getName(), msg);
+        }
     }
+
+    @Override
+    public void debug(String msg) {
+        Application app = Gdx.app;
+        if (app != null) {
+            Gdx.app.debug(getClass().getName(), msg);
+        }
+    }
+
 }

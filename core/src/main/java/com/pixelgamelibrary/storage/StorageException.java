@@ -19,32 +19,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.storage;
 
-import com.badlogic.gdx.utils.Base64Coder;
+import com.pixelgamelibrary.PixelException;
 
 /**
  *
  * @author robertvokac
  */
-public class GdxStorageUtils {
+public class StorageException extends PixelException {
+
+    public StorageException(String string) {
+        super(string);
+    }
     
-    private GdxStorageUtils() {
-        //Not meant to be instantiated.
-    }
-
-        public static String decodeBase64AsString(String string) {
-        return new String(decodeBase64AsByteArray(string));
-    }
-
-    public static byte[] decodeBase64AsByteArray(String string) {
-        return Base64Coder.decode(string);
-    }
-
-    public static String encodeToBase64(String string) {
-        return encodeToBase64(string.getBytes());
-    }
-
-    public static String encodeToBase64(byte[] data) {
-        return String.valueOf(Base64Coder.encode(data));
-    }
-
 }

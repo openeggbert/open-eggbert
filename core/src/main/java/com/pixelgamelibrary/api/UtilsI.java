@@ -19,10 +19,23 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.api;
 
+import com.badlogic.gdx.utils.Base64Coder;
+
 /**
  *
  * @author robertvokac
  */
 public interface UtilsI {
     XmlElement parseXml(String xmlString);
+            default String decodeBase64AsString(String string) {
+        return new String(decodeBase64AsByteArray(string));
+    }
+
+    byte[] decodeBase64AsByteArray(String string);
+
+    default String encodeToBase64(String string) {
+        return encodeToBase64(string.getBytes());
+    }
+
+    String encodeToBase64(byte[] data);
 }

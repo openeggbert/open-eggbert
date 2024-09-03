@@ -37,7 +37,7 @@ import com.openeggbert.core.mod.ModIdentification;
 import com.openeggbert.core.screen.GameSpaceListScreen;
 import com.openeggbert.core.screen.InitScreen;
 import com.pixelgamelibrary.storage.Storage;
-import com.pixelgamelibrary.storage.StorageImplementationLoader;
+import com.pixelgamelibrary.backends.libgdx.storage.StorageFactory;
 import com.openeggbert.core.configuration.OpenEggbertDisplayMode;
 import com.pixelgamelibrary.Game;
 import com.openeggbert.core.utils.OpenEggbertUtils;
@@ -90,7 +90,7 @@ public class OpenEggbertGame extends Game {
     
     public Storage getStorage() {
         if(storage == null) {
-            this.storage = StorageImplementationLoader.getStorage();
+            this.storage = StorageFactory.getStorage();
         }
         return storage;
     }

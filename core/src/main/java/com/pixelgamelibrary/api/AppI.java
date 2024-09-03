@@ -13,24 +13,19 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see
+// along with this program. If not, see 
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.storage.filesystem;
-
-import com.pixelgamelibrary.Platform;
+package com.pixelgamelibrary.api;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopStorage extends DesktopAndroidStorage {
-
-    public DesktopStorage() {
-    }
-
-    public Platform getPlatform() {
-        return Platform.DESKTOP;
-    }
+public interface AppI {
+    void log(String msg);
+    void error(String msg);
+    void debug(String msg);
+    
 }

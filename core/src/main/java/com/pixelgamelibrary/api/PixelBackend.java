@@ -27,8 +27,9 @@ import com.pixelgamelibrary.Platform;
  */
 public interface PixelBackend {
 
-    void exit();
+    
     Platform getPlatform();
+    AppI app();
     GraphicsI graphics();
     AudioI audio();
     InputI input();
@@ -36,5 +37,6 @@ public interface PixelBackend {
     AssetI asset();
     StorageI storage();
     UtilsI utils();
+    void exit();
 
 }

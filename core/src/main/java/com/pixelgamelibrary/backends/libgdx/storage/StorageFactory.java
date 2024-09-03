@@ -17,28 +17,46 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.storage.map;
+package com.pixelgamelibrary.backends.libgdx.storage;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
+import com.pixelgamelibrary.storage.map.MemoryStorage;
+import com.pixelgamelibrary.Pixel;
 import com.pixelgamelibrary.Platform;
+import com.pixelgamelibrary.storage.Storage;
+import com.pixelgamelibrary.storage.StorageException;
 
 /**
  *
  * @author robertvokac
  */
-public class WebGLStorage extends MapStorage {
-    public Platform getPlatform() {
-        return Platform.WEB;
+public class StorageFactory {
+
+    private StorageFactory() {
+        //Not meant to be instantiated.
     }
-    public WebGLStorage() {
-        this("open-eggbert.webGL.Local-Storage");
-    }
-    public WebGLStorage(String preferencesName) {
-        this(Gdx.app.getPreferences(preferencesName));
-    }
-        public WebGLStorage(Preferences preferences) {
-        super(new SimpleLocalStorageMap(preferences));
+    private static Storage storage = null;
+
+    public static Storage getStorage() {
+        final Platform platform = Pixel.get().getPlatform();
+        if (storage == null) {
+            storage = new MemoryStorage();
+        }
+        if (storage == null) {
+
+            if (platform.isDesktop()) {
+                storage = new DesktopStorage();
+            }
+            if (platform.isAndroid()) {
+                storage = new AndroidStorage();
+            }
+            if (platform.isWeb()) {
+                storage = new WebGLStorage();
+            }
+        }
+        if (storage == null) {
+            throw new StorageException("Platform is not supported: " + platform);
+        }
+        return storage;
     }
 
 }

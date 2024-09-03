@@ -19,6 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.pixelgamelibrary.backends.libgdx;
 
+import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.XmlReader;
 import com.pixelgamelibrary.api.XmlElement;
 import com.pixelgamelibrary.api.UtilsI;
@@ -36,6 +37,13 @@ public class UtilsLibGDXImpl implements UtilsI {
 
     }
 
+    public byte[] decodeBase64AsByteArray(String string) {
+        return Base64Coder.decode(string);
+    }
+
+    public String encodeToBase64(byte[] data) {
+        return String.valueOf(Base64Coder.encode(data));
+    }
    
 
 }
