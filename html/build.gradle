@@ -49,7 +49,7 @@ dependencies {
   implementation "de.golfgl.gdxcontrollerutils:gdx-controllerutils-mapping:$controllerMappingVersion:sources"
   implementation project(':core')
   implementation project(':pixel')
-  implementation project(':pixel-libgdx-backend')
+  implementation project(':pixel-backend-libgdx')
   implementation("com.badlogicgames.gdx-controllers:gdx-controllers-gwt:$gdxControllersVersion:sources"){exclude group: "com.badlogicgames.gdx", module: "gdx-backend-gwt"}
   implementation("com.badlogicgames.gdx:gdx-box2d-gwt:$gdxVersion:sources") {exclude group: "com.google.gwt", module: "gwt-user"}
   implementation("com.github.crykn.guacamole:gdx-gwt:$guacamoleVersion:sources"){exclude group: "com.badlogicgames.gdx", module: "gdx-backend-gwt"}
@@ -150,7 +150,7 @@ task addSource {
   doLast {
     sourceSets.main.compileClasspath += files(project(':core').sourceSets.main.allJava.srcDirs)
     sourceSets.main.compileClasspath += files(project(':pixel').sourceSets.main.allJava.srcDirs)
-    sourceSets.main.compileClasspath += files(project(':pixel-libgdx-backend').sourceSets.main.allJava.srcDirs)
+    sourceSets.main.compileClasspath += files(project(':pixel-backend-libgdx').sourceSets.main.allJava.srcDirs)
     sourceSets.main.compileClasspath += files("../core/build/generated/sources/annotationProcessor/java/main")
 
   }

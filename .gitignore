@@ -5,7 +5,7 @@ gradle-app.setting
 /android/build/
 /core/build/
 /pixel/build/
-/pixel-libgdx-backend/build/
+/pixel-backend-libgdx/build/
 /lwjgl2/build/
 /lwjgl3/build/
 /html/build/

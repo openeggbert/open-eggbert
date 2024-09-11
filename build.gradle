@@ -61,8 +61,8 @@ subprojects {
   if (project.name == 'pixel') {
     ext.appName = 'pixel'
   }
-  if (project.name == 'pixel-libgdx-backend') {
-    ext.appName = 'pixel-libgdx-backend'
+  if (project.name == 'pixel-backend-libgdx') {
+    ext.appName = 'pixel-backend-libgdx'
   }
   repositories {
     mavenCentral()

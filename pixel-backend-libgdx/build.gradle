@@ -1,6 +1,6 @@
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 //eclipse.project.name = appName + '-core'
-eclipse.project.name = 'pixel-libgdx-backend'
+eclipse.project.name = 'pixel-backend-libgdx'
 
 sourceSets.test.java.srcDirs = [ "src/test/java/" ]
 

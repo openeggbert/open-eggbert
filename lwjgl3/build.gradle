@@ -34,7 +34,7 @@ dependencies {
   //implementation "com.openeggbert.gdx:gdx-storage:0.0.0-SNAPSHOT"
   implementation project(':core')
   implementation project(':pixel')
-  implementation project(':pixel-libgdx-backend')
+  implementation project(':pixel-backend-libgdx')
 }
 
 def jarName = "${appName}-${version}.jar"
