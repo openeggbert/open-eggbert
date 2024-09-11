@@ -17,23 +17,46 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backends.libgdx;
+package com.pixelgamelibrary.backend.libgdx;
 
-import com.pixelgamelibrary.api.StorageI;
-import com.pixelgamelibrary.backends.libgdx.storage.StorageFactory;
-import com.pixelgamelibrary.storage.Storage;
+import com.badlogic.gdx.utils.XmlReader;
+import com.pixelgamelibrary.api.XmlElement;
 
 /**
  *
  * @author robertvokac
  */
-public class StorageLibGDXImpl implements StorageI {
+public class ElementLibGDXImpl implements XmlElement {
 
-    @Override
-    public Storage getStorage() {
-        return StorageFactory.getStorage();
+    private final XmlReader.Element element;
+
+    public ElementLibGDXImpl(com.badlogic.gdx.utils.XmlReader.Element element) {
+        this.element = element;
     }
 
-   
+    @Override
+    public XmlElement getChildByName(String name) {
+        XmlReader.Element child = element.getChildByName(name);
+        return child == null ? null : new ElementLibGDXImpl(child);
+    }
 
+    @Override
+    public String get(String elementName) {
+        return element.get(elementName);
+    }
+
+    @Override
+    public int getChildCount() {
+        return element.getChildCount();
+    }
+
+    @Override
+    public XmlElement getChild(int i) {
+        XmlReader.Element child = element.getChild(i);
+        return child == null ? null : new ElementLibGDXImpl(child);    }
+
+    @Override
+    public String getText() {
+        return element.getText();
+    }
 }

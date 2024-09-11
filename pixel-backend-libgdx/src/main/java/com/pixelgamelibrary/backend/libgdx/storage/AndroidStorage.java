@@ -13,20 +13,24 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see 
+// along with this program. If not, see
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backends.libgdx;
+package com.pixelgamelibrary.backend.libgdx.storage;
 
-import com.pixelgamelibrary.api.NetI;
+import com.pixelgamelibrary.Platform;
 
 /**
  *
  * @author robertvokac
  */
-public class NetLibGDXImpl implements NetI {
+public class AndroidStorage extends DesktopAndroidStorage {
 
-   
+    public AndroidStorage() {
+    }
 
+    public Platform getPlatform() {
+        return Platform.ANDROID;
+    }
 }

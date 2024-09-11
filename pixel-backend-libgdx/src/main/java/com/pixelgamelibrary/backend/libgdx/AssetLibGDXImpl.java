@@ -17,15 +17,15 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backends.libgdx;
+package com.pixelgamelibrary.backend.libgdx;
 
-import com.pixelgamelibrary.api.AudioI;
+import com.pixelgamelibrary.api.AssetI;
 
 /**
  *
  * @author robertvokac
  */
-public class AudioLibGDXImpl implements AudioI {
+public class AssetLibGDXImpl implements AssetI {
 
    
 

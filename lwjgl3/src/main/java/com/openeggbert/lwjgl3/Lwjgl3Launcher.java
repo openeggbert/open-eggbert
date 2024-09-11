@@ -26,7 +26,7 @@ import com.openeggbert.core.configuration.ScreenResolution;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.gamespace.GameSpace;
 import com.pixelgamelibrary.Pixel;
-import com.pixelgamelibrary.backends.libgdx.PixelLibGDXBackend;
+import com.pixelgamelibrary.backend.libgdx.PixelLibGDXBackend;
 import java.util.Optional;
 
 /** Launches the desktop (LWJGL3) application. */

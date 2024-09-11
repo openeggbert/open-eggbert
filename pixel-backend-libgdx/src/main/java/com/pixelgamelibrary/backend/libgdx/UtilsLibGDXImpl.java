@@ -13,37 +13,37 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see
+// along with this program. If not, see 
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backends.libgdx.storage;
+package com.pixelgamelibrary.backend.libgdx;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
-import com.pixelgamelibrary.Platform;
-import com.pixelgamelibrary.storage.map.MapStorage;
+import com.badlogic.gdx.utils.Base64Coder;
+import com.badlogic.gdx.utils.XmlReader;
+import com.pixelgamelibrary.api.XmlElement;
+import com.pixelgamelibrary.api.UtilsI;
 
 /**
  *
  * @author robertvokac
  */
-public class WebGLStorage extends MapStorage {
+public class UtilsLibGDXImpl implements UtilsI {
 
-    public Platform getPlatform() {
-        return Platform.WEB;
+    @Override
+    public XmlElement parseXml(String xmlString) {
+        XmlReader.Element root = new XmlReader().parse(xmlString);
+        return new ElementLibGDXImpl(root);
+
     }
 
-    public WebGLStorage() {
-        this("pixel.libgdx.webGL.Local-Storage");
+    public byte[] decodeBase64AsByteArray(String string) {
+        return Base64Coder.decode(string);
     }
 
-    public WebGLStorage(String preferencesName) {
-        this(Gdx.app.getPreferences(preferencesName));
+    public String encodeToBase64(byte[] data) {
+        return String.valueOf(Base64Coder.encode(data));
     }
-
-    public WebGLStorage(Preferences preferences) {
-        super(new SimpleLocalStorageMap(preferences));
-    }
+   
 
 }

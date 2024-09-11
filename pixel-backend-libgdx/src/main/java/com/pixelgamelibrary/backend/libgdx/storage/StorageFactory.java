@@ -17,7 +17,7 @@
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backends.libgdx.storage;
+package com.pixelgamelibrary.backend.libgdx.storage;
 
 import com.pixelgamelibrary.storage.map.MemoryStorage;
 import com.pixelgamelibrary.Pixel;

@@ -13,37 +13,24 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see 
+// along with this program. If not, see
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.pixelgamelibrary.backends.libgdx;
+package com.pixelgamelibrary.backend.libgdx.storage;
 
-import com.badlogic.gdx.utils.Base64Coder;
-import com.badlogic.gdx.utils.XmlReader;
-import com.pixelgamelibrary.api.XmlElement;
-import com.pixelgamelibrary.api.UtilsI;
+import com.pixelgamelibrary.Platform;
 
 /**
  *
  * @author robertvokac
  */
-public class UtilsLibGDXImpl implements UtilsI {
+public class DesktopStorage extends DesktopAndroidStorage {
 
-    @Override
-    public XmlElement parseXml(String xmlString) {
-        XmlReader.Element root = new XmlReader().parse(xmlString);
-        return new ElementLibGDXImpl(root);
-
+    public DesktopStorage() {
     }
 
-    public byte[] decodeBase64AsByteArray(String string) {
-        return Base64Coder.decode(string);
+    public Platform getPlatform() {
+        return Platform.DESKTOP;
     }
-
-    public String encodeToBase64(byte[] data) {
-        return String.valueOf(Base64Coder.encode(data));
-    }
-   
-
 }
