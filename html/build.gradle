@@ -47,13 +47,13 @@ dependencies {
   implementation "com.github.tommyettinger:libgdx-utils:$utilsVersion:sources"
   implementation "com.google.jsinterop:jsinterop-annotations:2.0.2:sources"
   implementation "de.golfgl.gdxcontrollerutils:gdx-controllerutils-mapping:$controllerMappingVersion:sources"
+  
   implementation project(':core')
-  implementation project(':pixel')
+  implementation "com.pixelgamelibrary:pixel:$pixelVersion:sources"
   implementation project(':pixel-backend-libgdx')
   implementation("com.badlogicgames.gdx-controllers:gdx-controllers-gwt:$gdxControllersVersion:sources"){exclude group: "com.badlogicgames.gdx", module: "gdx-backend-gwt"}
   implementation("com.badlogicgames.gdx:gdx-box2d-gwt:$gdxVersion:sources") {exclude group: "com.google.gwt", module: "gwt-user"}
   implementation("com.github.crykn.guacamole:gdx-gwt:$guacamoleVersion:sources"){exclude group: "com.badlogicgames.gdx", module: "gdx-backend-gwt"}
-  //implementation "com.openeggbert.gdx:gdx-storage:0.0.0-SNAPSHOT"
 
 }
 
@@ -149,7 +149,6 @@ task dist(dependsOn: [clean, compileGwt]) {
 task addSource {
   doLast {
     sourceSets.main.compileClasspath += files(project(':core').sourceSets.main.allJava.srcDirs)
-    sourceSets.main.compileClasspath += files(project(':pixel').sourceSets.main.allJava.srcDirs)
     sourceSets.main.compileClasspath += files(project(':pixel-backend-libgdx').sourceSets.main.allJava.srcDirs)
     sourceSets.main.compileClasspath += files("../core/build/generated/sources/annotationProcessor/java/main")
 

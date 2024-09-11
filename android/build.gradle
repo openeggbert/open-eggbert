@@ -57,7 +57,7 @@ dependencies {
   implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
   implementation "com.github.MrStahlfelge.gdx-websockets:common:$websocketVersion"
   implementation project(':core')
-  implementation project(':pixel')
+  implementation "com.pixelgamelibrary:pixel:$pixelVersion"
   implementation project(':pixel-backend-libgdx')
   //implementation "com.openeggbert.gdx:gdx-storage:0.0.0-SNAPSHOT"
   

@@ -31,9 +31,9 @@ dependencies {
   implementation "com.github.MrStahlfelge.gdx-websockets:common:$websocketVersion"
   implementation "com.github.crykn.guacamole:gdx-desktop:$guacamoleVersion"
   implementation "games.rednblack.miniaudio:miniaudio:$miniaudioVersion:natives-desktop"
-  //implementation "com.openeggbert.gdx:gdx-storage:0.0.0-SNAPSHOT"
+  
   implementation project(':core')
-  implementation project(':pixel')
+  implementation "com.pixelgamelibrary:pixel:$pixelVersion"
   implementation project(':pixel-backend-libgdx')
 }
 

@@ -5,6 +5,7 @@ import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 import com.openeggbert.core.configuration.ScreenResolution;
 import com.openeggbert.core.main.OpenEggbertGame;
+import com.badlogic.gdx.ai.GdxLogger;
 import com.pixelgamelibrary.Pixel;
 import com.pixelgamelibrary.backend.libgdx.PixelLibGDXBackend;
 

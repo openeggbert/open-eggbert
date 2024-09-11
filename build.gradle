@@ -2,6 +2,7 @@ buildscript {
   repositories {
     mavenCentral()
     maven { url 'https://s01.oss.sonatype.org' }
+    maven { url 'https://repo.openeggbert.com' }
     gradlePluginPortal()
     mavenLocal()
     google()
@@ -60,9 +61,6 @@ configure(subprojects - project(':android')) {
 subprojects {
   version = '0.0.0-SNAPSHOT'
   ext.appName = 'open-eggbert'
-  if (project.name == 'pixel') {
-    ext.appName = 'pixel'
-  }
   if (project.name == 'pixel-backend-libgdx') {
     ext.appName = 'pixel-backend-libgdx'
   }
@@ -74,6 +72,11 @@ subprojects {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
     maven { url 'https://jitpack.io' }
+    
+    maven { url 'https://repo.openeggbert.com' }
+    maven { url 'https://repo.openeggbert.com/releases/' }
+    maven { url 'https://repo.openeggbert.com/snapshots/' }
+  
   }
 }
 
