@@ -34,7 +34,7 @@ dependencies {
   
   implementation project(':core')
   implementation "com.pixelgamelibrary:pixel:$pixelVersion"
-  implementation project(':pixel-backend-libgdx')
+  implementation "com.pixelgamelibrary:pixel-backend-libgdx:$pixelVersion"
 }
 
 def jarName = "${appName}-${version}.jar"

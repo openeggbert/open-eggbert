@@ -61,9 +61,7 @@ configure(subprojects - project(':android')) {
 subprojects {
   version = '0.0.0-SNAPSHOT'
   ext.appName = 'open-eggbert'
-  if (project.name == 'pixel-backend-libgdx') {
-    ext.appName = 'pixel-backend-libgdx'
-  }
+  
   repositories {
     mavenCentral()
     maven { url 'https://s01.oss.sonatype.org' }

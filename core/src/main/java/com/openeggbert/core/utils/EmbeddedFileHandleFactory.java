@@ -21,8 +21,8 @@ package com.openeggbert.core.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.pixelgamelibrary.Pixel;
-import com.pixelgamelibrary.Platform;
+import com.pixelgamelibrary.api.Pixel;
+import com.pixelgamelibrary.api.Platform;
 
 /**
  *

@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.configuration;
 
-import com.pixelgamelibrary.Pixel;
+import com.pixelgamelibrary.api.Pixel;
 import com.openeggbert.core.main.OpenEggbertException;
 
 /**

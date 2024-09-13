@@ -5,8 +5,8 @@ import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.openeggbert.core.main.OpenEggbertGame;
-import com.pixelgamelibrary.Pixel;
-import com.pixelgamelibrary.backend.libgdx.PixelLibGDXBackend;
+import com.pixelgamelibrary.api.Pixel;
+import com.pixelgamelibrary.backend.libgdx.PixelBackendLibGDX;
 
 /** Launches the Android application. */
 public class AndroidLauncher extends AndroidApplication {
@@ -15,7 +15,7 @@ public class AndroidLauncher extends AndroidApplication {
         super.onCreate(savedInstanceState);
         AndroidApplicationConfiguration configuration = new AndroidApplicationConfiguration();
         configuration.useImmersiveMode = true; // Recommended, but not required.
-        Pixel.initBackend(new PixelLibGDXBackend());
+        Pixel.initBackend(new PixelBackendLibGDX());
         initialize(new OpenEggbertGame(), configuration);
     }
 }

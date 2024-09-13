@@ -50,7 +50,8 @@ dependencies {
   
   implementation project(':core')
   implementation "com.pixelgamelibrary:pixel:$pixelVersion:sources"
-  implementation project(':pixel-backend-libgdx')
+  api "com.pixelgamelibrary:pixel-backend-libgdx:$pixelVersion"
+  implementation "com.pixelgamelibrary:pixel-backend-libgdx:$pixelVersion:sources"
   implementation("com.badlogicgames.gdx-controllers:gdx-controllers-gwt:$gdxControllersVersion:sources"){exclude group: "com.badlogicgames.gdx", module: "gdx-backend-gwt"}
   implementation("com.badlogicgames.gdx:gdx-box2d-gwt:$gdxVersion:sources") {exclude group: "com.google.gwt", module: "gwt-user"}
   implementation("com.github.crykn.guacamole:gdx-gwt:$guacamoleVersion:sources"){exclude group: "com.badlogicgames.gdx", module: "gdx-backend-gwt"}
@@ -149,7 +150,6 @@ task dist(dependsOn: [clean, compileGwt]) {
 task addSource {
   doLast {
     sourceSets.main.compileClasspath += files(project(':core').sourceSets.main.allJava.srcDirs)
-    sourceSets.main.compileClasspath += files(project(':pixel-backend-libgdx').sourceSets.main.allJava.srcDirs)
     sourceSets.main.compileClasspath += files("../core/build/generated/sources/annotationProcessor/java/main")
 
   }

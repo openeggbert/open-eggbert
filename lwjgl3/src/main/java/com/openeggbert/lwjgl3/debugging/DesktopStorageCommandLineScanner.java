@@ -19,9 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3.debugging;
 
-import com.pixelgamelibrary.storage.command.StorageCommandLine;
-import com.pixelgamelibrary.storage.command.StorageCommandLineScanner;
-import com.pixelgamelibrary.storage.map.MemoryStorage;
+import com.pixelgamelibrary.api.storage.command.StorageCommandLine;
+import com.pixelgamelibrary.api.storage.command.StorageCommandLineScanner;
+import com.pixelgamelibrary.api.storage.map.MemoryStorage;
 
 /**
  *

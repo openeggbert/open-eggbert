@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.mod;
 
-import com.pixelgamelibrary.api.XmlElement;
+import com.pixelgamelibrary.api.interfaces.XmlElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

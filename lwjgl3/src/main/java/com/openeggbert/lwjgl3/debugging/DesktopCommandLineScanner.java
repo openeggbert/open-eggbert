@@ -19,7 +19,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3.debugging;
 
-import com.pixelgamelibrary.storage.command.CommandLineScanner;
+import com.pixelgamelibrary.api.storage.command.CommandLineScanner;
 import java.util.Scanner;
 
 /**

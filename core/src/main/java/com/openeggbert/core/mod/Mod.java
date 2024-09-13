@@ -19,8 +19,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.mod;
 
-import com.pixelgamelibrary.api.XmlElement;
-import com.pixelgamelibrary.Pixel;
+import com.pixelgamelibrary.api.interfaces.XmlElement;
+import com.pixelgamelibrary.api.Pixel;
 import com.openeggbert.core.release.Release;
 import java.util.ArrayList;
 import java.util.List;

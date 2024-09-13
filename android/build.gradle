@@ -58,8 +58,7 @@ dependencies {
   implementation "com.github.MrStahlfelge.gdx-websockets:common:$websocketVersion"
   implementation project(':core')
   implementation "com.pixelgamelibrary:pixel:$pixelVersion"
-  implementation project(':pixel-backend-libgdx')
-  //implementation "com.openeggbert.gdx:gdx-storage:0.0.0-SNAPSHOT"
+  implementation "com.pixelgamelibrary:pixel-backend-libgdx:$pixelVersion"
   
   natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-arm64-v8a"
   natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi-v7a"
