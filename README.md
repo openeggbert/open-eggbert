@@ -47,6 +47,12 @@ For example, `core:clean` removes `build` folder only from the `core` project.
 
 ## FAQ
 
-How to clean Gradle cache
+### How to clean Gradle cache
 
 `./gradlew clean build --refresh-dependencies`
+
+### Deploy HTML to localhost
+
+Change directory to html/build/dist and run: 
+
+`python3 -m http.server 8000`

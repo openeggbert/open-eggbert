@@ -77,6 +77,7 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
         final Storage storage = Pixel.storage().getStorage();
         storage.createDirectory("modes");
         storage.createDirectory("gameSpaces");
+        System.out.println(storage.debug());
         //storage.file("modes").child("text.txt").writeString("textabc");
         
         storage.flush();

@@ -44,9 +44,9 @@ public class InitScreen extends AbstractOpenEggbertScreen {
     public InitScreen(OpenEggbertGame openEggbertGame) {
         super(openEggbertGame);
         System.out.println("game.getGameSpace().getDataDirectory() != null" + (game.getGameSpace().getDataDirectory() != null));
-        Pixel.app().log("###1");
-        Arrays.asList(Gdx.files.local(".").list()).forEach(e->Pixel.app().log(e.path()));
-        Pixel.app().log("###2");
+//        Pixel.app().log("###1");
+//        Arrays.asList(Gdx.files.local(".").list()).forEach(e->Pixel.app().log(e.path()));
+//        Pixel.app().log("###2");
         if (game.getGameSpace().getDataDirectory() != null) {
             FileHandle configDefFileHandle = null;
             String[] array = new String[]{"config.def", "Config.def", "CONFIG.DEF"};
