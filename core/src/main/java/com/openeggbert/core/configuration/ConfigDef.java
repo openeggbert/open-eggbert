@@ -21,6 +21,7 @@ package com.openeggbert.core.configuration;
 
 import com.openeggbert.core.main.OpenEggbertException;
 import com.openeggbert.core.utils.OpenEggbertUtils;
+import com.pixelgamelibrary.api.Pixel;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.ToString;
@@ -35,8 +36,7 @@ public class ConfigDef {
     private Map<String,String> map = new HashMap<>();
 
     public ConfigDef(String textContentofConfigDefFile) {
-        OpenEggbertUtils
-                .lines(textContentofConfigDefFile)
+        Pixel.utils().splitStringToLinesAsStream(textContentofConfigDefFile)
                 .filter(l -> !l.trim().isEmpty())
                 .filter(l -> !l.trim().startsWith(HASH_CHARACTER))
                 .filter(l -> l.contains(EQUALS_CHARACTER))

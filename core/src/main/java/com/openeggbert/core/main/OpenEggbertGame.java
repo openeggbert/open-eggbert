@@ -19,7 +19,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.main;
 
-import com.openeggbert.core.utils.AssetsTxt;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Camera;
@@ -35,11 +34,9 @@ import com.openeggbert.core.mod.Mod;
 import com.openeggbert.core.mod.ModIdentification;
 import com.openeggbert.core.screen.GameSpaceListScreen;
 import com.openeggbert.core.screen.InitScreen;
-import com.pixelgamelibrary.api.storage.Storage;
 import com.openeggbert.core.configuration.OpenEggbertDisplayMode;
 import com.pixelgamelibrary.api.Game;
 import com.openeggbert.core.utils.OpenEggbertUtils;
-import com.pixelgamelibrary.api.Pixel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -65,7 +62,6 @@ public class OpenEggbertGame extends Game {
     private int widthInPixels = 640;
     private Camera camera;
     private Viewport viewport;
-    private AssetsTxt assets;
     private ConfigDef configDef;
     private OpenEggbertDisplayMode openEggbertDisplayMode = OpenEggbertDisplayMode.WINDOW;
 
@@ -91,7 +87,6 @@ public class OpenEggbertGame extends Game {
         
                 //.setToOrtho(false,640,480);
 
-        assets = new AssetsTxt(Gdx.files.internal("assets.txt").readString());
         System.out.println("Searching mods");
 
         for(FileHandle f:Gdx.files.internal(".").list()) {
@@ -100,31 +95,31 @@ public class OpenEggbertGame extends Game {
         FileHandle embeddedModsDirectory = Gdx.files.internal("embedded_mods");
         System.out.println("embeddedModsDirectory.exists=" + embeddedModsDirectory.exists());
         System.out.println("embeddedModsDirectory.list().length=" + embeddedModsDirectory.list().length);
-        for (FileHandle embeddedModGroup : assets.list(embeddedModsDirectory)) {
-            if(embeddedModGroup.name().equals("README.md"))continue;
-            System.out.println("Found group " + embeddedModGroup.name());
-            for (FileHandle embeddedMod : assets.list(embeddedModGroup)) {
-                System.out.println("Found mod " + embeddedMod.name());
-                
-                FileHandle modXml = null;
-                for(FileHandle file: assets.list(embeddedMod)) {
-                    if(file.name().equals("mod.xml")) {
-                        modXml = file;
-                    }
-                }
-                
-                if (modXml == null) {
-                    continue;
-                }
-                System.out.println("Found mod: " + embeddedMod.name());
-                
-                Mod mod = new Mod(modXml.readString());
-                embeddedMods.add(mod);
-                System.out.println("embeddedMods.size(): " + embeddedMods.size());
-//                for (int i = 0; i < 42; i++) embeddedMods.add(mod);//for testing purposes
-            }
-
-        }
+//        for (FileHandle embeddedModGroup : assets.list(embeddedModsDirectory)) {
+//            if(embeddedModGroup.name().equals("README.md"))continue;
+//            System.out.println("Found group " + embeddedModGroup.name());
+//            for (FileHandle embeddedMod : assets.list(embeddedModGroup)) {
+//                System.out.println("Found mod " + embeddedMod.name());
+//                
+//                FileHandle modXml = null;
+//                for(FileHandle file: assets.list(embeddedMod)) {
+//                    if(file.name().equals("mod.xml")) {
+//                        modXml = file;
+//                    }
+//                }
+//                
+//                if (modXml == null) {
+//                    continue;
+//                }
+//                System.out.println("Found mod: " + embeddedMod.name());
+//                
+//                Mod mod = new Mod(modXml.readString());
+//                embeddedMods.add(mod);
+//                System.out.println("embeddedMods.size(): " + embeddedMods.size());
+////                for (int i = 0; i < 42; i++) embeddedMods.add(mod);//for testing purposes
+//            }
+//
+//        }
         ////
         batch = new SpriteBatch();
         //batch.setProjectionMatrix(viewport.getCamera().combined);

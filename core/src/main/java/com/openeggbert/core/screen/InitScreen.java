@@ -27,10 +27,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.openeggbert.core.configuration.ConfigDef;
 import com.openeggbert.core.main.OpenEggbertGame;
-import com.openeggbert.core.utils.EmbeddedFileHandleFactory;
 import com.openeggbert.core.configuration.OpenEggbertDisplayMode;
-import com.pixelgamelibrary.api.Pixel;
-import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -51,14 +48,14 @@ public class InitScreen extends AbstractOpenEggbertScreen {
             FileHandle configDefFileHandle = null;
             String[] array = new String[]{"config.def", "Config.def", "CONFIG.DEF"};
             if (game.getGameSpace().isEmbeddedAssets()) {
-                for (String a : array) {
-                    configDefFileHandle = EmbeddedFileHandleFactory.create(game.getGameSpace().getDataDirectory() + "/" + a);
-                    if (configDefFileHandle.exists()) {
-                        break;
-                    } else {
-                        continue;
-                    }
-                }
+//                for (String a : array) {
+//                    configDefFileHandle = EmbeddedFileHandleFactory.create(game.getGameSpace().getDataDirectory() + "/" + a);
+//                    if (configDefFileHandle.exists()) {
+//                        break;
+//                    } else {
+//                        continue;
+//                    }
+//                }
             } else {
                 for (String a : array) {
                     configDefFileHandle = Gdx.files.absolute(game.getGameSpace().getDataDirectory() + "/" + a);

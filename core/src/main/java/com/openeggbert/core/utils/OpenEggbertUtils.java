@@ -40,10 +40,6 @@ public class OpenEggbertUtils {
         //Not meant to be instantiated.
     }
 
-    public static Stream<String> lines(String string) {
-        return Arrays.asList(string.split("\\r?\\n")).stream();
-    }
-
     public static <T> List<T> streamToList(Stream<T> stream) {
         return stream.collect(Collectors.toList());
     }
