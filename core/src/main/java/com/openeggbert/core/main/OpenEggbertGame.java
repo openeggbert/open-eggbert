@@ -20,7 +20,6 @@
 package com.openeggbert.core.main;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -37,6 +36,8 @@ import com.openeggbert.core.screen.InitScreen;
 import com.openeggbert.core.configuration.OpenEggbertDisplayMode;
 import com.pixelgamelibrary.api.Game;
 import com.openeggbert.core.utils.OpenEggbertUtils;
+import com.pixelgamelibrary.api.Pixel;
+import com.pixelgamelibrary.api.storage.FileHandle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -89,37 +90,43 @@ public class OpenEggbertGame extends Game {
 
         System.out.println("Searching mods");
 
-        for(FileHandle f:Gdx.files.internal(".").list()) {
-            System.out.println("assets contains also: " + f.name());
-        }
-        FileHandle embeddedModsDirectory = Gdx.files.internal("embedded_mods");
-        System.out.println("embeddedModsDirectory.exists=" + embeddedModsDirectory.exists());
-        System.out.println("embeddedModsDirectory.list().length=" + embeddedModsDirectory.list().length);
-//        for (FileHandle embeddedModGroup : assets.list(embeddedModsDirectory)) {
-//            if(embeddedModGroup.name().equals("README.md"))continue;
-//            System.out.println("Found group " + embeddedModGroup.name());
-//            for (FileHandle embeddedMod : assets.list(embeddedModGroup)) {
-//                System.out.println("Found mod " + embeddedMod.name());
-//                
-//                FileHandle modXml = null;
-//                for(FileHandle file: assets.list(embeddedMod)) {
-//                    if(file.name().equals("mod.xml")) {
-//                        modXml = file;
-//                    }
-//                }
-//                
-//                if (modXml == null) {
-//                    continue;
-//                }
-//                System.out.println("Found mod: " + embeddedMod.name());
-//                
-//                Mod mod = new Mod(modXml.readString());
-//                embeddedMods.add(mod);
-//                System.out.println("embeddedMods.size(): " + embeddedMods.size());
-////                for (int i = 0; i < 42; i++) embeddedMods.add(mod);//for testing purposes
-//            }
-//
+//        for(FileHandle f:Gdx.files.internal(".").list()) {
+//            System.out.println("assets contains also: " + f.name());
 //        }
+        
+        com.pixelgamelibrary.api.storage.FileHandle embeddedModsDirectory = Pixel.asset().getAssets().file("/embedded_mods");
+        System.out.println("embeddedModsDirectory.exists=" + embeddedModsDirectory.exists());
+        System.out.println("embeddedModsDirectory.list().size()=" + embeddedModsDirectory.list().size());
+        embeddedModsDirectory.list().forEach(e->System.out.println(e.path()));
+        
+        Pixel.asset().getAssets().list().forEach(e->System.out.println(e));
+       
+        
+        for (FileHandle embeddedModGroup : embeddedModsDirectory.list()) {
+            if(embeddedModGroup.name().equals("README.md"))continue;
+            System.out.println("Found group " + embeddedModGroup.name());
+            for (FileHandle embeddedMod : embeddedModGroup.list()) {
+                System.out.println("Found mod " + embeddedMod.name());
+                
+                FileHandle modXml = null;
+                for(FileHandle file: embeddedMod.list()) {
+                    if(file.name().equals("mod.xml")) {
+                        modXml = file;
+                    }
+                }
+                
+                if (modXml == null) {
+                    continue;
+                }
+                System.out.println("Found mod: " + embeddedMod.name());
+                
+                Mod mod = new Mod(modXml.readString());
+                embeddedMods.add(mod);
+                System.out.println("embeddedMods.size(): " + embeddedMods.size());
+//                for (int i = 0; i < 42; i++) embeddedMods.add(mod);//for testing purposes
+            }
+
+        }
         ////
         batch = new SpriteBatch();
         //batch.setProjectionMatrix(viewport.getCamera().combined);
@@ -141,7 +148,7 @@ public class OpenEggbertGame extends Game {
         }
     }
 
-    public void loadImageTexture(FileHandle fileHandle) {
+    public void loadImageTexture(com.badlogic.gdx.files.FileHandle fileHandle) {
         Texture texture = new Texture(fileHandle);
         imageTextures.put(OpenEggbertUtils.getFileNameWithoutExtension(fileHandle.name().toUpperCase()), texture);
     }
