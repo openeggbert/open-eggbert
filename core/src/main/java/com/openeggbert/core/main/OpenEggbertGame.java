@@ -23,7 +23,6 @@ import com.openeggbert.core.utils.AssetsTxt;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -69,7 +68,6 @@ public class OpenEggbertGame extends Game {
     private AssetsTxt assets;
     private ConfigDef configDef;
     private OpenEggbertDisplayMode openEggbertDisplayMode = OpenEggbertDisplayMode.WINDOW;
-    private Storage storage;
 
     public OpenEggbertGame() {
         this(null, null);
@@ -83,13 +81,6 @@ public class OpenEggbertGame extends Game {
         this.gameSpace = gameSpace;
         this.absolutePathOfRootDirectory = absolutePathOfRootDirectoryIn;
 
-    }
-    
-    public Storage getStorage() {
-        if(storage == null) {
-            this.storage = Pixel.storage().getStorage();
-        }
-        return storage;
     }
 
     @Override

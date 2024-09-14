@@ -24,6 +24,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -32,6 +33,7 @@ import com.openeggbert.core.gamespace.GameSpace;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.mod.Mod;
 import com.openeggbert.core.mod.ModType;
+import com.pixelgamelibrary.api.Pixel;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -72,8 +74,9 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
         Preferences prefs = Gdx.app.getPreferences("My Preferences");
         prefs.putString("test", "abc");
         prefs.flush();
-        game.getStorage().mkdir("modes");
-        game.getStorage().mkdir("game_spaces");
+        Pixel.storage().getStorage().createDirectory("modes");
+        Pixel.storage().getStorage().createDirectory("gameSpaces");
+        Pixel.storage().getStorage().flush();
     }
 
     @Override
