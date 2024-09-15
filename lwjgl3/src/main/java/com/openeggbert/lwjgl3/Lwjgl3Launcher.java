@@ -23,11 +23,13 @@ package com.openeggbert.lwjgl3;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.openeggbert.core.configuration.ScreenResolution;
-import com.openeggbert.core.main.OpenEggbertGame;
+import com.openeggbert.core.main.OpenEggbertApplication;
 import com.openeggbert.core.gamespace.GameSpace;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.backend.libgdx.PixelBackendLibGDX;
 import java.util.Optional;
+import com.pixelgamelibrary.api.GameI;
+import com.pixelgamelibrary.backend.libgdx.game.LibGdxGame;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
@@ -40,8 +42,17 @@ public class Lwjgl3Launcher {
     private static Lwjgl3Application createApplication() {
         Optional<GameSpace> gameSpace = DesktopUtils.tryToLoadGameSpace();
         String currentDirectory = DesktopUtils.getPathOfDirectoryWhereJarIsRunning();
-        final OpenEggbertGame openEggbertGame = gameSpace.isPresent() ? new OpenEggbertGame(gameSpace.get(), currentDirectory) : new OpenEggbertGame(currentDirectory);
-        return new Lwjgl3Application(openEggbertGame, getDefaultConfiguration());
+        OpenEggbertApplication openEggbertApplication = new OpenEggbertApplication();
+        
+        GameI game;
+        if (gameSpace.isPresent()) {
+            game = openEggbertApplication.createGame("gameSpace", gameSpace.get(), "currentDirectory", currentDirectory);
+        } else {
+            game = openEggbertApplication.createGame("currentDirectory", currentDirectory);
+        }  
+        
+        LibGdxGame libGdxGame = new LibGdxGame(game);
+        return new Lwjgl3Application(libGdxGame, getDefaultConfiguration());
     }
 
     private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {

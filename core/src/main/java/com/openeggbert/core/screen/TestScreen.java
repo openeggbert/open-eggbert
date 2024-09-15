@@ -32,7 +32,7 @@ import java.util.function.Function;
  *
  * @author robertvokac
  */
-public class TestScreen extends AbstractOpenEggbertScreen {
+public class TestScreen extends OpenEggbertScreen {
 
     public TestScreen(OpenEggbertGame openEggbertGame) {
         super(openEggbertGame);

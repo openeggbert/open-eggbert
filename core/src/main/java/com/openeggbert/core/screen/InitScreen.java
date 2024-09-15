@@ -34,7 +34,7 @@ import java.util.Optional;
  *
  * @author robertvokac
  */
-public class InitScreen extends AbstractOpenEggbertScreen {
+public class InitScreen extends OpenEggbertScreen {
 
     private float timeSeconds = 0f;
 

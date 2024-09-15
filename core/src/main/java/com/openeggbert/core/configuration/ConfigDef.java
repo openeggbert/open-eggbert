@@ -20,7 +20,6 @@
 package com.openeggbert.core.configuration;
 
 import com.openeggbert.core.main.OpenEggbertException;
-import com.openeggbert.core.utils.OpenEggbertUtils;
 import com.pixelgamelibrary.api.Pixel;
 import java.util.HashMap;
 import java.util.Map;

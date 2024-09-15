@@ -25,10 +25,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.pixelgamelibrary.api.Screen;
 import com.openeggbert.core.gamespace.GameFileType;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.utils.OpenEggbertUtils;
+import com.pixelgamelibrary.api.ScreenAdapter;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,12 +36,12 @@ import java.util.Optional;
  *
  * @author robertvokac
  */
-public abstract class AbstractOpenEggbertScreen extends Screen {
+public abstract class OpenEggbertScreen extends ScreenAdapter {
 
     protected OpenEggbertGame game;
     protected SpriteBatch batch;
 
-    public AbstractOpenEggbertScreen(OpenEggbertGame openEggbertGame) {
+    public OpenEggbertScreen(OpenEggbertGame openEggbertGame) {
         this.game = openEggbertGame;
         this.batch = openEggbertGame.getBatch();
         loadBackgroundTextureIfNeeded();

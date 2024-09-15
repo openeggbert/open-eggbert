@@ -6,8 +6,10 @@ import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 import com.openeggbert.core.configuration.ScreenResolution;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.badlogic.gdx.ai.GdxLogger;
+import com.openeggbert.core.main.OpenEggbertApplication;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.backend.libgdx.PixelBackendLibGDX;
+import com.pixelgamelibrary.backend.libgdx.game.LibGdxGame;
 
 /** Launches the GWT application. */
 public class GwtLauncher extends GwtApplication {
@@ -26,6 +28,6 @@ public class GwtLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener createApplicationListener () {
-            return new OpenEggbertGame();
+            return new LibGdxGame(new OpenEggbertApplication().createGame());
         }
 }

@@ -29,6 +29,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.openeggbert.core.gamespace.GameSpace;
+import com.openeggbert.core.main.OpenEggbertApplication;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.mod.Mod;
 import com.openeggbert.core.mod.ModType;
@@ -44,7 +45,7 @@ import lombok.ToString;
  *
  * @author robertvokac
  */
-public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
+public class GameSpaceListScreen extends OpenEggbertScreen {
 
     private int pageNumber = 1;
     private final int pageSize = 5;
@@ -85,6 +86,10 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
 
     @Override
     public void show() {
+                System.out.println("Calling : GameSpaceListScreen : show");
+                try{
+throw new RuntimeException();
+                } catch (Exception e) {e.printStackTrace();}
         Gdx.input.setInputProcessor(new InputAdapter() {
 
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
@@ -184,6 +189,7 @@ public class GameSpaceListScreen extends AbstractOpenEggbertScreen {
 
     @Override
     public void renderOpenEggbertScreen(float delta) {
+        System.out.println("Calling : GameSpaceListScreen : renderOpenEggbertScreen");
         //Gdx.app.log(getClass().getName(), game.getStorage().debug());
 
         timeSeconds += Gdx.graphics.getRawDeltaTime();

@@ -31,7 +31,7 @@ import java.util.Optional;
  *
  * @author robertvokac
  */
-public class DemoScreen extends AbstractOpenEggbertScreen {
+public class DemoScreen extends OpenEggbertScreen {
 
     public DemoScreen(OpenEggbertGame openEggbertGame) {
         super(openEggbertGame);

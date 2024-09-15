@@ -30,7 +30,7 @@ import com.openeggbert.core.main.OpenEggbertGame;
  *
  * @author robertvokac
  */
-public class AbstractGameScreen extends AbstractOpenEggbertScreen {
+public class AbstractGameScreen extends OpenEggbertScreen {
 
     public AbstractGameScreen(OpenEggbertGame openEggbertGame) {
         super(openEggbertGame);

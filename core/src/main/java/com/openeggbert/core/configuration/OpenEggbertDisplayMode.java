@@ -21,6 +21,7 @@ package com.openeggbert.core.configuration;
 
 import com.pixelgamelibrary.api.Pixel;
 import com.openeggbert.core.main.OpenEggbertException;
+import com.pixelgamelibrary.api.WindowMode;
 
 /**
  *
@@ -63,9 +64,9 @@ public enum OpenEggbertDisplayMode {
     }
 
     public static OpenEggbertDisplayMode setDisplayMode(OpenEggbertDisplayMode displayMode) {
-        String result = Pixel.graphics().setDisplayMode(displayMode == FULLSCREEN, displayMode == WINDOW);
+        WindowMode result = Pixel.graphics().setDisplayMode(displayMode == FULLSCREEN, displayMode == WINDOW);
 
-        return result == null ? null : OpenEggbertDisplayMode.valueOf(result);
+        return result == null ? null : OpenEggbertDisplayMode.valueOf(result.name());
     }
 
     public OpenEggbertDisplayMode flip() {
