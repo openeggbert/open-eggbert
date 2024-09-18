@@ -28,7 +28,7 @@ import com.openeggbert.core.gamespace.GameSpace;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.backend.libgdx.PixelBackendLibGDX;
 import java.util.Optional;
-import com.pixelgamelibrary.api.GameI;
+import com.pixelgamelibrary.api.Game;
 import com.pixelgamelibrary.backend.libgdx.game.LibGdxGame;
 
 /** Launches the desktop (LWJGL3) application. */
@@ -44,7 +44,7 @@ public class Lwjgl3Launcher {
         String currentDirectory = DesktopUtils.getPathOfDirectoryWhereJarIsRunning();
         OpenEggbertApplication openEggbertApplication = new OpenEggbertApplication();
         
-        GameI game;
+        Game game;
         if (gameSpace.isPresent()) {
             game = openEggbertApplication.createGame("gameSpace", gameSpace.get(), "currentDirectory", currentDirectory);
         } else {

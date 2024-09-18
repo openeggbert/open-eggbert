@@ -20,9 +20,9 @@
 package com.openeggbert.core.main;
 
 import com.openeggbert.core.gamespace.GameSpace;
-import com.pixelgamelibrary.api.GameI;
 import com.pixelgamelibrary.api.PixelApplication;
 import java.util.Map;
+import com.pixelgamelibrary.api.Game;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all
@@ -34,7 +34,7 @@ public class OpenEggbertApplication extends PixelApplication {
     private static final String ABSOLUTE_PATH_OF_ROOT_DIRECTORY_IN = "absolutePathOfRootDirectoryIn";
     
     @Override
-    public GameI createGameViaMap(Map<String, Object> objects) {
+    public Game createGameViaMap(Map<String, Object> objects) {
 
         String absolutePathOfRootDirectoryIn = null;
         GameSpace gameSpace = null;

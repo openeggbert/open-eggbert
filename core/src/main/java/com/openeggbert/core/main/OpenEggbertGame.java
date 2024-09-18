@@ -73,12 +73,12 @@ public class OpenEggbertGame extends GameAdapter {
 //        for(FileHandle f:Gdx.files.internal(".").list()) {
 //            System.out.println("assets contains also: " + f.name());
 //        }
-        com.pixelgamelibrary.api.storage.FileHandle embeddedModsDirectory = Pixel.asset().getAssets().file("/embedded_mods");
+        com.pixelgamelibrary.api.storage.FileHandle embeddedModsDirectory = Pixel.files().assets().file("/embedded_mods");
         System.out.println("embeddedModsDirectory.exists=" + embeddedModsDirectory.exists());
         System.out.println("embeddedModsDirectory.list().size()=" + embeddedModsDirectory.list().size());
         embeddedModsDirectory.list().forEach(e -> System.out.println(e.path()));
 
-        Pixel.asset().getAssets().list().forEach(e -> System.out.println(e));
+        Pixel.files().assets().list().forEach(e -> System.out.println(e));
 
         for (FileHandle embeddedModGroup : embeddedModsDirectory.list()) {
             if (embeddedModGroup.name().equals("README.md")) {
