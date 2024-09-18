@@ -58,7 +58,7 @@ public class TestScreen extends OpenEggbertScreen {
         Function<String, String> removeCurrentDir = i -> i == null ? null : i.replace(game.getAbsolutePathOfRootDirectory()+ "/", "");
         if (Gdx.app.getType() == Application.ApplicationType.Desktop && game.getGameSpace() != null) {
             BitmapFont font;
-            font = new BitmapFont();
+            font = game.getFont();
             int x = 140;
             font.draw(game.getBatch(), "getFeatureLevel=" + game.getGameSpace().getFeatureLevel(), 40, x);
             x += 25;
@@ -77,7 +77,7 @@ public class TestScreen extends OpenEggbertScreen {
 
         if (game.getAbsolutePathOfRootDirectory()!= null) {
             BitmapFont font;
-            font = new BitmapFont();
+            font = game.getFont();
             font.draw(game.getBatch(), game.getAbsolutePathOfRootDirectory(), 40, 340);
         }
         batch.draw(game.getImage(), 40, 400);

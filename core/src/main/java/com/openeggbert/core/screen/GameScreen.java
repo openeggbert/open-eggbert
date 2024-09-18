@@ -65,7 +65,7 @@ public class GameScreen extends AbstractGameScreen {
         drawBackgroundIfAvailable();
         
         BitmapFont font;
-        font = new BitmapFont();
+        font = game.getFont();
         font.getData().setScale(2.0f);
         font.setColor(Color.RED);
         

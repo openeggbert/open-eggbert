@@ -1,5 +1,6 @@
 package com.openeggbert.core.main;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -112,7 +113,11 @@ public class OpenEggbertGame extends GameAdapter {
         //batch.setProjectionMatrix(viewport.getCamera().combined);
         image = new Texture("libgdx.png");
         shapeRenderer = new ShapeRenderer();
-        font = new BitmapFont();
+        font = new BitmapFont(
+        Gdx.files.internal("com/badlogic/gdx/utils/lsans-15.fnt"), Gdx.files.internal("com/badlogic/gdx/utils/lsans-15.png"),
+			false, true
+        );
+        
         System.out.println("Going to set screen");
         setScreen(gameSpace == null ? new GameSpaceListScreen(this) : new InitScreen(this));
     }

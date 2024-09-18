@@ -9,7 +9,7 @@ buildscript {
   }
 }
 plugins {
-  id "io.github.fourlastor.construo" version "1.2.0"
+  id "io.github.fourlastor.construo" version "1.4.1"
   id "application"
 }
 
@@ -23,6 +23,10 @@ eclipse.project.name = appName + '-lwjgl3'
 java.sourceCompatibility = 11
 java.targetCompatibility = 11
 
+if (JavaVersion.current().isJava9Compatible()) {
+        compileJava.options.release.set(11)
+}
+
 dependencies {
   implementation "com.badlogicgames.gdx-controllers:gdx-controllers-desktop:$gdxControllersVersion"
   implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
@@ -35,6 +39,10 @@ dependencies {
   implementation project(':core')
   implementation "com.pixelgamelibrary:pixel:$pixelVersion"
   implementation "com.pixelgamelibrary:pixel-backend-libgdx:$pixelVersion"
+  
+  if(enableGraalNative == 'true') {
+    implementation "io.github.berstanio:gdx-svmhelper-backend-lwjgl3:$graalHelperVersion"
+    }
 }
 
 def jarName = "${appName}-${version}.jar"
@@ -82,19 +90,19 @@ construo {
     targets.configure {
       create("linuxX64", Target.Linux) {
         architecture.set(Target.Architecture.X86_64)
-        jdkUrl.set("https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.11%2B9/OpenJDK17U-jdk_x64_linux_hotspot_17.0.11_9.tar.gz")
+        jdkUrl.set("https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.12%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.12_7.tar.gz")
       }
       create("macM1", Target.MacOs) {
         architecture.set(Target.Architecture.AARCH64)
-        jdkUrl.set("https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.11%2B9/OpenJDK17U-jdk_aarch64_mac_hotspot_17.0.11_9.tar.gz")
+        jdkUrl.set("https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.12%2B7/OpenJDK17U-jdk_aarch64_mac_hotspot_17.0.12_7.tar.gz")
         // macOS needs an identifier
-        identifier.set("i.should.be.changed.before.merge." + appName)
+        identifier.set("com.openeggbert." + appName)
         // Optional: icon for macOS
         macIcon.set(project.file("icons/logo.icns"))
       }
       create("macX64", Target.MacOs) {
         architecture.set(Target.Architecture.X86_64)
-        jdkUrl.set("https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.11%2B9/OpenJDK17U-jdk_x64_mac_hotspot_17.0.11_9.tar.gz")
+        jdkUrl.set("https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.12%2B7/OpenJDK17U-jdk_x64_mac_hotspot_17.0.12_7.tar.gz")
         // macOS needs an identifier
         identifier.set("i.should.be.changed.before.merge." + appName)
         // Optional: icon for macOS
@@ -102,7 +110,7 @@ construo {
       }
       create("winX64", Target.Windows) {
         architecture.set(Target.Architecture.X86_64)
-        jdkUrl.set("https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.11%2B9/OpenJDK17U-jdk_x64_windows_hotspot_17.0.11_9.zip")
+        jdkUrl.set("https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.12%2B7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.12_7.zip")
       }
     }
 }
@@ -111,6 +119,23 @@ construo {
 tasks.register('dist') {
   dependsOn 'jar'
 }
+
+distributions {
+  main {
+    contents {
+      into('libs') {
+        project.configurations.runtimeClasspath.files.findAll { file ->
+          file.getName() != project.tasks.jar.outputs.files.singleFile.name
+        }.each { file ->
+          exclude file.name
+        }
+      }
+    }
+  }
+}
+
+startScripts.dependsOn(':lwjgl3:jar')
+startScripts.classpath = project.tasks.jar.outputs.files
 
 if(enableGraalNative == 'true') {
   apply from: file("nativeimage.gradle")

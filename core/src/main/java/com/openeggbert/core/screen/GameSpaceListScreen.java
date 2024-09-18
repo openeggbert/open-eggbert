@@ -202,7 +202,7 @@ throw new RuntimeException();
         batch.begin();
 
         BitmapFont font;
-        font = new BitmapFont();
+        font = game.getFont();
         font.getData().setScale(4.0f);
         font.setColor(Color.BLACK);
         int x = (int) (game.getWidthInPixels() * 0.1875f);

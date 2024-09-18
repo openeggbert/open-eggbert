@@ -43,5 +43,5 @@ build.dependsOn buildJavaScript
 
 tasks.register("run") {
   description = "Run the JavaScript application hosted via a local Jetty server at http://localhost:8080/"
-  dependsOn(buildJavaScript, tasks.named("jettyRun"))
+  dependsOn(buildJavaScript/*, tasks.named("jettyRun")*/)//todo
 }
