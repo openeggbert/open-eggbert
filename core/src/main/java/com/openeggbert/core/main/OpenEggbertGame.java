@@ -15,7 +15,7 @@ import com.openeggbert.core.mod.ModIdentification;
 import com.openeggbert.core.screen.GameSpaceListScreen;
 import com.openeggbert.core.screen.InitScreen;
 import com.openeggbert.core.utils.OpenEggbertUtils;
-import com.pixelgamelibrary.api.GameAdapter;
+import com.pixelgamelibrary.api.game.GameAdapter;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.storage.FileHandle;
 import java.util.ArrayList;

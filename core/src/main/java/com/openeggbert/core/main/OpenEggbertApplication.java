@@ -22,7 +22,7 @@ package com.openeggbert.core.main;
 import com.openeggbert.core.gamespace.GameSpace;
 import com.pixelgamelibrary.api.PixelApplication;
 import java.util.Map;
-import com.pixelgamelibrary.api.Game;
+import com.pixelgamelibrary.api.game.Game;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all

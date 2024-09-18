@@ -28,7 +28,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.openeggbert.core.gamespace.GameFileType;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.utils.OpenEggbertUtils;
-import com.pixelgamelibrary.api.ScreenAdapter;
+import com.pixelgamelibrary.api.screen.ScreenAdapter;
 import java.util.List;
 import java.util.Optional;
 

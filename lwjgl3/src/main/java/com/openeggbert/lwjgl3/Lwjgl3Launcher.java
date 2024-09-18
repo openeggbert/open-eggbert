@@ -28,7 +28,7 @@ import com.openeggbert.core.gamespace.GameSpace;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.backend.libgdx.PixelBackendLibGDX;
 import java.util.Optional;
-import com.pixelgamelibrary.api.Game;
+import com.pixelgamelibrary.api.game.Game;
 import com.pixelgamelibrary.backend.libgdx.game.LibGdxGame;
 
 /** Launches the desktop (LWJGL3) application. */
