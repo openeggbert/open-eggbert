@@ -21,12 +21,12 @@ package com.openeggbert.lwjgl3.debugging;
 
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.backend.libgdx.PixelBackendLibGDX;
-import com.pixelgamelibrary.backend.libgdx.assets.AssetsTxt;
+import com.pixelgamelibrary.api.utils.AssetsTxt;
 import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ *f
  * @author robertvokac
  */
 public class DebuggingAssetsTxt {
