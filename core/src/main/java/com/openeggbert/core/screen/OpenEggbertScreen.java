@@ -71,6 +71,21 @@ public abstract class OpenEggbertScreen extends ScreenAdapter {
         
         
         String fileName = getBackgroundFileName();
+        if(getScreenType().isPresent() && getScreenType().get().isBasic()) {
+            if (!game.existsImageTexture("BASIC")) {
+                FileHandle fileHandle;
+                if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.WebGL) {
+                    Gdx.app.log("screen","loading from internal");
+                    fileHandle = Gdx.files.internal("BASIC/BASIC.PNG");
+                } else {
+
+                    Gdx.app.log("screen","loading from classpath");
+                    fileHandle = Gdx.files.classpath("BASIC/BASIC.PNG");
+            }
+                game.loadImageTexture(fileHandle);
+        }
+            return;
+        }
         List<String> possibleFileNames = OpenEggbertUtils.createPossibleFileNames(GameFileType.IMAGE8, fileName);
         for(String possibleFileName: possibleFileNames) {
         if (!game.existsImageTexture(possibleFileName)) {
@@ -111,6 +126,10 @@ public abstract class OpenEggbertScreen extends ScreenAdapter {
     }
     
     protected void drawBackgroundIfAvailable() {
+        if(getScreenType().isPresent() && getScreenType().get().isBasic()) {
+            batch.draw(game.getImageTexture("BASIC").get(), 0, 0, 640,480);
+            return;
+        }
         if (getBackgroundTexture().isPresent()) {
             batch.draw(getBackgroundTexture().get(), 0, 0);
         }

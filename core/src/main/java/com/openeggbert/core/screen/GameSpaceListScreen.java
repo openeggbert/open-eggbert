@@ -27,7 +27,6 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.openeggbert.core.gamespace.GameSpace;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.mod.Mod;
@@ -35,6 +34,7 @@ import com.openeggbert.core.mod.ModType;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.storage.Storage;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -44,7 +44,7 @@ import lombok.ToString;
  *
  * @author robertvokac
  */
-public class GameSpaceListScreen extends OpenEggbertScreen {
+public class GameSpaceListScreen extends AbstractBasicScreen {
 
     private int pageNumber = 1;
     private final int pageSize = 5;
@@ -65,7 +65,6 @@ public class GameSpaceListScreen extends OpenEggbertScreen {
     public GameSpaceListScreen(OpenEggbertGame openEggbertGame) {
         super(openEggbertGame);
         this.fullEmbeddedMods = openEggbertGame.getEmbeddedMods().stream().filter(m -> m.getModType() == ModType.FULL).collect(Collectors.toList());
-        
 
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             game.setHeightInPixels(Gdx.app.getGraphics().getHeight());
@@ -79,16 +78,18 @@ public class GameSpaceListScreen extends OpenEggbertScreen {
         storage.createDirectory("gameSpaces");
         System.out.println(storage.debug());
         //storage.file("modes").child("text.txt").writeString("textabc");
-        
+
         storage.flush();
     }
 
     @Override
+    protected final Optional<ScreenType> getScreenType() {
+        return Optional.of(ScreenType.GAME_SPACE_LIST);
+    }
+
+    @Override
     public void show() {
-                System.out.println("Calling : GameSpaceListScreen : show");
-                try{
-throw new RuntimeException();
-                } catch (Exception e) {e.printStackTrace();}
+        System.out.println("Calling : GameSpaceListScreen : show");
         Gdx.input.setInputProcessor(new InputAdapter() {
 
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
@@ -141,14 +142,14 @@ throw new RuntimeException();
                     System.out.println(buttons[i].toString());
                 }
                 y = Gdx.graphics.getHeight() - y;
-                
+
                 for (int i = 0; i < 5; i++) {
                     if (buttons[i] == null) {
                         break;
                     }
                     if (x > buttons[i].x && x < (buttons[i].x + buttons[i].width)
                             && y > buttons[i].y && y < (buttons[i].y + buttons[i].height)) {
-                        
+
                         activateButton(i);
 
                     }
@@ -196,10 +197,11 @@ throw new RuntimeException();
             activateButton(0);
         }
 
-        ScreenUtils.clear(1f, 1f, 0.6f, 0.5f);
+        //ScreenUtils.clear(1f, 1f, 0.6f, 0.5f);
         int buttonHeight = (int) (game.getHeightInPixels() * 0.1f);
 
         batch.begin();
+        drawBackgroundIfAvailable();
 
         BitmapFont font;
         font = game.getFont();

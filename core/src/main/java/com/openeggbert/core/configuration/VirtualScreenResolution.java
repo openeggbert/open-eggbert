@@ -27,7 +27,7 @@ import lombok.Getter;
  *
  * @author robertvokac
  */
-public enum ScreenResolution implements IsThisFeatureEnabledForStrictMode {
+public enum VirtualScreenResolution implements IsThisFeatureEnabledForStrictMode {
     VGA(640,480,true),
     QUAD_VGA(1280, 960, false),
     CURRENT(0, 0, false);
@@ -37,7 +37,7 @@ public enum ScreenResolution implements IsThisFeatureEnabledForStrictMode {
     private int width;
     @Getter
     private int height;
-    ScreenResolution(int width, int height, boolean enabledInCaseOfStrictMode) {
+    VirtualScreenResolution(int width, int height, boolean enabledInCaseOfStrictMode) {
         this.width = width;
         this.height = height;
         this.enabledInCaseOfStrictMode = enabledInCaseOfStrictMode;

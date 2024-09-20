@@ -21,7 +21,7 @@ package com.openeggbert.core.configuration;
 
 import com.pixelgamelibrary.api.Pixel;
 import com.openeggbert.core.main.OpenEggbertException;
-import com.pixelgamelibrary.api.DisplayMode;
+import com.pixelgamelibrary.api.ViewMode;
 
 /**
  *
@@ -34,19 +34,21 @@ public enum OpenEggbertDisplayMode {
         if (configDef == null) {
             return OpenEggbertDisplayMode.WINDOW;
         }
-        return setDisplayMode(fromConfigDef(configDef));
+        final OpenEggbertDisplayMode fromConfigDef = fromConfigDef(configDef);
+        setDisplayMode(fromConfigDef);
+        return fromConfigDef;
     }
 
     public static OpenEggbertDisplayMode fromConfigDef(ConfigDef configDef) {
         return configDef.isFullscreen() ? FULLSCREEN : WINDOW;
     }
 
-    public static OpenEggbertDisplayMode setDisplayModeToFullscreen() {
-        return setDisplayMode(FULLSCREEN);
+    public static void setDisplayModeToFullscreen() {
+        setDisplayMode(FULLSCREEN);
     }
 
-    public static OpenEggbertDisplayMode setDisplayModeToWindow() {
-        return setDisplayMode(WINDOW);
+    public static void setDisplayModeToWindow() {
+        setDisplayMode(WINDOW);
     }
 
     public static OpenEggbertDisplayMode find(boolean fullscreen, boolean window) {
@@ -63,10 +65,8 @@ public enum OpenEggbertDisplayMode {
         }
     }
 
-    public static OpenEggbertDisplayMode setDisplayMode(OpenEggbertDisplayMode displayMode) {
-        DisplayMode result = Pixel.graphics().setDisplayMode(displayMode == FULLSCREEN, displayMode == WINDOW);
-
-        return result == null ? null : OpenEggbertDisplayMode.valueOf(result.name());
+    public static void setDisplayMode(OpenEggbertDisplayMode displayMode) {
+        Pixel.graphics().getMonitor().setViewMode(displayMode == FULLSCREEN ? ViewMode.FULLSCREEN : ViewMode.WINDOW);
     }
 
     public OpenEggbertDisplayMode flip() {

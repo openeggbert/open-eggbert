@@ -13,56 +13,22 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program. If not, see 
+// along with this program. If not, see
 // <https://www.gnu.org/licenses/> or write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
-
 package com.openeggbert.core.screen;
 
-import lombok.Getter;
+import com.openeggbert.core.main.OpenEggbertGame;
 
 /**
  *
  * @author robertvokac
  */
-public enum ScreenType {
-    MAIN,
-    GAME_SPACE_LIST("BASIC"),
-    GAME_SPACE_CREATE("BASIC"),
-    GAME_SPACE_RENAME("BASIC"),
-    GAME_SPACE_DELETE("BASIC"),
-    GAME_SPACE_RESET("BASIC"),
-    GAME_SPACE_EDIT("BASIC"),
-    GAME_SPACE_CONFIGURE("BASIC"),
-    GAME_SPACE_CONFIGURE_ENTRY("BASIC"),
-    GAME_SPACE_SELECT_MODE("BASIC"),
-    //
-    MOD_LIST,
-    MOD_VIEW,
-    //
-    INIT("INIT"),
-    GAMER("GAMER"),
-    MAIN_HUB(""),
-    SUB_HUB(""),
-    GAME(""),
-    EDITOR(""),
-    EDITOR_DEMO(""),
-    DEMO("DECOR016"),//todo fix me
-    ;
-    
-    @Getter
-    private String fileNameWithoutExtension;
-    
-    ScreenType() {
-        this.fileNameWithoutExtension = "";
+public abstract class AbstractBasicScreen extends OpenEggbertScreen {
+
+    public AbstractBasicScreen(OpenEggbertGame openEggbertGame) {
+        super(openEggbertGame);
     }
-    ScreenType(String fileName) {
-        this.fileNameWithoutExtension = fileName;
-    }
-    public boolean isBasic() {
-        return name().startsWith("GAME_SPACE") || name().startsWith("MOD");
-    }
-    
+  
 }

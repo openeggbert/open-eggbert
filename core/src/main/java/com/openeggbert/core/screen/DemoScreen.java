@@ -38,6 +38,7 @@ public class DemoScreen extends OpenEggbertScreen {
 
     }
 
+    @Override
     protected final Optional<ScreenType> getScreenType() {
         return Optional.of(ScreenType.DEMO);
     }

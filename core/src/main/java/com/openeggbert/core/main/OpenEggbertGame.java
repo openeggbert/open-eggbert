@@ -136,6 +136,9 @@ public class OpenEggbertGame extends GameAdapter {
 
     public void loadImageTexture(com.badlogic.gdx.files.FileHandle fileHandle) {
         Texture texture = new Texture(fileHandle);
+        if(!fileHandle.exists()) {
+            throw new OpenEggbertException("File does not exist: " + fileHandle.path());
+        }
         imageTextures.put(OpenEggbertUtils.getFileNameWithoutExtension(fileHandle.name().toUpperCase()), texture);
     }
 

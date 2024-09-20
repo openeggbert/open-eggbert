@@ -132,10 +132,9 @@ public class InitScreen extends OpenEggbertScreen {
                 if (game.getConfigDef() != null && Gdx.app.getType() == Application.ApplicationType.Desktop && !game.getConfigDef().isStrictCompatibility() && keyCode == Input.Keys.F) {
                     OpenEggbertDisplayMode currentDisplayMode = game.getOpenEggbertDisplayMode();
                     OpenEggbertDisplayMode newDisplayMode = currentDisplayMode.flip();
-                    boolean success = OpenEggbertDisplayMode.setDisplayMode(newDisplayMode) != null;
-                    if (success) {
-                        game.setOpenEggbertDisplayMode(newDisplayMode);
-                    }
+                    OpenEggbertDisplayMode.setDisplayMode(newDisplayMode);
+                    game.setOpenEggbertDisplayMode(newDisplayMode);
+                    
                 }
 
                 return true;
