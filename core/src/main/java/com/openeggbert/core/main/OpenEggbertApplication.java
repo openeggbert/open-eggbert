@@ -25,7 +25,7 @@ import java.util.Map;
 import com.pixelgamelibrary.api.game.Game;
 
 /**
- * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all
+ * {@link com.pixelgamelibrary.api.PixelApplication} implementation shared by all
  * platforms.
  */
 public class OpenEggbertApplication extends PixelApplication {
