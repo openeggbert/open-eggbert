@@ -53,6 +53,7 @@ public class Lwjgl3Launcher {
         
         LibGdxGame libGdxGame = new LibGdxGame(game);
         return new Lwjgl3Application(libGdxGame, getDefaultConfiguration());
+        //return new Lwjgl3Application(new Networking(), getDefaultConfiguration());
     }
 
     private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
