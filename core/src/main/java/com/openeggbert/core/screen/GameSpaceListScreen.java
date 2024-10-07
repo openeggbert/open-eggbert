@@ -24,14 +24,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.pixelgamelibrary.api.graphics.Color;
+
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.openeggbert.core.gamespace.GameSpace;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.mod.Mod;
 import com.openeggbert.core.mod.ModType;
 import com.pixelgamelibrary.api.Pixel;
+import com.pixelgamelibrary.api.graphics.BitmapFont;
 import com.pixelgamelibrary.api.storage.Storage;
 import java.util.List;
 import java.util.Optional;
@@ -73,7 +74,7 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
         Preferences prefs = Gdx.app.getPreferences("My Preferences");
         prefs.putString("test", "abc");
         prefs.flush();
-        final Storage storage = Pixel.files().local();
+        final Storage storage = Pixel.files().localStorage();
         storage.createDirectory("modes");
         storage.createDirectory("gameSpaces");
         System.out.println(storage.debug());
@@ -205,7 +206,7 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
 
         BitmapFont font;
         font = game.getFont();
-        font.getData().setScale(4.0f);
+        font.setScale(4.0f);
         font.setColor(Color.BLACK);
         int x = (int) (game.getWidthInPixels() * 0.1875f);
         int y = (int) (game.getHeightInPixels() * 0.95f);
@@ -215,7 +216,7 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
         float margin = 0.05f * game.getWidthInPixels();
 
         y = (int) (game.getHeightInPixels() * 0.7f);
-        font.getData().setScale(2.0f);
+        font.setScale(2.0f);
         final float spaceBetweenLargeButtons = game.getHeightInPixels() * 0.06f;
         for (int i = 0; i < modsForPage.size(); i++) {
             buttons[i] = new Rectangle(margin, y, game.getWidthInPixels() * 0.9f, margin * 1.5f);
@@ -264,7 +265,7 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
             font.draw(batch, name, margin * 1.5f, buttons[i].y + 0.8f * buttons[i].height);
         }
 
-        font.getData()
+        font
                 .setScale(1.5f);
         font.setColor(
                 0f, 0f, 1f, 1f);

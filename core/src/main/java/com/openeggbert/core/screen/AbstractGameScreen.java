@@ -21,10 +21,11 @@ package com.openeggbert.core.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.pixelgamelibrary.api.graphics.Color;
+
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.openeggbert.core.main.OpenEggbertGame;
+import com.pixelgamelibrary.api.graphics.BitmapFont;
 
 /**
  *
@@ -61,7 +62,7 @@ public class AbstractGameScreen extends OpenEggbertScreen {
         
         BitmapFont font;
         font = game.getFont();
-        font.getData().setScale(2.0f);
+        font.setScale(2.0f);
         font.setColor(Color.RED);
         
         font.draw(batch, "Sorry, game is not yet implemented", 40, 400);

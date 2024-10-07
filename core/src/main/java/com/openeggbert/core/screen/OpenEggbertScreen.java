@@ -19,16 +19,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.screen;
 
-import com.badlogic.gdx.Application;
-import static com.badlogic.gdx.Application.LOG_INFO;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.openeggbert.core.gamespace.GameFileType;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.utils.OpenEggbertUtils;
+import com.pixelgamelibrary.api.Pixel;
+import com.pixelgamelibrary.api.Platform;
+import com.pixelgamelibrary.api.app.LogLevel;
+import com.pixelgamelibrary.api.graphics.SpriteBatch;
+import com.pixelgamelibrary.api.graphics.Texture;
 import com.pixelgamelibrary.api.screen.ScreenAdapter;
+import com.pixelgamelibrary.api.storage.FileHandle;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,13 +74,13 @@ public abstract class OpenEggbertScreen extends ScreenAdapter {
         if(getScreenType().isPresent() && getScreenType().get().isBasic()) {
             if (!game.existsImageTexture("BASIC")) {
                 FileHandle fileHandle;
-                if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.WebGL) {
-                    Gdx.app.log("screen","loading from internal");
-                    fileHandle = Gdx.files.internal("BASIC/BASIC.PNG");
+                if (Pixel.app().isOneOfPlatforms(Platform.ANDROID, Platform.WEB)) {
+                    Pixel.app().log("screen","loading from internal");
+                    fileHandle = Pixel.files().assets("BASIC/BASIC.PNG");
                 } else {
 
-                    Gdx.app.log("screen","loading from classpath");
-                    fileHandle = Gdx.files.classpath("BASIC/BASIC.PNG");
+                    Pixel.app().log("screen","loading from classpath");
+                    fileHandle = Pixel.files().assets("BASIC/BASIC.PNG");
             }
                 game.loadImageTexture(fileHandle);
         }
@@ -91,27 +91,27 @@ public abstract class OpenEggbertScreen extends ScreenAdapter {
         if (!game.existsImageTexture(possibleFileName)) {
             String name = game.getGameSpace().getImage08Directory() + "/" + possibleFileName;
             
-            Gdx.app.setLogLevel(LOG_INFO);
-            Gdx.app.log("screen","name=" + name);
+            Pixel.app().setLogLevel(LogLevel.INFO);
+            Pixel.app().log("screen","name=" + name);
             FileHandle fileHandle = null;
             if (game.getGameSpace().isEmbeddedAssets()) {
 
-                if (Gdx.app.getType() == Application.ApplicationType.Android || Gdx.app.getType() == Application.ApplicationType.WebGL) {
-                    Gdx.app.log("screen","loading from internal");
-                    fileHandle = Gdx.files.internal(name);
+                if (Pixel.app().isOneOfPlatforms(Platform.ANDROID, Platform.WEB)) {
+                    Pixel.app().log("screen","loading from internal");
+                    fileHandle = Pixel.files().assets(name);
                 } else {
 
-                    Gdx.app.log("screen","loading from classpath");
-                    fileHandle = Gdx.files.classpath(name);
+                    Pixel.app().log("screen","loading from classpath");
+                    fileHandle = Pixel.files().assets(name);
 
                 }
             } else {
-                Gdx.app.log("screen","loading from absolute");
+                Pixel.app().log("screen","loading from absolute");
 
-                fileHandle = Gdx.files.absolute(name);
+                fileHandle = Pixel.files().absolute(name);
             }
 
-            Gdx.app.log("screen", "fileHandleUpperCase.exists()=" + fileHandle.exists());
+            Pixel.app().log("screen", "fileHandleUpperCase.exists()=" + fileHandle.exists());
 
             if (fileHandle.exists()) {
                 game.loadImageTexture(fileHandle);

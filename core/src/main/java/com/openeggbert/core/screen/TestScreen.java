@@ -19,13 +19,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.core.screen;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.openeggbert.core.main.OpenEggbertGame;
+import com.pixelgamelibrary.api.Pixel;
+import com.pixelgamelibrary.api.graphics.BitmapFont;
 import java.util.function.Function;
 
 /**
@@ -56,7 +57,7 @@ public class TestScreen extends OpenEggbertScreen {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
         game.getBatch().begin();
         Function<String, String> removeCurrentDir = i -> i == null ? null : i.replace(game.getAbsolutePathOfRootDirectory()+ "/", "");
-        if (Gdx.app.getType() == Application.ApplicationType.Desktop && game.getGameSpace() != null) {
+        if (Pixel.app().getPlatform().isDesktop() && game.getGameSpace() != null) {
             BitmapFont font;
             font = game.getFont();
             int x = 140;

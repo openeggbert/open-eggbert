@@ -1,10 +1,6 @@
 package com.openeggbert.core.main;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -18,6 +14,9 @@ import com.openeggbert.core.screen.InitScreen;
 import com.openeggbert.core.utils.OpenEggbertUtils;
 import com.pixelgamelibrary.api.game.GameAdapter;
 import com.pixelgamelibrary.api.Pixel;
+import com.pixelgamelibrary.api.graphics.BitmapFont;
+import com.pixelgamelibrary.api.graphics.SpriteBatch;
+import com.pixelgamelibrary.api.graphics.Texture;
 import com.pixelgamelibrary.api.storage.FileHandle;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,12 +73,12 @@ public class OpenEggbertGame extends GameAdapter {
 //        for(FileHandle f:Gdx.files.internal(".").list()) {
 //            System.out.println("assets contains also: " + f.name());
 //        }
-        com.pixelgamelibrary.api.storage.FileHandle embeddedModsDirectory = Pixel.files().assets().file("/embedded_mods");
+        com.pixelgamelibrary.api.storage.FileHandle embeddedModsDirectory = Pixel.files().assets("/embedded_mods");
         System.out.println("embeddedModsDirectory.exists=" + embeddedModsDirectory.exists());
         System.out.println("embeddedModsDirectory.list().size()=" + embeddedModsDirectory.list().size());
         embeddedModsDirectory.list().forEach(e -> System.out.println(e.path()));
 
-        Pixel.files().assets().list().forEach(e -> System.out.println(e));
+        Pixel.files().assetsStorage().list().forEach(e -> System.out.println(e));
 
         for (FileHandle embeddedModGroup : embeddedModsDirectory.list()) {
             if (embeddedModGroup.name().equals("README.md")) {
@@ -109,13 +108,13 @@ public class OpenEggbertGame extends GameAdapter {
 
         }
         ////
-        batch = new SpriteBatch();
+        batch = Pixel.graphics().newSpriteBatch();
         //batch.setProjectionMatrix(viewport.getCamera().combined);
-        image = new Texture("libgdx.png");
+        image = Pixel.graphics().newTexture("libgdx.png");
         shapeRenderer = new ShapeRenderer();
-        font = new BitmapFont(
-        Gdx.files.internal("com/badlogic/gdx/utils/lsans-15.fnt"), Gdx.files.internal("com/badlogic/gdx/utils/lsans-15.png"),
-			false, true
+        font = Pixel.graphics().newBitmapFont(
+        Pixel.files().assets("com/badlogic/gdx/utils/lsans-15.fnt"), Pixel.files().assets("com/badlogic/gdx/utils/lsans-15.png"),
+			false
         );
         
         System.out.println("Going to set screen");
@@ -134,8 +133,8 @@ public class OpenEggbertGame extends GameAdapter {
         }
     }
 
-    public void loadImageTexture(com.badlogic.gdx.files.FileHandle fileHandle) {
-        Texture texture = new Texture(fileHandle);
+    public void loadImageTexture(FileHandle fileHandle) {
+        Texture texture = Pixel.graphics().newTexture(fileHandle);
         if(!fileHandle.exists()) {
             throw new OpenEggbertException("File does not exist: " + fileHandle.path());
         }
