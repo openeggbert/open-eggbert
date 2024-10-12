@@ -14,7 +14,6 @@ import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.graphics.BitmapFont;
 import com.pixelgamelibrary.api.graphics.SpriteBatch;
 import com.pixelgamelibrary.api.graphics.Texture;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import lombok.Data;
@@ -36,7 +35,7 @@ public class OpenEggbertGame extends GameAdapter {
     private ShapeRenderer shapeRenderer;
     private BitmapFont font;
     private Map<String, Texture> imageTextures = Pixel.utils().collections().objectMap();
-    private List<Mod> embeddedMods = new ArrayList<>();
+    private List<Mod> embeddedMods = Pixel.utils().collections().list();
     private int heightInPixels = 480;
     private int widthInPixels = 640;
     
