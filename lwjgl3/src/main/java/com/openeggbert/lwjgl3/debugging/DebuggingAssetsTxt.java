@@ -20,7 +20,7 @@
 package com.openeggbert.lwjgl3.debugging;
 
 import com.pixelgamelibrary.api.Pixel;
-import com.pixelgamelibrary.backend.libgdx.PixelBackendLibGDX;
+import com.pixelgamelibrary.backend.libgdx.interfaces.PixelBackendLibGDX;
 import com.pixelgamelibrary.api.utils.AssetsTxt;
 import java.util.List;
 import java.util.Scanner;

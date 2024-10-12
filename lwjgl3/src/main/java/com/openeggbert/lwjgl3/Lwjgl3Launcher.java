@@ -26,7 +26,7 @@ import com.openeggbert.core.configuration.VirtualScreenResolution;
 import com.openeggbert.core.main.OpenEggbertApplication;
 import com.openeggbert.core.gamespace.GameSpace;
 import com.pixelgamelibrary.api.Pixel;
-import com.pixelgamelibrary.backend.libgdx.PixelBackendLibGDX;
+import com.pixelgamelibrary.backend.libgdx.interfaces.PixelBackendLibGDX;
 import java.util.Optional;
 import com.pixelgamelibrary.api.game.Game;
 import com.pixelgamelibrary.backend.libgdx.game.LibGdxGame;

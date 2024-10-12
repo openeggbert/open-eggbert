@@ -5,9 +5,8 @@ import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.openeggbert.core.main.OpenEggbertApplication;
-import com.openeggbert.core.main.OpenEggbertGame;
 import com.pixelgamelibrary.api.Pixel;
-import com.pixelgamelibrary.backend.libgdx.PixelBackendLibGDX;
+import com.pixelgamelibrary.backend.libgdx.interfaces.PixelBackendLibGDX;
 import com.pixelgamelibrary.backend.libgdx.game.LibGdxGame;
 
 /** Launches the Android application. */
