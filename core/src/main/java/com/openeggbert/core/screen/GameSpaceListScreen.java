@@ -26,7 +26,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Preferences;
 import com.pixelgamelibrary.api.graphics.Color;
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.pixelgamelibrary.api.graphics.ShapeRenderer;
 import com.openeggbert.core.gamespace.GameSpace;
 import com.openeggbert.core.main.OpenEggbertGame;
 import com.openeggbert.core.mod.Mod;
@@ -40,6 +40,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import com.pixelgamelibrary.api.files.FileSystem;
+import com.pixelgamelibrary.api.graphics.Texture;
 
 /**
  *
@@ -51,6 +52,7 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
     private final int pageSize = 5;
     private final List<Mod> fullEmbeddedMods;
     private float timeSeconds = 0f;
+    private ShapeRenderer shapeRenderer;
 
     @ToString
     @AllArgsConstructor
@@ -62,6 +64,7 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
     private Rectangle[] buttons = new Rectangle[5];
     private Rectangle previousPageButton = new Rectangle();
     private Rectangle nextPageButton = new Rectangle();
+    private Texture backgroundShapes;
 
     public GameSpaceListScreen(OpenEggbertGame openEggbertGame) {
         super(openEggbertGame);
@@ -81,6 +84,9 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
         //storage.file("modes").child("text.txt").writeString("textabc");
 
         storage.flush();
+        shapeRenderer = openEggbertGame.getShapeRenderer();
+        
+        
     }
 
     @Override
@@ -90,6 +96,8 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
 
     @Override
     public void show() {
+        backgroundShapes = Pixel.graphics().getTextureFactory().createTransparent(640, 480);
+        shapeRenderer.setTexture(backgroundShapes);
         System.out.println("Calling : GameSpaceListScreen : show");
         Gdx.input.setInputProcessor(new InputAdapter() {
 
@@ -224,14 +232,9 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
             y = (int) (y - spaceBetweenLargeButtons - margin);
         }
 
-        batch.end();
-
         final boolean isLastPage = !(pageNumber * pageSize < fullEmbeddedMods.size());
 
-        final ShapeRenderer shapeRenderer = game.getShapeRenderer();
-
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
+        backgroundShapes.clear();
         shapeRenderer.setColor(1f, 1f, 0.8f, 0.5f);
         int q = 0;
         for (Rectangle r : buttons) {
@@ -239,19 +242,16 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
             if (q > modsForPage.size()) {
                 break;
             }
-            shapeRenderer.rect(r.x, r.y, r.width, r.height);
+            shapeRenderer.filledRectangle(r.x, r.y, r.width, r.height);
         }
         if (pageNumber
                 > 1) {
-            shapeRenderer.rect(margin, margin / 4f, game.getWidthInPixels() * 0.3f, buttonHeight);
+            shapeRenderer.filledRectangle(margin, margin / 4f, game.getWidthInPixels() * 0.3f, buttonHeight);
         }
         if (!isLastPage) {
-            shapeRenderer.rect(game.getWidthInPixels() * 0.66f, margin / 4f, game.getWidthInPixels() * 0.3f, buttonHeight);
+            shapeRenderer.filledRectangle(game.getWidthInPixels() * 0.66f, margin / 4f, game.getWidthInPixels() * 0.3f, buttonHeight);
         }
-
-        shapeRenderer.end();
-
-        batch.begin();
+        batch.draw(backgroundShapes, 0, 0);
 
         font.setColor(
                 0f, 0f, 1f, 1f);
@@ -298,6 +298,7 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
 
     @Override
     public void hide() {
+        backgroundShapes.dispose();
         Gdx.input.setInputProcessor(null);
     }
 }

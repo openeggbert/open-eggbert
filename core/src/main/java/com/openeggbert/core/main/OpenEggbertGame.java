@@ -1,6 +1,5 @@
 package com.openeggbert.core.main;
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.openeggbert.core.configuration.ConfigDef;
 import com.openeggbert.core.configuration.OpenEggbertDisplayMode;
 import com.openeggbert.core.gamespace.GameSpace;
@@ -18,7 +17,9 @@ import java.util.List;
 import java.util.Optional;
 import lombok.Data;
 import com.pixelgamelibrary.api.files.File;
+import com.pixelgamelibrary.api.graphics.ShapeRenderer;
 import com.pixelgamelibrary.api.utils.collections.Map;
+import lombok.Getter;
 
 /**
  *
@@ -32,6 +33,7 @@ public class OpenEggbertGame extends GameAdapter {
     private String absolutePathOfRootDirectory;
 
     private SpriteBatch batch;
+    @Getter
     private ShapeRenderer shapeRenderer;
     private BitmapFont font;
     private Map<String, Texture> imageTextures = Pixel.utils().collections().objectMap();
@@ -102,7 +104,7 @@ public class OpenEggbertGame extends GameAdapter {
         batch = Pixel.graphics().newSpriteBatch();
         //batch.setProjectionMatrix(viewport.getCamera().combined);
         image = Pixel.graphics().newTexture("libgdx.png");
-        shapeRenderer = new ShapeRenderer();
+        shapeRenderer = batch.drawShape();
         font = Pixel.graphics().newBitmapFont(
         Pixel.files().assets("com/badlogic/gdx/utils/lsans-15.fnt"), Pixel.files().assets("com/badlogic/gdx/utils/lsans-15.png"),
 			false
