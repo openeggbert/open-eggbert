@@ -1,7 +1,6 @@
 package com.openeggbert.core.main;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.utils.ObjectMap;
 import com.openeggbert.core.configuration.ConfigDef;
 import com.openeggbert.core.configuration.OpenEggbertDisplayMode;
 import com.openeggbert.core.gamespace.GameSpace;
@@ -20,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import lombok.Data;
 import com.pixelgamelibrary.api.files.File;
+import com.pixelgamelibrary.api.utils.collections.Map;
 
 /**
  *
@@ -35,7 +35,7 @@ public class OpenEggbertGame extends GameAdapter {
     private SpriteBatch batch;
     private ShapeRenderer shapeRenderer;
     private BitmapFont font;
-    private ObjectMap<String, Texture> imageTextures = new ObjectMap<>();
+    private Map<String, Texture> imageTextures = Pixel.utils().collections().objectMap();
     private List<Mod> embeddedMods = new ArrayList<>();
     private int heightInPixels = 480;
     private int widthInPixels = 640;
@@ -120,7 +120,7 @@ public class OpenEggbertGame extends GameAdapter {
 
         shapeRenderer.dispose();
         font.dispose();
-        for (String key : imageTextures.keys()) {
+        for (String key : imageTextures.keySet()) {
             imageTextures.get(key).dispose();
         }
     }
@@ -145,7 +145,7 @@ public class OpenEggbertGame extends GameAdapter {
     }
 
     public void disposeImageTextures() {
-        for (String key : imageTextures.keys()) {
+        for (String key : imageTextures.keySet()) {
             imageTextures.get(key).dispose();
             imageTextures.remove(key);
         }
