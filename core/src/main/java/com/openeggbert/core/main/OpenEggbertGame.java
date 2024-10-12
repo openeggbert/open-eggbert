@@ -1,9 +1,7 @@
 package com.openeggbert.core.main;
 
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.openeggbert.core.configuration.ConfigDef;
 import com.openeggbert.core.configuration.OpenEggbertDisplayMode;
 import com.openeggbert.core.gamespace.GameSpace;
@@ -41,8 +39,7 @@ public class OpenEggbertGame extends GameAdapter {
     private List<Mod> embeddedMods = new ArrayList<>();
     private int heightInPixels = 480;
     private int widthInPixels = 640;
-    private Camera camera;
-    private Viewport viewport;
+    
     private ConfigDef configDef;
     private OpenEggbertDisplayMode openEggbertDisplayMode = OpenEggbertDisplayMode.WINDOW;
 
@@ -63,11 +60,6 @@ public class OpenEggbertGame extends GameAdapter {
 
     @Override
     public void create() {
-//         viewport = new FitViewport(640,480);
-//         viewport.apply();
-        //camera = new OrthographicCamera();
-
-        //.setToOrtho(false,640,480);
         System.out.println("Searching mods");
 
 //        for(FileHandle f:Gdx.files.internal(".").list()) {
