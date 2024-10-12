@@ -33,13 +33,13 @@ import com.openeggbert.core.mod.Mod;
 import com.openeggbert.core.mod.ModType;
 import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.graphics.BitmapFont;
-import com.pixelgamelibrary.api.storage.Storage;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import com.pixelgamelibrary.api.files.FileSystem;
 
 /**
  *
@@ -74,7 +74,7 @@ public class GameSpaceListScreen extends AbstractBasicScreen {
         Preferences prefs = Gdx.app.getPreferences("My Preferences");
         prefs.putString("test", "abc");
         prefs.flush();
-        final Storage storage = Pixel.files().localStorage();
+        final FileSystem storage = Pixel.files().localFileSystem();
         storage.createDirectory("modes");
         storage.createDirectory("gameSpaces");
         System.out.println(storage.debug());

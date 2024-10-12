@@ -19,9 +19,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3.debugging;
 
-import com.pixelgamelibrary.api.storage.command.StorageCommandLine;
-import com.pixelgamelibrary.api.storage.command.StorageCommandLineScanner;
-import com.pixelgamelibrary.api.storage.map.MemoryStorage;
+import com.pixelgamelibrary.api.files.shell.ShellCommandLine;
+import com.pixelgamelibrary.api.files.shell.ShellCommandLineScanner;
+import com.pixelgamelibrary.api.files.map.MemoryFileSystem;
 
 /**
  *
@@ -34,11 +34,11 @@ public class DesktopStorageCommandLineScanner {
     }
 
     public static void main(String[] args) {
-        MemoryStorage memoryStorage = new MemoryStorage();
+        MemoryFileSystem memoryStorage = new MemoryFileSystem();
         final String user = "player";
         final String hostname = "openegggbert";
-        StorageCommandLine storageCommandLine = new StorageCommandLine(user, hostname, memoryStorage);
-        StorageCommandLineScanner storageCommandLineScanner = new StorageCommandLineScanner(
+        ShellCommandLine storageCommandLine = new ShellCommandLine(user, hostname, memoryStorage);
+        ShellCommandLineScanner shellCommandLineScanner = new ShellCommandLineScanner(
                 storageCommandLine, new DesktopCommandLineScanner());
 
     }

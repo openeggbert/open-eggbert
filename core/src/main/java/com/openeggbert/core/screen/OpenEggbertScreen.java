@@ -28,9 +28,9 @@ import com.pixelgamelibrary.api.app.LogLevel;
 import com.pixelgamelibrary.api.graphics.SpriteBatch;
 import com.pixelgamelibrary.api.graphics.Texture;
 import com.pixelgamelibrary.api.screen.ScreenAdapter;
-import com.pixelgamelibrary.api.storage.FileHandle;
 import java.util.List;
 import java.util.Optional;
+import com.pixelgamelibrary.api.files.File;
 
 /**
  *
@@ -73,7 +73,7 @@ public abstract class OpenEggbertScreen extends ScreenAdapter {
         String fileName = getBackgroundFileName();
         if(getScreenType().isPresent() && getScreenType().get().isBasic()) {
             if (!game.existsImageTexture("BASIC")) {
-                FileHandle fileHandle;
+                File fileHandle;
                 if (Pixel.app().isOneOfPlatforms(Platform.ANDROID, Platform.WEB)) {
                     Pixel.app().log("screen","loading from internal");
                     fileHandle = Pixel.files().assets("BASIC/BASIC.PNG");
@@ -93,7 +93,7 @@ public abstract class OpenEggbertScreen extends ScreenAdapter {
             
             Pixel.app().setLogLevel(LogLevel.INFO);
             Pixel.app().log("screen","name=" + name);
-            FileHandle fileHandle = null;
+            File fileHandle = null;
             if (game.getGameSpace().isEmbeddedAssets()) {
 
                 if (Pixel.app().isOneOfPlatforms(Platform.ANDROID, Platform.WEB)) {

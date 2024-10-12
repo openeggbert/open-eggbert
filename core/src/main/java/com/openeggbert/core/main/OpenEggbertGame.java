@@ -17,11 +17,11 @@ import com.pixelgamelibrary.api.Pixel;
 import com.pixelgamelibrary.api.graphics.BitmapFont;
 import com.pixelgamelibrary.api.graphics.SpriteBatch;
 import com.pixelgamelibrary.api.graphics.Texture;
-import com.pixelgamelibrary.api.storage.FileHandle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import lombok.Data;
+import com.pixelgamelibrary.api.files.File;
 
 /**
  *
@@ -73,23 +73,23 @@ public class OpenEggbertGame extends GameAdapter {
 //        for(FileHandle f:Gdx.files.internal(".").list()) {
 //            System.out.println("assets contains also: " + f.name());
 //        }
-        com.pixelgamelibrary.api.storage.FileHandle embeddedModsDirectory = Pixel.files().assets("/embedded_mods");
+        com.pixelgamelibrary.api.files.File embeddedModsDirectory = Pixel.files().assets("/embedded_mods");
         System.out.println("embeddedModsDirectory.exists=" + embeddedModsDirectory.exists());
         System.out.println("embeddedModsDirectory.list().size()=" + embeddedModsDirectory.list().size());
         embeddedModsDirectory.list().forEach(e -> System.out.println(e.path()));
 
-        Pixel.files().assetsStorage().list().forEach(e -> System.out.println(e));
+        Pixel.files().assetsFileSystem().list().forEach(e -> System.out.println(e));
 
-        for (FileHandle embeddedModGroup : embeddedModsDirectory.list()) {
+        for (File embeddedModGroup : embeddedModsDirectory.list()) {
             if (embeddedModGroup.name().equals("README.md")) {
                 continue;
             }
             System.out.println("Found group " + embeddedModGroup.name());
-            for (FileHandle embeddedMod : embeddedModGroup.list()) {
+            for (File embeddedMod : embeddedModGroup.list()) {
                 System.out.println("Found mod " + embeddedMod.name());
 
-                FileHandle modXml = null;
-                for (FileHandle file : embeddedMod.list()) {
+                File modXml = null;
+                for (File file : embeddedMod.list()) {
                     if (file.name().equals("mod.xml")) {
                         modXml = file;
                     }
@@ -133,7 +133,7 @@ public class OpenEggbertGame extends GameAdapter {
         }
     }
 
-    public void loadImageTexture(FileHandle fileHandle) {
+    public void loadImageTexture(File fileHandle) {
         Texture texture = Pixel.graphics().newTexture(fileHandle);
         if(!fileHandle.exists()) {
             throw new OpenEggbertException("File does not exist: " + fileHandle.path());

@@ -19,14 +19,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.openeggbert.lwjgl3.debugging;
 
-import com.pixelgamelibrary.api.storage.command.CommandLineScanner;
+import com.pixelgamelibrary.api.files.shell.ShellScanner;
 import java.util.Scanner;
 
 /**
  *
  * @author robertvokac
  */
-public class DesktopCommandLineScanner implements CommandLineScanner {
+public class DesktopCommandLineScanner implements ShellScanner {
 
     private final Scanner scanner;
 
