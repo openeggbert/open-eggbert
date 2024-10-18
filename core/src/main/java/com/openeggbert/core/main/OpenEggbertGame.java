@@ -79,6 +79,9 @@ public class OpenEggbertGame extends GameAdapter {
             }
             System.out.println("Found group " + embeddedModGroup.name());
             for (File embeddedMod : embeddedModGroup.list()) {
+                if (embeddedMod.name().equals("README.md")) {
+                    continue;
+                }
                 System.out.println("Found mod " + embeddedMod.name());
 
                 File modXml = null;
