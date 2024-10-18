@@ -1,0 +1,4 @@
+[submodule "assets/embedded_mods/speedy-blupi-I-legacy-mods"]
+	path = assets/embedded_mods/speedy-blupi-I-legacy-mods
+	url = https://github.com/openeggbert/speedy-blupi-I-legacy-mods
+	branch = develop
