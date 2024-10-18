@@ -1,4 +1,0 @@
-[submodule "assets/embedded_mods"]
-	path = assets/embedded_mods
-	url = https://code.nanoboot.org/openeggbert/open-eggbert-embedded-mods
-	branch = rvc
